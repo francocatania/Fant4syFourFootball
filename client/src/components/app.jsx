@@ -14,14 +14,16 @@ import Draft from './draft.jsx';
 const App = () => {
   return (
     <div>
-      <ul>
-        <li><Link to="/league">League</Link></li>
-        <li><Link to="/myteam">My Team</Link></li>
-        <li><Link to="/matchups">Matchups</Link></li>
-        <li><Link to="/draft">Draft</Link></li>
-      </ul>
+      <div id="navbar">
+        <button id="logout"><Link to="/">Log out</Link></button>
 
-      <button><Link to="/">Log out</Link></button>
+        <ul>
+          <li id="navbar-item"><Link to="/league">League</Link></li>
+          <li id="navbar-item"><Link to="/myteam">My Team</Link></li>
+          <li id="navbar-item"><Link to="/matchups">Matchups</Link></li>
+          <li id="navbar-item"><Link to="/draft">Draft</Link></li>
+        </ul>
+      </div>
 
       <br />
 
