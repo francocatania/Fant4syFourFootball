@@ -1,11 +1,13 @@
-const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
+
+const express = require('express');
+const https = require('https');
+const port = process.env.PORT || 4444;
 const app = express();
-const port = process.env.PORT || 4444
+https.createServer(app);
 
-app.use(express.static(__dirname + '/../client/dist'));
-app.use(bodyParser.json());
-
-app.listen(port, function() {
-  console.log( `listening on port ${port}!`);
-});
+app
+	.use(bodyParser.json())
+	.use(express.static(path.join(__dirname, '../client/dist')))
+	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
