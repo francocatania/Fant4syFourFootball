@@ -1,0 +1,3 @@
+const fantasyDataSolutionsSubscriptionKey = '39d6db8df77c4dca97f4515cb875301f';
+
+module.exports.fdsSubscriptionKey = fantasyDataSolutionsSubscriptionKey;
