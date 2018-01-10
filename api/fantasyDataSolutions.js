@@ -1,8 +1,12 @@
 const request = require('request');
 const rp = require('request-promise');
 const apiSimulation = require('./apiSimulation/week14Data.js');
-const apiKeys = require('./apiKeys.js');
 const db = require('../database/index.js');
+
+let apiKeys = null
+if (!process.env.fdsKey) {
+	apiKeys = require('./apiKeys.js');
+}
 
 const makePlayer = (data) => {
 	return player = {
@@ -59,7 +63,7 @@ const getNewPlayersFromApi = (res) => {
 //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/Players`,
 //     headers: {
 //         'User-Agent': 'Request-Promise',
-//         'Ocp-Apim-Subscription-Key': apiKeys.fdsSubscriptionKey
+//         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
 //     json: true 
 // 	};
@@ -106,7 +110,7 @@ const getAllPlayerStatsFromApi = (res) => {
 //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
 //     headers: {
 //         'User-Agent': 'Request-Promise',
-//         'Ocp-Apim-Subscription-Key': apiKeys.fdsSubscriptionKey
+//         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
 //     json: true 
 // 	};
