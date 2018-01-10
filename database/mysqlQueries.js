@@ -1,6 +1,6 @@
 const savePlayerStats = ``;
 
-const savePlayer = `;`
+const savePlayer = ``;
 
 
 

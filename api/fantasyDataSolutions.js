@@ -1,22 +1,14 @@
+const rp = require('request-promise');
 const apiSimulation = require('apiSimulation/week14Data.js');
-const apiKeys = require('apiKeys.js')
+const apiKeys = require('apiKeys.js');
 const db = require('../database/index.js');
 
-const getDataFromApiSimulation(res) => {
-	const parsedJSONData = apiSimulation.playerWeeklyStats;
-
-	const processedPlayersStats = parsedJSONData.map((playerStats) => {
-		return makePlayerStats(playerStats)
-	});
-
-	processedPlayersStats.forEach((playerStats) => {
-		db.savePlayerStatsToDB(playerStats);
-	})
-
-	res.sendStatus(201);
+const makePlayer = (data) => {
+		"id": data.PlayerID,
+		"name": data.Name,
+		"position": data.Position
 };
 
-// scoreId ("id") is automatically incremeneted, and is unique. Not included here.
 const makePlayerStats = (data) => {
 	return playStats = {
 		"Week": data.Week,
@@ -43,12 +35,22 @@ const makePlayerStats = (data) => {
 	}
 };
 
-const makePlayer = (data) => {
-		"id": data.PlayerID,
-		"name": data.Name,
-		"position": data.Position
-};
+// this function is a simulation of the real API call, which is commented out below
+// comment out this function, and uncomment the below function to open up API functionality
+// the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
+const getAllPlayerStatsFromApi(res) => {
+	const parsedJSONData = apiSimulation.playerWeeklyStats;
 
+	const processedPlayersStats = parsedJSONData.map((playerStats) => {
+		return makePlayerStats(playerStats)
+	});
+
+	processedPlayersStats.forEach((playerStats) => {
+		db.savePlayerStatsToDB(playerStats);
+	})
+
+	res.sendStatus(201);
+};
 
 // const getAllPlayerStatsFromApi(res, season, week) => {
 // 	const options = {
@@ -77,34 +79,4 @@ const makePlayer = (data) => {
 // 	res.sendStatus(201);
 // };
 
-// const getPlayerStatsByPlayerIdFromApi(res, season, week, playerId) => {
-// 	const options = {
-// 	    uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/${playerId}?`,
-// 	    headers: {
-// 	        'User-Agent': 'Request-Promise',
-// 	        'Ocp-Apim-Subscription-Key': apiKeys.fdsSubscriptionKey
-// 	    },
-// 	    json: true 
-// 	};
-
-// 	rp(options)
-// 	    .then((parsedJSONData) => {
-// 	      const processedPlayersStats = parsedJSONData.map((playerStats) => {
-// 					return makePlayerStats(playerStats)
-// 				});
-
-// 				processedPlayersStats.forEach((playerStats) => {
-// 					db.savePlayerStatsToDB(playerStats);
-// 				});
-// 	    })
-// 	    .catch((err) => {
-// 	      console.log('failed to retrieve data from Fantasy Data Solutions');
-// 	    });
-
-// 	res.sendStatus(201);
-// };
-
-
-module.exports.getDataFromApiSimulation = getDataFromApiSimulation;
-// module.exports.getAllPlayerStatsFromApi = getAllPlayerStatsFromApi;
-// module.exports.getPlayerStatsByPlayerIdFromApi = getPlayerStatsByPlayerIdFromApi;
+module.exports.getAllPlayerStatsFromApi = getAllPlayerStatsFromApi;
