@@ -4,11 +4,14 @@ const path = require('path');
 const fdsApi = require('../api/fantasyDataSolutions.js');
 
 const serverHelpers = require('./serverHelpers.js');
+
 const express = require('express');
 const https = require('https');
 const port = process.env.PORT || 4444;
 const app = express();
 https.createServer(app);
+
+
 
 app
 	.use(bodyParser.json())
