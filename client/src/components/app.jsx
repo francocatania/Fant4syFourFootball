@@ -27,7 +27,11 @@ const App = () => {
 
       <br />
 
-    
+      <Route exact path="/" component={Login}/>
+      <Route path="/league" component={League}/>
+      <Route path="/myteam" component={MyTeam}/>
+      <Route path="/matchups" component={Matchups}/>
+      <Route path="/draft" component={Draft}/>
     </div>
   );
 }
