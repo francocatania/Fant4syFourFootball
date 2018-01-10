@@ -1,6 +1,7 @@
+const request = require('request');
 const rp = require('request-promise');
-const apiSimulation = require('apiSimulation/week14Data.js');
-const apiKeys = require('apiKeys.js');
+const apiSimulation = require('./apiSimulation/week14Data.js');
+const apiKeys = require('./apiKeys.js');
 const db = require('../database/index.js');
 
 const makePlayer = (data) => {
@@ -39,10 +40,10 @@ const makePlayerStats = (data) => {
 
 // this function is a simulation of the real API call, which is commented out below
 // comment out this function, and uncomment the below function to open up API functionality
-const getNewPlayersFromApi(res) => {
+const getNewPlayersFromApi = (res) => {
 	const parsedJSONData = apiSimulation.playerWeeklyStats;
 
-	const processedPlayers = parsedJSONData.map((player) => {
+	const processedPlayers = parsedJSONData.map(player => {
 		return makePlayer(player)
 	});
 
@@ -53,7 +54,7 @@ const getNewPlayersFromApi(res) => {
 	res.sendStatus(201);
 };
 
-// const getNewPlayersFromApi(res) => {
+// const getNewPlayersFromApi = (res) => {
 // 	const options = {
 //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/Players`,
 //     headers: {
@@ -65,7 +66,7 @@ const getNewPlayersFromApi(res) => {
 
 // 	rp(options)
 //     .then((parsedJSONData) => {
-// 			const processedPlayers = parsedJSONData.map((player) => {
+// 			const processedPlayers = parsedJSONData.map(player => {
 // 				return makePlayer(player)
 // 			});
 
@@ -86,10 +87,10 @@ const getNewPlayersFromApi(res) => {
 // this function is a simulation of the real API call, which is commented out below
 // comment out this function, and uncomment the below function to open up API functionality
 // the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
-const getAllPlayerStatsFromApi(res) => {
+const getAllPlayerStatsFromApi = (res) => {
 	const parsedJSONData = apiSimulation.playerWeeklyStats;
 
-	const processedPlayersStats = parsedJSONData.map((playerStats) => {
+	const processedPlayersStats = parsedJSONData.map(playerStats => {
 		return makePlayerStats(playerStats)
 	});
 
@@ -100,7 +101,7 @@ const getAllPlayerStatsFromApi(res) => {
 	res.sendStatus(201);
 };
 
-// const getAllPlayerStatsFromApi(res, season, week) => {
+// const getAllPlayerStatsFromApi = (res, season, week) => {
 // 	const options = {
 //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
 //     headers: {
@@ -116,7 +117,7 @@ const getAllPlayerStatsFromApi(res) => {
 // 				return makePlayerStats(playerStats)
 // 			});
 
-// 			processedPlayersStats.forEach((playerStats) => {
+// 			processedPlayersStats.forEach(playerStats => {
 // 				db.savePlayerStatsToDB(playerStats);
 // 			});
 

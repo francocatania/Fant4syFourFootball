@@ -1,7 +1,7 @@
 const mysql = require('mysql');
-const sqlQueries = require('mysqlQueries.js');
+const sqlQueries = require('./mysqlQueries.js');
 
-const savePlayerStatsToDB(playerStats) {
+const savePlayerStatsToDB = (playerStats) => {
 	const sql = sqlQueries.savePlayerStats
 
 	// function to save platerStats to clearDB
@@ -14,7 +14,7 @@ const savePlayerStatsToDB(playerStats) {
 	});
 };
 
-const savePlayerToDB(player) {
+const savePlayerToDB = (player) => {
 	const sql = sqlQueries.savePlayer;
 
 	// function to save player to clearDB

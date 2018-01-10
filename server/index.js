@@ -3,7 +3,7 @@ const path = require('path');
 
 const fdsApi = require('../api/fantasyDataSolutions.js');
 
-const serverHelpers = require('serverHelpers.js');
+const serverHelpers = require('./serverHelpers.js');
 const express = require('express');
 const https = require('https');
 const port = process.env.PORT || 4444;
