@@ -29,9 +29,6 @@ class Login extends React.Component {
             <label><b>Password: </b></label>
             <input onChange={this.props.validateEntry} type="password" placeholder="Enter Password" name="password" required></input>
             <br />
-            <label><b>Team Name: </b></label>
-            <input onChange={this.props.validateEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
-            <br />
             <button onClick={this.props.handleSignIn}>Sign Up!</button>
           </div>
         </form>
@@ -41,3 +38,8 @@ class Login extends React.Component {
 }
 
 export default Login
+
+// Include in render if team naming functionality is added:
+// <label><b>Team Name: </b></label>
+// <input onChange={this.props.validateEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
+// <br />
