@@ -65,7 +65,7 @@ const getNewPlayersFromApi = (res) => {
 //         'User-Agent': 'Request-Promise',
 //         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
-//     json: true 
+//     json: true
 // 	};
 
 // 	rp(options)
@@ -112,7 +112,7 @@ const getAllPlayerStatsFromApi = (res) => {
 //         'User-Agent': 'Request-Promise',
 //         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
-//     json: true 
+//     json: true
 // 	};
 
 // 	rp(options)
