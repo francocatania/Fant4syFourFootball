@@ -51,9 +51,26 @@ const getNewPlayersFromApi = (res) => {
 		return makePlayer(player)
 	});
 
-	processedPlayers.forEach((player) => {
+	processedPlayers.forEach(player => {
 		db.savePlayerToDB(player);
 	});
+
+	res.sendStatus(201);
+};
+
+// this function is a simulation of the real API call, which is commented out below
+// comment out this function, and uncomment the below function to open up API functionality
+// the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
+const getAllPlayerStatsFromApi = (res) => {
+	const parsedJSONData = apiSimulation.playerWeeklyStats;
+
+	const processedPlayersStats = parsedJSONData.map(playerStats => {
+		return makePlayerStats(playerStats)
+	});
+
+	processedPlayersStats.forEach(playerStats => {
+		db.savePlayerStatsToDB(playerStats);
+	})
 
 	res.sendStatus(201);
 };
@@ -74,7 +91,7 @@ const getNewPlayersFromApi = (res) => {
 // 				return makePlayer(player)
 // 			});
 
-// 			processedPlayers.forEach((player) => {
+// 			processedPlayers.forEach(player => {
 // 				db.savePlayerToDB(player);
 // 			});
 
@@ -85,25 +102,6 @@ const getNewPlayersFromApi = (res) => {
 //       res.sendStatus(400);
 //     });
 // };
-
-
-
-// this function is a simulation of the real API call, which is commented out below
-// comment out this function, and uncomment the below function to open up API functionality
-// the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
-const getAllPlayerStatsFromApi = (res) => {
-	const parsedJSONData = apiSimulation.playerWeeklyStats;
-
-	const processedPlayersStats = parsedJSONData.map(playerStats => {
-		return makePlayerStats(playerStats)
-	});
-
-	processedPlayersStats.forEach((playerStats) => {
-		db.savePlayerStatsToDB(playerStats);
-	})
-
-	res.sendStatus(201);
-};
 
 // const getAllPlayerStatsFromApi = (res, season, week) => {
 // 	const options = {
@@ -117,7 +115,7 @@ const getAllPlayerStatsFromApi = (res) => {
 
 // 	rp(options)
 //     .then((parsedJSONData) => {
-//       const processedPlayersStats = parsedJSONData.map((playerStats) => {
+//       const processedPlayersStats = parsedJSONData.map(playerStats => {
 // 				return makePlayerStats(playerStats)
 // 			});
 
