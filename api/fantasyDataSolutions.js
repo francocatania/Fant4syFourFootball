@@ -58,6 +58,7 @@ const getNewPlayersFromApi = (res) => {
 	res.sendStatus(201);
 };
 
+<<<<<<< HEAD
 // this function is a simulation of the real API call, which is commented out below
 // comment out this function, and uncomment the below function to open up API functionality
 // the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
@@ -129,7 +130,95 @@ const getAllPlayerStatsFromApi = (res) => {
 //       console.log('failed to retrieve data from Fantasy Data Solutions');
 //       res.sendStatus(400);
 //     });
+// const getNewPlayersFromApi = (res) => {
+// 	const parsedJSONData = apiSimulation.playerWeeklyStats;
+//
+// 	const processedPlayers = parsedJSONData.map(player => {
+// 		return makePlayer(player)
+// 	});
+//
+// 	processedPlayers.forEach((player) => {
+// 		db.savePlayerToDB(player);
+// 	});
+//
+// 	res.sendStatus(201);
 // };
-
-module.exports.getNewPlayersFromApi = getNewPlayersFromApi;
-module.exports.getAllPlayerStatsFromApi = getAllPlayerStatsFromApi;
+//
+// // const getNewPlayersFromApi = (res) => {
+// // 	const options = {
+// //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/Players`,
+// //     headers: {
+// //         'User-Agent': 'Request-Promise',
+// //         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
+// //     },
+// //     json: true
+// // 	};
+//
+// // 	rp(options)
+// //     .then((parsedJSONData) => {
+// // 			const processedPlayers = parsedJSONData.map(player => {
+// // 				return makePlayer(player)
+// // 			});
+//
+// // 			processedPlayers.forEach((player) => {
+// // 				db.savePlayerToDB(player);
+// // 			});
+//
+// // 			res.sendStatus(201);
+// //     })
+// //     .catch((err) => {
+// //       console.log('failed to retrieve data from Fantasy Data Solutions');
+// //       res.sendStatus(400);
+// //     });
+// // };
+//
+//
+//
+// // this function is a simulation of the real API call, which is commented out below
+// // comment out this function, and uncomment the below function to open up API functionality
+// // the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
+// const getAllPlayerStatsFromApi = (res) => {
+// 	const parsedJSONData = apiSimulation.playerWeeklyStats;
+//
+// 	const processedPlayersStats = parsedJSONData.map(playerStats => {
+// 		return makePlayerStats(playerStats)
+// 	});
+//
+// 	processedPlayersStats.forEach((playerStats) => {
+// 		db.savePlayerStatsToDB(playerStats);
+// 	})
+//
+// 	res.sendStatus(201);
+>>>>>>> set up environment variables
+// };
+//
+// // const getAllPlayerStatsFromApi = (res, season, week) => {
+// // 	const options = {
+// //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
+// //     headers: {
+// //         'User-Agent': 'Request-Promise',
+// //         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
+// //     },
+// //     json: true
+// // 	};
+//
+// // 	rp(options)
+// //     .then((parsedJSONData) => {
+// //       const processedPlayersStats = parsedJSONData.map((playerStats) => {
+// // 				return makePlayerStats(playerStats)
+// // 			});
+//
+// // 			processedPlayersStats.forEach(playerStats => {
+// // 				db.savePlayerStatsToDB(playerStats);
+// // 			});
+//
+// // 			res.sendStatus(201);
+// //     })
+// //     .catch((err) => {
+// //       console.log('failed to retrieve data from Fantasy Data Solutions');
+// //       res.sendStatus(400);
+// //     });
+// // };
+//
+// module.exports.getNewPlayersFromApi = getNewPlayersFromApi;
+// module.exports.getAllPlayerStatsFromApi = getAllPlayerStatsFromApi;
