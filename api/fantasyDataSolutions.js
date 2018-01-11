@@ -30,15 +30,15 @@ const makePlayerStats = (data) => {
 		"receivingTouchdowns": data.RushingTouchdowns,
 		"fumbles": data.Fumbles,
 		"fieldGoalsMade0to19": data.FieldGoalsMade0to19,
-	    "fieldGoalsMade20to29": data.FieldGoalsMade20to29,
-	    "fieldGoalsMade30to39": data.FieldGoalsMade30to39,
-	    "fieldGoalsMade40to49": data.FieldGoalsMade40to49,
-	    "fieldGoalsMade50Plus": data.FieldGoalsMade50Plus,
+	  "fieldGoalsMade20to29": data.FieldGoalsMade20to29,
+	  "fieldGoalsMade30to39": data.FieldGoalsMade30to39,
+	  "fieldGoalsMade40to49": data.FieldGoalsMade40to49,
+	  "fieldGoalsMade50Plus": data.FieldGoalsMade50Plus,
 		"extraPointsMade": data.ExtraPointsMade,
 		"twoPointConversionPasses": data.TwoPointConversionPasses,
 		"twoPointConversionRuns": data.TwoPointConversionRuns,
 		"twoPointConversionReceptions": data.TwoPointConversionReceptions,
-  		"isGameOver": data.IsGameOver
+  	"isGameOver": data.IsGameOver
 	}
 };
 
@@ -69,11 +69,16 @@ const getAllPlayerStatsFromApi = (res) => {
 	});
 
 	processedPlayersStats.forEach(playerStats => {
-		db.savePlayerStatsToDB(playerStats);
+		console.log(playerStats);
+		// db.savePlayerStatsToDB(playerStats);
 	})
 
 	res.sendStatus(201);
 };
+
+const updateAllPlayerStatsFromApi = (res) => {
+	
+}
 
 // const getNewPlayersFromApi = (res) => {
 // 	const options = {

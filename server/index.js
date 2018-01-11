@@ -17,4 +17,5 @@ app
 	.use(bodyParser.json())
 	.use(express.static(path.join(__dirname, '../client/dist')))
 	.post('/playerdata', (req, res) => fdsApi.getAllPlayerStatsFromApi(res))
+	.put('/playerdata', (req, res) => fdsApi.updateAllPlayerStatsFromApi(res)))
 	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
