@@ -9,7 +9,7 @@
     "npm": "^5.5.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "server-inspect": "nodemon --inspect server/index.js",
@@ -25,6 +25,7 @@
     "express": "*",
     "https": "^1.0.0",
     "jquery": "*",
+    "mocha": "^4.1.0",
     "mysql": "*",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
