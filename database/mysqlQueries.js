@@ -1,6 +1,9 @@
 const savePlayerStats = ``;
 
-const savePlayer = ``;
+const savePlayer = `INSERT INTO players
+(id, name, position)
+VALUES
+(${player.id}, ${player.name}, ${player.position})`;
 
 
 
