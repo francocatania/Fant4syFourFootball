@@ -82,19 +82,19 @@ const getAllPlayerStatsFromApi = (res) => {
 //         'User-Agent': 'Request-Promise',
 //         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
-//     json: true 
+//     json: true
 // 	};
-
+//
 // 	rp(options)
 //     .then((parsedJSONData) => {
 // 			const processedPlayers = parsedJSONData.map(player => {
 // 				return makePlayer(player)
 // 			});
-
+//
 // 			processedPlayers.forEach(player => {
 // 				db.savePlayerToDB(player);
 // 			});
-
+//
 // 			res.sendStatus(201);
 //     })
 //     .catch((err) => {
@@ -102,7 +102,7 @@ const getAllPlayerStatsFromApi = (res) => {
 //       res.sendStatus(400);
 //     });
 // };
-
+//
 // const getAllPlayerStatsFromApi = (res, season, week) => {
 // 	const options = {
 //     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
@@ -110,26 +110,39 @@ const getAllPlayerStatsFromApi = (res) => {
 //         'User-Agent': 'Request-Promise',
 //         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
-//     json: true 
+//     json: true
 // 	};
-
+//
 // 	rp(options)
 //     .then((parsedJSONData) => {
 //       const processedPlayersStats = parsedJSONData.map(playerStats => {
 // 				return makePlayerStats(playerStats)
 // 			});
-
+//
 // 			processedPlayersStats.forEach(playerStats => {
 // 				db.savePlayerStatsToDB(playerStats);
 // 			});
-
+//
 // 			res.sendStatus(201);
 //     })
 //     .catch((err) => {
 //       console.log('failed to retrieve data from Fantasy Data Solutions');
 //       res.sendStatus(400);
 //     });
+// const getNewPlayersFromApi = (res) => {
+// 	const parsedJSONData = apiSimulation.playerWeeklyStats;
+//
+// 	const processedPlayers = parsedJSONData.map(player => {
+// 		return makePlayer(player)
+// 	});
+//
+// 	processedPlayers.forEach((player) => {
+// 		db.savePlayerToDB(player);
+// 	});
+//
+// 	res.sendStatus(201);
 // };
+
 
 module.exports.getNewPlayersFromApi = getNewPlayersFromApi;
 module.exports.getAllPlayerStatsFromApi = getAllPlayerStatsFromApi;

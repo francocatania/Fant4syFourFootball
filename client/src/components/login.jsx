@@ -1,9 +1,43 @@
 import React from 'react';
 
-const Login = () => {
-  return (
-    <p>Login</p>
-  );
+class Login extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <form>
+          <div className="login">
+            <h5>LOG IN</h5>
+            <label><b>Username: </b></label>
+            <input onChange={this.props.validateEntry} type="text" placeholder="Enter username" name="username" required></input>
+            <br />
+            <label><b>Password: </b></label>
+            <input onChange={this.props.validateEntry} type="password" placeholder="Enter Password" name="psw" required></input>
+            <br />
+            <button onClick={this.props.handleSignIn}>Log In!</button>
+          </div>
+        </form>
+        <form>
+          <div className="signup">
+            <h5>SIGN UP</h5>
+            <label><b>Username: </b></label>
+            <input onChange={this.props.validateEntry} type="text" placeholder="Enter username" name="username" required></input>
+            <br />
+            <label><b>Password: </b></label>
+            <input onChange={this.props.validateEntry} type="password" placeholder="Enter Password" name="password" required></input>
+            <br />
+            <label><b>Team Name: </b></label>
+            <input onChange={this.props.validateEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
+            <br />
+            <button onClick={this.props.handleSignIn}>Sign Up!</button>
+          </div>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default Login
