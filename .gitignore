@@ -31,3 +31,4 @@ bower_components/
 #private information
 apiKeys.js
 database/developmentConfig.js
+.DS_Store
