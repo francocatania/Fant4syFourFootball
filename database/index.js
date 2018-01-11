@@ -1,4 +1,4 @@
-const db = require('mysql');
+const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const {mysqlConfig} = require('./config.js');
 
