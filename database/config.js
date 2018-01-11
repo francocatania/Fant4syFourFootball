@@ -10,7 +10,3 @@ const mysqlConfig = process.env.DATABASE_URL || config.developmentConfig;
 
 
 module.exports.mysqlConfig = mysqlConfig;
-
-
-
-  
