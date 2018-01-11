@@ -24,7 +24,7 @@ const allStats = ['week',
     'twoPointConversionRuns',
     'twoPointConversionReceptions',
     'isGameOver'];
-    
+
 const savePlayerStats = `INSERT INTO playerStats
 (week,
 playerID,
