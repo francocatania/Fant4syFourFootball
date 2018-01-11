@@ -15,9 +15,9 @@ const db = mysql.connection;
 
 const savePlayerStatsToDB = (playerStats) => {
 	const sql = sqlQueries.savePlayerStats
-
+	
 	// function to save platerStats to clearDB
-	db.query(sql, () => {
+	db.query(sql, [player.id, player.name, player.position], () => {
 		if (err) {
 			console.log('Stats failed to insert into database');
 		} else {
@@ -30,7 +30,7 @@ const savePlayerToDB = (player) => {
 	const sql = sqlQueries.savePlayer;
 
 	// function to save player to clearDB
-	db.query(sql, () => {
+	db.query(sql, sqlQueries.allStats, () => {
 		if (err) {
 			console.log('Player failed to insert into database');
 		} else {
