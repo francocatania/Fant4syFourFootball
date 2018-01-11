@@ -12,8 +12,6 @@ const db = mysql.connection;
 
 
 // HELPER FUNCTIONS //
-const config = require('./config.js');
-const db = mysql.createConnection(config);
 
 const savePlayerStatsToDB = (playerStats) => {
 	const sql = sqlQueries.savePlayerStats
