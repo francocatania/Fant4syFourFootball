@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const savePlayer = `INSERT INTO players
 (id, name, position)
 VALUES
@@ -78,16 +77,3 @@ VALUES
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
 module.exports.allStats = allStats;
-=======
-// const savePlayerStats = ``;
-//
-// const savePlayer = `INSERT INTO players
-// (id, name, position)
-// VALUES
-// (${player.id}, ${player.name}, ${player.position})`;
-//
-//
-//
-// module.exports.savePlayerStats = savePlayerStats;
-// module.exports.savePlayer = savePlayer;
->>>>>>> 5731556d529b694b216c2615621e0190a4450d1a
