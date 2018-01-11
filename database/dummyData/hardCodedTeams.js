@@ -12,3 +12,5 @@ const teams = [
   {id: 11, league: 1, name: 'Turn Down for Watt', owner: null},
   {id: 12, league: 1, name: 'Kung Suh Panda', owner: null}
 ];
+
+const owners = [];
