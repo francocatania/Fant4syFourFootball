@@ -20,12 +20,9 @@ const allStats = ['week',
     'fieldGoalsMade40to49',
     'fieldGoalsMade50Plus',
     'extraPointsMade',
-    'twoPointConversionPasses',
-    'twoPointConversionRuns',
-    'twoPointConversionReceptions',
     'isGameOver'];
 
-const savePlayerStats = `INSERT INTO playerStats
+const savePlayerStats = `INSERT INTO playerstats
 (week,
 playerID,
 passingYards,
@@ -43,16 +40,10 @@ fieldGoalsMade30to39,
 fieldGoalsMade40to49,
 fieldGoalsMade50Plus,
 extraPointsMade,
-twoPointConversionPasses,
-twoPointConversionRuns,
-twoPointConversionReceptions,
 isGameOver)
 
 VALUES
-
-?,
-?,
-?,
+(
 ?,
 ?,
 ?,
