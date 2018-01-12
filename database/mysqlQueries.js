@@ -1,3 +1,9 @@
+const currentWeekAndSeason = `SELECT currentweek, currentseason FROM leagues`;
+
+const updateCurrentWeek = `UPDATE leagues 
+SET currentweek = ?
+WHERE id = 1`
+
 const savePlayer = `
     INSERT INTO players
     (id, name, position)
