@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Link
 } from 'react-router-dom';
@@ -18,7 +19,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: true,
       username: "",
       password: "",
       myTeam: {},
@@ -34,18 +35,6 @@ class App extends React.Component {
     // make sure characters are allowed
   }
 
-  handleLoginStateChange(response) {
-    this.setState({
-      isLoggedIn: true,
-      // username: response.username,
-      // password: response.password,
-      // myTeam: response.teamName,
-      // myPlayers: response.players,
-      // foreignTeam = response.foreignTeam;
-      // foreignPlayers = response.foreignPlayers;
-    });
-  }
-
   handleSignIn(event) {
     console.log('clicked');
     fetch('/home', {
@@ -59,7 +48,7 @@ class App extends React.Component {
         password: event.target.value
       }),
     })
-    .then(this.handleLoginStateChange(response))
+    .then(console.log(JSON.stringify(response)))
     .catch((error) => {
       console.error(error);
     });
@@ -86,6 +75,9 @@ class App extends React.Component {
     let logout = null;
     let rootPath = null;
     let navBar = null
+
+    // <Route exact path="/" render={() => (isloggedIn ? (<Redirect to="/dashboard"/>) : (<PublicHomePage/>))}/>
+
     if (isLoggedIn) {
       logout =  <button id="logout" onClick={this.handleLogOut}><Link to="/">Log out</Link></button>;
       rootPath = <Route exact path="/app" component={App}/>
@@ -98,10 +90,16 @@ class App extends React.Component {
           <li id="navbar-item"><Link to="/matchups">Matchups</Link></li>
           <li id="navbar-item"><Link to="/draft">Draft</Link></li>
         </ul>
+
+        <Route path="/home" component={Home}/>
+        <Route path="/league" render={ props => (<League handleCheckOutTeam={this.handleCheckOutTeam.bind(this)}/>)} />
+        <Route path="/myteam" component={MyTeam}/>
+        <Route path="/matchups" component={Matchups}/>
+        <Route path="/draft" component={Draft}/>
       </div>);
     } else {
       rootPath = (<Route exact path="/"
-                         render={ props => (<Login handleSignIn={this.handleSignIn.bind(this)} handleLoginStateChange={this.handleLoginStateChange.bind(this)}
+                         render={ props => (<Login handleSignIn={this.handleSignIn.bind(this)}
                          validateEntry={this.validateEntry.bind(this)} />)}
                          />);
     }
@@ -112,11 +110,6 @@ class App extends React.Component {
         <br />
 
         {rootPath}
-        <Route path="/home" component={Home}/>
-        <Route path="/league" render={ props => (<League handleCheckOutTeam={this.handleCheckOutTeam.bind(this)}/> />)} />
-        <Route path="/myteam" component={MyTeam}/>
-        <Route path="/matchups" component={Matchups}/>
-        <Route path="/draft" component={Draft}/>
       </div>
       </MuiThemeProvider>
     );
