@@ -4,8 +4,7 @@ const updateCurrentWeek = `UPDATE leagues
 SET currentweek = ?
 WHERE id = 1`
 
-const savePlayer = `
-    INSERT INTO players
+const savePlayer = `INSERT INTO players
     (id, name, position)
     VALUES
     (?, ?, ?)`;
@@ -86,9 +85,43 @@ const playersInTeam = `
     WHERE users.username = ?
     AND playerStats.week = ?
     ORDER BY players.position`;
+   
     
+// get rival given a user_id for a given week
+const getRivalInfo = `SELECT users.id as rival_user_id, users.username as rival_username FROM users
+    INNER JOIN teams
+    ON users.id = teams.owner
+    INNER JOIN matches
+    ON teams.id = matches.rival_id
+    WHERE matches.week = ?
+    AND matches.user_id = ?`;
+
+const updatePlayerStats = `UPDATE playerstats
+    SET week = ?,
+        playerID = ?,
+        passingYards = ?,
+        passingTouchdowns = ?,
+        passingInterceptions = ?,
+        rushingYards = ?,
+        rushingTouchdowns = ?,
+        receptions = ?,
+        receivingYards = ?,
+        receivingTouchdowns = ?,
+        fumbles = ?,
+        fieldGoalsMade0to19 = ?,
+        fieldGoalsMade20to29 = ?,
+        fieldGoalsMade30to39 = ?,
+        fieldGoalsMade40to49 = ?,
+        fieldGoalsMade50Plus = ?,
+        extraPointsMade = ?,
+        isGameOver = ?
+    WHERE week = ?
+    AND playerID = ?`;
+
 
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
 module.exports.allStats = allStats;
 module.exports.playersInTeam = playersInTeam;
+module.exports.getRivalInfo = getRivalInfo;
+module.exports.updatePlayerStats = updatePlayerStats;
