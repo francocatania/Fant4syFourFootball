@@ -1,6 +1,8 @@
 const request = require('request');
 const rp = require('request-promise');
-const apiSimulation = require('./apiSimulation/week14Data.js');
+const apiSimulation14 = require('./apiSimulation/week14SelectedPlayers.js');
+const apiSimulation15 = require('./apiSimulation/week15SelectedPlayers.js');
+const apiSimulationPlayer = require('./apiSimulation/onePlayerData.js');
 const db = require('../database/index.js');
 
 let apiKeys = null
@@ -46,13 +48,13 @@ const makePlayerStats = (data) => {
 // comment out this function, and uncomment the below function to open up API functionality
 const getNewPlayersFromApi = (res) => {
 	const parsedJSONData = apiSimulation.playerWeeklyStats;
+	// const parsedJSONData = apiSimulationPlayer.footballPlayer;
 
 	const processedPlayers = parsedJSONData.map(player => {
 		return makePlayer(player)
 	});
 
 	processedPlayers.forEach(player => {
-		// console.log(player);
 		db.savePlayerToDB(player);
 	});
 
@@ -61,16 +63,19 @@ const getNewPlayersFromApi = (res) => {
 
 // this function is a simulation of the real API call, which is commented out below
 // comment out this function, and uncomment the below function to open up API functionality
-// the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
-const getAllPlayerStatsFromApi = (res) => {
-	const parsedJSONData = apiSimulation.playerWeeklyStats;
+const getAllPlayerStatsFromApi = (season, week, res) => {
+	let parsedJSONData = [];
+	if (week === +14) {
+		parsedJSONData = apiSimulation14.playerWeeklyStats;
+	} else if (week === +15) {
+		parsedJSONData = apiSimulation15.playerWeeklyStats;
+	}
 
 	const processedPlayersStats = parsedJSONData.map(playerStats => {
 		return makePlayerStats(playerStats)
 	});
 
 	processedPlayersStats.forEach(playerStats => {
-		// console.log(playerStats);
 		db.savePlayerStatsToDB(playerStats);
 	})
 
@@ -79,9 +84,13 @@ const getAllPlayerStatsFromApi = (res) => {
 
 // this function is a simulation of the real API call, which is commented out below
 // comment out this function, and uncomment the below function to open up API functionality
-// the express POST route handler ('/playerdata') will need to be updated to send (season) and (week) arguments
-const updateAllPlayerStatsFromApi = (res) => {
-	const parsedJSONData = apiSimulation.playerWeeklyStats;
+const updateAllPlayerStatsFromApi = (season, week, res) => {
+	let parsedJSONData = [];
+	if (week === +14) {
+		parsedJSONData = apiSimulation14.playerWeeklyStats;
+	} else if (week === +15) {
+		parsedJSONData = apiSimulation15.playerWeeklyStats;
+	}
 
 	const processedPlayersStats = parsedJSONData.map(playerStats => {
 		return makePlayerStats(playerStats)
@@ -150,6 +159,35 @@ const updateAllPlayerStatsFromApi = (res) => {
 //     });
 // };
 
+// const updateAllPlayerStatsFromApi = (res, season, week) => {
+// 	const options = {
+//     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
+//     headers: {
+//         'User-Agent': 'Request-Promise',
+//         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
+//     },
+//     json: true
+// 	};
+
+// 	rp(options)
+//     .then((parsedJSONData) => {
+//       const processedPlayersStats = parsedJSONData.map(playerStats => {
+// 				return makePlayerStats(playerStats)
+// 			});
+
+// 		processedPlayersStats.forEach(playerStats => {
+// 			db.updatePlayerStatsInDB(playerStats);
+// 		})
+
+// 			res.sendStatus(201);
+//     })
+//     .catch((err) => {
+//       console.log('failed to retrieve data from Fantasy Data Solutions');
+//       res.sendStatus(400);
+//     });
+// };
+
 
 module.exports.getNewPlayersFromApi = getNewPlayersFromApi;
 module.exports.getAllPlayerStatsFromApi = getAllPlayerStatsFromApi;
+module.exports.updateAllPlayerStatsFromApi = updateAllPlayerStatsFromApi;
