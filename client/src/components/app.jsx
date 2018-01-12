@@ -20,11 +20,11 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      players: [],
-      teamName: "",
-      matchup: "",
-      league: "",
-      leaguepassword: ""
+      myPlayers: [],
+      myTeam: "",
+      foreignTeamName: "",
+      foreignTeamPlayers: [],
+      league: ""
     };
 
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -34,38 +34,48 @@ class App extends React.Component {
     // make sure characters are allowed
   }
 
-  handleLoginStateChange() {
+  handleLoginStateChange(response) {
     this.setState({
       isLoggedIn: true,
       // username: response.username,
       // password: response.password,
-      // players: response.players,
-      // teamName: response.teamName,
-      // matchup: response.matchup,
+      // myTeam: response.teamName,
+      // myPlayers: response.players,
+      // foreignTeam = response.foreignTeam;
+      // foreignPlayers = response.foreignPlayers;
     });
-    // switch to myTeam view
   }
 
   handleSignIn(event) {
-    // console.log('clicked');
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/???'
-    //   data: /* username & password */
-    // }).then(() => {
-    //     /* success: setState and toggle isLoggedIn */
-    //     /* fail: rerender login page with error */
-    // }),
-    // this.setState({
-    //   isLoggedIn: true
-    // })
-    this.handleLoginStateChange();
-    // event.preventDefault();
+    console.log('clicked');
+    fetch('/home', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: event.target.value,
+        password: event.target.value
+      }),
+    })
+    .then(this.handleLoginStateChange(response))
+    .catch((error) => {
+      console.error(error);
+    });
+    event.preventDefault();
   }
 
   handleLogOut(event) {
     this.setState({
       isLoggedIn: false
+    })
+  }
+
+  handleCheckOutTeam(event) {
+    this.setState({
+      foreignTeam: "",
+      foreignPlayers: [];
     })
   }
 
@@ -81,6 +91,7 @@ class App extends React.Component {
       navBar = (<div id="navbar">
         {logout}
         <ul>
+          <li id="navbar-item"><Link to="/home">Home</Link></li>
           <li id="navbar-item"><Link to="/league">League</Link></li>
           <li id="navbar-item"><Link to="/myteam">My Team</Link></li>
           <li id="navbar-item"><Link to="/matchups">Matchups</Link></li>
@@ -100,7 +111,7 @@ class App extends React.Component {
 
         {rootPath}
         <Route path="/home" component={Home}/>
-        <Route path="/league" component={League}/>
+        <Route path="/league" render={ props => (<League handleCheckOutTeam={this.handleCheckOutTeam.bind(this)}/> />)} />
         <Route path="/myteam" component={MyTeam}/>
         <Route path="/matchups" component={Matchups}/>
         <Route path="/draft" component={Draft}/>
