@@ -85,8 +85,8 @@ const playersInTeam = `
     WHERE users.username = ?
     AND playerStats.week = ?
     ORDER BY players.position`;
-   
-    
+
+
 // get rival given a user_id for a given week
 const getRivalInfo = `SELECT users.id as rival_user_id, users.username as rival_username FROM users
     INNER JOIN teams
@@ -125,5 +125,8 @@ module.exports.allStats = allStats;
 module.exports.playersInTeam = playersInTeam;
 module.exports.getRivalInfo = getRivalInfo;
 module.exports.updatePlayerStats = updatePlayerStats;
+<<<<<<< HEAD
 module.exports.currentWeekAndSeason = currentWeekAndSeason;
 module.exports.updateCurrentWeek = updateCurrentWeek;
+=======
+>>>>>>> add login/signup mysql queries

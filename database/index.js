@@ -12,7 +12,7 @@ connection.connect(function(err) {
 
 const db = connection;
 
-// setInterval keeps database connection open. Hacky fix, investigate further when able.  
+// setInterval keeps database connection open. Hacky fix, investigate further when able.
 setInterval(function () {
     db.query('SELECT 1');
 }, 45000);
@@ -38,7 +38,7 @@ const updatePlayerStatsInDB = (playerStats) => {
 	//we need week and id again so..
 	const queryParams = allStats.push(playerStats.week);
 	queryParams = queryParams.push(playerStats.playerID);
-	
+
 	db.query(sql, queryParams, (err, data) => {
 		if (err) {
 			console.log('Failed to Update PlayerStats');
@@ -143,6 +143,13 @@ const getTeambyUser = (userId) => {
 	});
 };
 
+const getTeam = (user) {
+  return {
+    teamName: getTeamName(user);
+    players: playersInTeam(user, week);
+  }
+}
+
 module.exports = {
   savePlayerStatsToDB,
   updatePlayerStatsInDB,
@@ -152,5 +159,6 @@ module.exports = {
   updateCurrentWeek,
   saveUser,
   checkPassword,
-  getTeambyUser
+  getTeambyUser,
+  getTeam
 }
