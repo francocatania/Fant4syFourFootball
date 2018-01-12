@@ -22,10 +22,10 @@ const getUserInfo = (username, callback) => {
     return null;
   } else {
     let loginInfo = {
-      username: username
+      username: username,
       password: db.getPassword(user),
       myTeam: db.getTeam(user),
-      foreignTeam: db.getTeam(getOpponent(user));
+      foreignTeam: db.getTeam(getOpponent(user))
     }
     return loginInfo;
   }

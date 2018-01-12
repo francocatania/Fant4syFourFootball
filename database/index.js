@@ -34,7 +34,7 @@ const updatePlayerStatsInDB = (playerStats) => {
 	//we need week and id again so..
 	const queryParams = allStats.push(playerStats.week);
 	queryParams = queryParams.push(playerStats.playerID);
-	
+
 	db.query(sql, queryParams, (err, data) => {
 		if (err) {
 			console.log('Failed to Update PlayerStats');
@@ -108,10 +108,10 @@ const getTeambyUser = (userId) => {
 	});
 };
 
-const getTeam = (user) {
+const getTeam = (user) => {
   return {
-    teamName: getTeamName(user);
-    players: playersInTeam(user, week);
+    teamName: getTeamName(user),
+    players: playersInTeam(user, week)
   }
 }
 
