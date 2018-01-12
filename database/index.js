@@ -108,6 +108,13 @@ const getTeambyUser = (userId) => {
 	});
 };
 
+const getTeam = (user) {
+  return {
+    teamName: getTeamName(user);
+    players: playersInTeam(user, week);
+  }
+}
+
 module.exports = {
   savePlayerStatsToDB,
   updatePlayerStatsInDB,
@@ -117,5 +124,6 @@ module.exports = {
   updateCurrentWeek,
   saveUser,
   checkPassword,
-  getTeambyUser
+  getTeambyUser,
+  getTeam
 }

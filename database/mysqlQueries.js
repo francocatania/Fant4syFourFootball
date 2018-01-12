@@ -85,8 +85,8 @@ const playersInTeam = `
     WHERE users.username = ?
     AND playerStats.week = ?
     ORDER BY players.position`;
-   
-    
+
+
 // get rival given a user_id for a given week
 const getRivalInfo = `SELECT users.id as rival_user_id, users.username as rival_username FROM users
     INNER JOIN teams
