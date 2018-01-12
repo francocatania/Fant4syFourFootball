@@ -118,10 +118,30 @@ const updatePlayerStats = `UPDATE playerstats
     WHERE week = ?
     AND playerID = ?`;
 
+const saveUserInfo = `
+    INSERT INTO users
+    (userId, username, password)
+    VALUES
+    (?, ?, ?)`;
 
-module.exports.savePlayerStats = savePlayerStats;
-module.exports.savePlayer = savePlayer;
-module.exports.allStats = allStats;
-module.exports.playersInTeam = playersInTeam;
-module.exports.getRivalInfo = getRivalInfo;
-module.exports.updatePlayerStats = updatePlayerStats;
+const findPassword = `
+    SELECT password FROM
+    users WHERE
+    name = ?`;
+
+const getTeamName = `
+    SELECT name FROM
+    teams WHERE
+    owner = ?`
+
+module.exports = {
+  savePlayerStats,
+  savePlayer,
+  allStats,
+  playersInTeam,
+  getRivalInfo,
+  updatePlayerStats;
+  saveUserInfo,
+  findPassword,
+  getTeamName
+}
