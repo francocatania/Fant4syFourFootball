@@ -20,10 +20,9 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      myPlayers: [],
-      myTeam: "",
-      foreignTeamName: "",
-      foreignTeamPlayers: [],
+      myTeam: {},
+      currentForeignTeam: "",
+      foreignTeam: {},
       league: ""
     };
 
@@ -74,8 +73,9 @@ class App extends React.Component {
 
   handleCheckOutTeam(event) {
     this.setState({
+      currentForeignTeam: "",
       foreignTeam: "",
-      foreignPlayers: [];
+      foreignPlayers: []
     })
   }
 
