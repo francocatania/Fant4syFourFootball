@@ -12,6 +12,7 @@ import MyTeam from './myteam.jsx';
 import Matchups from './matchups.jsx';
 import Draft from './draft.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {draftPicks} from ('../api/apiSimulation/teams.js');
 
 class App extends React.Component {
   constructor(props) {

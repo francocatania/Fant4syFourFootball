@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const fdsApi = require('../api/fantasyDataSolutions.js');
+const teams = require('../api/apiSimulation/teams.js');
 const db = require('../database/index.js');
 const cron = require('../cron/automatedApiCalls.js');
 
