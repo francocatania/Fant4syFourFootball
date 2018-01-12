@@ -118,6 +118,21 @@ const updatePlayerStats = `UPDATE playerstats
     WHERE week = ?
     AND playerID = ?`;
 
+const saveUserInfo = `
+    INSERT INTO users
+    (userId, username, password)
+    VALUES
+    (?, ?, ?)`;
+
+const findPassword = `
+    SELECT password FROM
+    users WHERE
+    name = ?`;
+
+const getTeamName = `
+    SELECT name FROM
+    teams WHERE
+    owner = ?`
 
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
@@ -129,4 +144,15 @@ module.exports.updatePlayerStats = updatePlayerStats;
 module.exports.currentWeekAndSeason = currentWeekAndSeason;
 module.exports.updateCurrentWeek = updateCurrentWeek;
 =======
->>>>>>> add login/signup mysql queries
+module.exports = {
+  savePlayerStats,
+  savePlayer,
+  allStats,
+  playersInTeam,
+  getRivalInfo,
+  updatePlayerStats;
+  saveUserInfo,
+  findPassword,
+  getTeamName
+}
+>>>>>>> add mysql queries after rebase
