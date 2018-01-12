@@ -30,11 +30,6 @@ class App extends React.Component {
       matchup: "",
       league: "",
       leaguepassword: "",
-=======
-      myPlayers: [],
-      myTeam: "",
-      foreignTeamName: "",
-      foreignTeamPlayers: [],
       league: ""
 >>>>>>> define handle checkOutTeams, pass props down to league
     };
@@ -86,8 +81,9 @@ class App extends React.Component {
 
   handleCheckOutTeam(event) {
     this.setState({
+      currentForeignTeam: "",
       foreignTeam: "",
-      foreignPlayers: [];
+      foreignPlayers: []
     })
   }
 
