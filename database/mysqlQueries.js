@@ -84,7 +84,9 @@ const playersInTeam = `
     INNER JOIN users
     ON teams.owner = users.id
     WHERE users.username = ?
-    AND playerStats.week = ?`
+    AND playerStats.week = ?
+    ORDER BY players.position`;
+    
 
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
