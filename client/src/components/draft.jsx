@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Draft = () => {
+const Draft = (props) => {
+	console.log(props)
   return (
-    <p>Draft</p>
+  	<ol>
+    	<li>{props.draftPicks.map(pick => pick)}</li>
+    </ol>
   );
 }
 
