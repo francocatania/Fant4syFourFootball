@@ -89,3 +89,4 @@ const playersInTeam = `
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
 module.exports.allStats = allStats;
+module.exports.playersInTeam = playersInTeam;

@@ -52,7 +52,17 @@ const savePlayerToDB = (player) => {
 	});
 }
 
-const getAllPlayersByTeam = (username, week) => {};
+const getAllPlayersByTeam = (username, week) => {
+	const sql = sqlQueries.playersInTeam;
+
+	db.query(sql, [username, week], (err, data) => {
+		if (err) {
+			console.log('Couldn\'t get all players by team' );
+		} else {
+			console.log('Successfully got all player in the team');
+		}
+	});
+};
 
 const getCurrentWeek =() => {};
 
