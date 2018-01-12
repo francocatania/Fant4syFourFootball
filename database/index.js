@@ -107,10 +107,50 @@ const updateCurrentWeek =(week, res) => {
 	});
 };
 
+const saveUser = (username, password, userId) => {
+  const sql = sqlQueries.playersInTeam;
 
-module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
-module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
-module.exports.savePlayerToDB = savePlayerToDB;
-module.exports.getAllPlayersByTeam = getAllPlayersByTeam;
-module.exports.getCurrentWeek = getCurrentWeek;
-module.exports.updateCurrentWeek = updateCurrentWeek;
+  db.query(sql, [username, week], (err, data) => {
+		if (err) {
+			console.log('Failed to save user in database');
+		} else {
+			console.log('User successfully saved in database');
+		}
+	});
+};
+
+const checkPassword = (username) => {
+  const sql = sqlQueries.findPassword;
+
+  db.query(sql, username, (err, data) => {
+		if (err) {
+			console.log('Failed to find password in database');
+		} else {
+			console.log('Password successfully found in database');
+		}
+	});
+};
+
+const getTeambyUser = (userId) => {
+  const sql = sqlQueries.getTeamName;
+
+  db.query(sql, userId, (err, data) => {
+		if (err) {
+			console.log('Failed to find team name in database');
+		} else {
+			console.log('Team successfully found in database');
+		}
+	});
+};
+
+module.exports = {
+  savePlayerStatsToDB,
+  updatePlayerStatsInDB,
+  savePlayerToDB,
+  getAllPlayersByTeam,
+  getCurrentWeek,
+  updateCurrentWeek,
+  saveUser,
+  checkPassword,
+  getTeambyUser
+}
