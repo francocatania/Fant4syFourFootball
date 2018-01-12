@@ -25,6 +25,7 @@
     "express": "*",
     "https": "^1.0.0",
     "jquery": "*",
+    "material-ui": "^0.20.0",
     "mocha": "^4.1.0",
     "mysql": "*",
     "node-cron": "^1.2.1",
