@@ -1,6 +1,6 @@
-const footballPlayer = {
+const footballPlayer = [{
   "GameKey": "201711401",
-  "PlayerID": 3100,
+  "PlayerID": 11051986,
   "SeasonType": 1,
   "Season": 2017,
   "GameDate": "2017-12-10T16:05:00",
@@ -9,7 +9,7 @@ const footballPlayer = {
   "Opponent": "TEN",
   "HomeOrAway": "HOME",
   "Number": 2,
-  "Name": "Andy Lee",
+  "Name": "David Harlow",
   "Position": "P",
   "PositionCategory": "ST",
   "Activated": 1,
@@ -33,10 +33,10 @@ const footballPlayer = {
   "RushingTouchdowns": 0.0,
   "RushingLong": 0.0,
   "ReceivingTargets": 0.0,
-  "Receptions": 0.0,
-  "ReceivingYards": 0.0,
+  "Receptions": 15.0,
+  "ReceivingYards": 180.0,
   "ReceivingYardsPerReception": 0.0,
-  "ReceivingTouchdowns": 0.0,
+  "ReceivingTouchdowns": 4.0,
   "ReceivingLong": 0.0,
   "Fumbles": 0.0,
   "FumblesLost": 0.0,
@@ -165,6 +165,6 @@ const footballPlayer = {
   "ScoreID": 16509,
   "FantasyPointsFantasyDraft": 0.0,
   "ScoringDetails": []
-}
+}]
 
 module.exports.footballPlayer = footballPlayer;

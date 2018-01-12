@@ -16,15 +16,12 @@ const db = connection;
 // HELPER FUNCTIONS //
 
 const savePlayerStatsToDB = (playerStats, res) => {
-	// console.log(playerStats);
 	const sql = sqlQueries.savePlayerStats
 	const allStats = sqlQueries.allStats.map(stat => playerStats[stat])
-	// console.log(allStats)
 	
 	db.query(sql, allStats, (err, data) => {
 		if (err) {
 			console.log('Stats failed to insert into database');
-			throw err
 		} else {
 			console.log('Stats successfully inserted into database');
 		}
@@ -57,7 +54,14 @@ const savePlayerToDB = (player) => {
 
 const getAllPlayersByTeam = (username, week) => {};
 
+const getCurrentWeek =() => {};
+
+const updateCurrentWeek =() => {};
+
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
 module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
 module.exports.savePlayerToDB = savePlayerToDB;
+module.exports.getAllPlayersByTeam = getAllPlayersByTeam;
+module.exports.getCurrentWeek = getCurrentWeek;
+module.exports.updateCurrentWeek = updateCurrentWeek;

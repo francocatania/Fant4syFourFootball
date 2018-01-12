@@ -14,7 +14,7 @@ const getPlayerStats = () => {
     .then(currentWeek => {
   		const postOptions = {
 			    method: 'POST',
-			    uri: `/playerdata`,
+			    uri: `/playerdata/${currentWeek.season}/${currentWeek.week}`,
 			    body: {},
 			    json: true 
 			};
@@ -42,7 +42,7 @@ const updatePlayerStats = () => {
 	    .then(currentWeek => {
     		const postOptions = {
 				    method: 'POST',
-				    uri: '/playerdata',
+				    uri: `/playerdata/${currentWeek.season}/${currentWeek.week}`,
 				    body: {},
 				    json: true 
 				};
@@ -60,7 +60,7 @@ const updatePlayerStats = () => {
 	    });
 };
 
-const updatePlayers = () => {
+const addNewPlayers = () => {
 	const options = {
 	    method: 'POST',
 	    uri: '/player',
@@ -86,8 +86,8 @@ const updateCurrentWeek = () => {
 	rp(getOptions)
 	    .then(currentWeek => {
     		const postOptions = {
-				    method: 'POST',
-				    uri: '/playerdata',
+				    method: 'PUT',
+				    uri: '/week',
 				    body: {},
 				    json: true 
 				};
@@ -114,7 +114,7 @@ const recurringStatUpdate = cron.schedule('* * * * *', () => {
 }, true);
 
 const recurringPlayerUpdate = cron.schedule('* * * * *', () => {
-  updatePlayers();
+  addNewPlayers();
 }, true);
 
 const recurringWeekUpdate = cron.schedule('* * * * *', () => {
