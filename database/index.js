@@ -68,9 +68,34 @@ const getAllPlayersByTeam = (username, week) => {
 	});
 };
 
-const getCurrentWeek =() => {};
+const getCurrentWeek =() => {
+	const sql = ``;
 
-const updateCurrentWeek =() => {};
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log('Player failed to insert into database');
+		} else {
+			let currentWeek = {
+				season: data[0].currentSeason,
+				week: data[0].currentWeek
+			}
+			res.send(currentWeek);
+		}
+	});
+};
+
+
+const updateCurrentWeek =(week) => {
+	const sql = ``;
+
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log('Week failed to update into database');
+		} else {
+			console.log('Week successfully updated into database');
+		}
+	});
+};
 
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
