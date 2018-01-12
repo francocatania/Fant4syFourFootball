@@ -24,3 +24,11 @@
   border: 2px gray solid;
   margin: 10px;
 }
+
+
+.avatar {
+    vertical-align: middle;
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+}

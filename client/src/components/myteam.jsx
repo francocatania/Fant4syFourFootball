@@ -1,9 +1,20 @@
 import React from 'react';
+import ProfileCard from './profileCard.jsx';
+import TeamTable from './teamTable.jsx'
 
-const MyTeam = () => {
+
+const MyTeam = (props) => {
   return (
-    <p>My Team</p>
-  );
-}
+  <div>
+
+   <ProfileCard/>
+
+   <TeamTable/> 
+  
+  </div>
+
+    );
+  }
 
 export default MyTeam
+

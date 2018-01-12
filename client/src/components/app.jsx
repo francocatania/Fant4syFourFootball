@@ -11,6 +11,7 @@ import League from './league.jsx';
 import MyTeam from './myteam.jsx';
 import Matchups from './matchups.jsx';
 import Draft from './draft.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends React.Component {
   constructor(props) {
@@ -94,6 +95,7 @@ class App extends React.Component {
                          />);
     }
     return (
+      <MuiThemeProvider>
       <div>
         {navBar}
         <br />
@@ -101,10 +103,11 @@ class App extends React.Component {
         {rootPath}
         <Route path="/home" component={Home}/>
         <Route path="/league" component={League}/>
-        <Route path="/myteam" component={MyTeam}/>
+        <Route path="/myteam" component={MyTeam} players={this.state.players}/>
         <Route path="/matchups" component={Matchups}/>
         <Route path="/draft" component={Draft}/>
       </div>
+      </MuiThemeProvider>
     );
   }
 }
