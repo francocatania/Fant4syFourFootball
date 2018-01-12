@@ -143,10 +143,10 @@ const getTeambyUser = (userId) => {
 	});
 };
 
-const getTeam = (user) {
+const getTeam = (user) => {
   return {
-    teamName: getTeamName(user);
-    players: playersInTeam(user, week);
+    teamName: getTeamName(user),
+    players: playersInTeam(user, week)
   }
 }
 

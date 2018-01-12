@@ -150,7 +150,7 @@ module.exports = {
   allStats,
   playersInTeam,
   getRivalInfo,
-  updatePlayerStats;
+  updatePlayerStats,
   saveUserInfo,
   findPassword,
   getTeamName
