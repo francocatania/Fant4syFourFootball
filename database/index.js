@@ -29,13 +29,17 @@ const savePlayerStatsToDB = (playerStats, res) => {
 };
 
 const updatePlayerStatsInDB = (playerStats) => {
-	const sql = ``;
-
-	db.query(sql, sqlQueries.allStats, (err, data) => {
+	const sql = sqlQueries.updatePlayerStats;
+	const allStats = sqlQueries.allStats.map(stat => playerStats[stat])
+	//we need week and id again so..
+	const queryParams = allStats.push(playerStats.week);
+	queryParams = queryParams.push(playerStats.playerID);
+	
+	db.query(sql, queryParams, (err, data) => {
 		if (err) {
-			console.log('Player failed to insert into database');
+			console.log('Failed to Update PlayerStats');
 		} else {
-			console.log('Player successfully inserted into database');
+			console.log('Successfully Updated PlayerStats');
 		}
 	});
 }
