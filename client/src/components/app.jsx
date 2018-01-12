@@ -103,7 +103,7 @@ class App extends React.Component {
         {rootPath}
         <Route path="/home" component={Home}/>
         <Route path="/league" component={League}/>
-        <Route path="/myteam" component={MyTeam}/>
+        <Route path="/myteam" component={MyTeam} players={this.state.players}/>
         <Route path="/matchups" component={Matchups}/>
         <Route path="/draft" component={Draft}/>
       </div>
