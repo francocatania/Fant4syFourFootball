@@ -22,7 +22,7 @@ setInterval(function () {
 const savePlayerStatsToDB = (playerStats, res) => {
 	const sql = sqlQueries.savePlayerStats
 	const allStats = sqlQueries.allStats.map(stat => playerStats[stat])
-	
+
 	db.query(sql, allStats, (err, data) => {
 		if (err) {
 			console.log('Stats failed to insert into database');

@@ -1,6 +1,6 @@
 const currentWeekAndSeason = `SELECT currentweek, currentseason FROM leagues`;
 
-const updateCurrentWeek = `UPDATE leagues 
+const updateCurrentWeek = `UPDATE leagues
 SET currentweek = ?
 WHERE id = 1`
 
