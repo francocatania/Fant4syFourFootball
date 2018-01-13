@@ -1,4 +1,11 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const buttonStyle = {
+  margin: 12
+};
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -7,37 +14,62 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <div className="login">
-            <h5>LOG IN</h5>
-            <label><b>Username: </b></label>
-            <input onChange={this.props.validateEntry} type="text" placeholder="Enter username" name="username" required></input>
-            <br />
-            <label><b>Password: </b></label>
-            <input onChange={this.props.validateEntry} type="password" placeholder="Enter Password" name="psw" required></input>
-            <br />
-            <button onClick={this.props.handleSignIn}>Log In!</button>
+      <div className="test1">
+        <form className="forms">
+          <div className="login" >
+            <h2 className="homepage">LOG IN</h2>
+            
+          <TextField
+            hintText="Enter Username"
+            floatingLabelText="Username"
+            className="testField"
+          /><br />
+    
+          <TextField
+            hintText="Password Field"
+            floatingLabelText="Password"
+            type="password"
+            className="textField"
+          /><br />
+      
+            <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Log In</RaisedButton>
           </div>
         </form>
-        <form>
-          <div className="signup">
-            <h5>SIGN UP</h5>
-            <label><b>Username: </b></label>
-            <input onChange={this.props.validateEntry} type="text" placeholder="Enter username" name="username" required></input>
-            <br />
-            <label><b>Password: </b></label>
-            <input onChange={this.props.validateEntry} type="password" placeholder="Enter Password" name="password" required></input>
-            <br />
-            <label><b>Team Name: </b></label>
-            <input onChange={this.props.validateEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
-            <br />
-            <button onClick={this.props.handleSignIn}>Sign Up!</button>
+
+
+        <form className="forms">
+          <div className="signup" >
+            <h2 className="homepage">SIGN UP</h2>
+            
+          <TextField
+            hintText="Enter Username"
+            floatingLabelText="Username"
+          /><br />
+    
+          <TextField
+            hintText="Password Field"
+            floatingLabelText="Password"
+            type="password"
+          /><br />
+
+          <TextField
+            hintText="Team Name"
+            floatingLabelText="Team Name"
+            type="password"
+          /><br />
+      
+            <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Sign Up</RaisedButton>
           </div>
         </form>
+
       </div>
     );
   }
 }
 
+
 export default Login
+
+
+
+
