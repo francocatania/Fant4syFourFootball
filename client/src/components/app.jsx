@@ -11,9 +11,10 @@ import League from './league.jsx';
 import MyTeam from './myteam.jsx';
 import Matchups from './matchups.jsx';
 import Draft from './draft.jsx';
+import DraftEntry from './draftEntry.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {draftPicks} from '../../../api/apiSimulation/teams.js';
-require draftPicks from ('../../../api/apiSimulation/teams.js');
+// const draftPicks = require('../../../api/apiSimulation/teams.js');
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +29,6 @@ class App extends React.Component {
       matchup: "",
       league: "",
       leaguepassword: "",
-      draftPicks: 
     };
 
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -108,7 +108,9 @@ class App extends React.Component {
         <Route path="/league" component={League}/>
         <Route path="/myteam" component={MyTeam} players={this.state.players}/>
         <Route path="/matchups" component={Matchups}/>
-        <Route path="/draft" component={Draft} draftPicks={draftPicks.draftPicks}/>
+        <Route path="/draft" render={props => (<Draft 
+                         draftPicks={draftPicks} />)}
+                         />
       </div>
       </MuiThemeProvider>
     );
