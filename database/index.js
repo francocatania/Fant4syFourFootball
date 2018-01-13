@@ -12,6 +12,10 @@ connection.connect(function(err) {
 
 const db = connection;
 
+// setInterval keeps database connection open. Hacky fix, investigate further when able.  
+setInterval(function () {
+    db.query('SELECT 1');
+}, 45000);
 
 // HELPER FUNCTIONS //
 
@@ -68,9 +72,39 @@ const getAllPlayersByTeam = (username, week) => {
 	});
 };
 
-const getCurrentWeek =() => {};
+const getCurrentWeek =(res) => {
+	const sql = sqlQueries.currentWeekAndSeason;
 
-const updateCurrentWeek =() => {};
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log('Player failed to insert into database');
+		} else {
+			console.log('got data', data)
+			let currentWeek = {
+				season: data[0].currentseason,
+				week: data[0].currentweek
+			}
+			console.log('currentweek', currentWeek)
+			res.status(200);
+			res.send(currentWeek);
+		}
+	});
+};
+
+
+const updateCurrentWeek =(week, res) => {
+	const sql = sqlQueries.updateCurrentWeek;
+	console.log('in database', week)
+
+	db.query(sql, [week], (err, data) => {
+		if (err) {
+			console.log('Week failed to update into database');
+		} else {
+			console.log('Week successfully updated into database');
+		}
+		res.sendStatus(200);
+	});
+};
 
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;

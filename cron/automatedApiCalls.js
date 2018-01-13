@@ -1,122 +1,122 @@
 const cron = require('node-cron');
 const request = require('request');
 const rp = require('request-promise');
+const axios = require('axios');
 
-
-const getPlayerStats = () => {
-
-	const getOptions = {
-    uri: '/week',
-    json: true
-	};
-
-	rp(getOptions)
-    .then(currentWeek => {
-  		const postOptions = {
-			    method: 'POST',
-			    uri: `/playerdata/${currentWeek.season}/${currentWeek.week}`,
-			    body: {},
-			    json: true 
-			};
-
-	    rp(postOptions)
-		    .then(parsedBody => {
-		        
-		    })
-		    .catch(err => {
-		        
-		    });
-    })
-    .catch(err => {
-        
-    });
-};
+const addPlayerStats = () => {
+	axios({
+	  method:'get',
+	  url: 'http://localhost:4444/week',
+	})
+	  .then(currentWeek => {
+	  	let week = currentWeek.data.week;
+	  	let season = currentWeek.data.season;
+			axios({
+		    method: 'post',
+		    url: `http://localhost:4444/playerdata/${season}/${week}`,
+		    headers: {"Content-Type": "application/json"},
+		    data: JSON.stringify({})
+			})
+			.then(() => {
+				console.log('player stats successfully created');
+			})
+			.catch(() => {
+				console.log('failed to retrieve current week and then add player stats');
+			});
+		})
+	.catch((err) => {
+		console.log('failed to retrieve current week and then update player stats');
+	})
+}
 
 const updatePlayerStats = () => {
-	const getOptions = {
-    uri: '/week',
-    json: true
-	};
-
-	rp(getOptions)
-	    .then(currentWeek => {
-    		const postOptions = {
-				    method: 'POST',
-				    uri: `/playerdata/${currentWeek.season}/${currentWeek.week}`,
-				    body: {},
-				    json: true 
-				};
-
-		    rp(postOptions)
-			    .then(parsedBody => {
-			        
-			    })
-			    .catch(err => {
-			        
-			    });
-	    })
-	    .catch(err => {
-	        
-	    });
-};
+	axios({
+	  method:'get',
+	  url: 'http://localhost:4444/week',
+	})
+	  .then(currentWeek => {
+	  	let week = currentWeek.data.week;
+	  	let season = currentWeek.data.season;
+			axios({
+		    method: 'put',
+		    url: `http://localhost:4444/playerdata/${season}/${week}`,
+		    headers: {"Content-Type": "application/json"},
+		    data: JSON.stringify({})
+			})
+			.then(() => {
+				console.log('player stats successfully updated');
+			})
+			.catch(() => {
+				console.log('player stats failed to update');
+			});
+		})
+	.catch((err) => {
+		console.log('failed to retrieve current week and then update player stats');
+	})
+}
 
 const addNewPlayers = () => {
-	const options = {
-	    method: 'POST',
-	    uri: '/player',
-	    body: {},
-	    json: true 
-	};
-
-	rp(options)
-	    .then(parsedBody => {
-	        
-	    })
-	    .catch(err => {
-	        
-	    });
-};
+	axios({
+    method: 'post',
+    url: 'http://localhost:4444/player',
+    headers: {"Content-Type": "application/json"},
+    data: JSON.stringify({})
+		})
+	  .then(() => {
+	  	 console.log('yay')
+		})
+		.catch((err) => {
+			console.log('err', err)
+		})
+}
 
 const updateCurrentWeek = () => {
-	const getOptions = {
-    uri: '/week',
-    json: true
-	};
+	axios({
+	  method:'get',
+	  url: 'http://localhost:4444/week',
+	})
+	  .then(currentWeek => {
+	  	let week = currentWeek.data.week + 1;
+	  	let season = currentWeek.data.season;
+			axios({
+		    method: 'put',
+		    url: 'http://localhost:4444/week',
+		    headers: {"Content-Type": "application/json"},
+		    data: JSON.stringify({season: season, week: week})
+			})
+			.then(() => {
+				console.log('success')
+			})
+			.catch(() => {
+				console.log('fail2')
+			});
+		})
+	.catch((err) => {
+		console.log('err', err)
+	})
+}
 
-	rp(getOptions)
-	    .then(currentWeek => {
-    		const postOptions = {
-				    method: 'PUT',
-				    uri: '/week',
-				    body: {},
-				    json: true 
-				};
+const recurringStatInitialization = cron.schedule('5 * * * * *', () => {
+		console.log('Cron adding new stats');
+  addPlayerStats();
+}, false);
 
-		    rp(postOptions)
-			    .then(parsedBody => {
-			        
-			    })
-			    .catch(err => {
-			        
-			    });
-	    })
-	    .catch(err => {
-	        
-	    });
-  };
+const recurringStatUpdate = cron.schedule('2 * * * * *', () => {
+		console.log('Cron updating stats');
+  // updatePlayerStats();
+}, false);
 
-const recurringStatCollection = cron.schedule('* * * * *', () => {
-  getPlayerStats();
-}, true);
-
-const recurringStatUpdate = cron.schedule('* * * * *', () => {
-  updatePlayerStats();
-}, true);
-
-const recurringPlayerUpdate = cron.schedule('* * * * *', () => {
+const recurringPlayerUpdate = cron.schedule('8 * * * * *', () => {
+	console.log('Cron adding new players');
   addNewPlayers();
-}, true);
+}, false);
 
-const recurringWeekUpdate = cron.schedule('* * * * *', () => {
+const recurringWeekUpdate = cron.schedule('15 * * * * *', () => {
+		// console.log('Cron changing week');
   updateCurrentWeek();
-}, true);
+}, false);
+
+// recurringStatInitialization.start();
+// recurringStatUpdate.start();
+// recurringPlayerUpdate.start();
+// recurringWeekUpdate.start();

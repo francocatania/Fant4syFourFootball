@@ -47,9 +47,8 @@ const makePlayerStats = (data) => {
 // this function is a simulation of the real API call, which is commented out below
 // comment out this function, and uncomment the below function to open up API functionality
 const getNewPlayersFromApi = (res) => {
-	const parsedJSONData = apiSimulation.playerWeeklyStats;
+	const parsedJSONData = apiSimulation14.playerWeeklyStats;
 	// const parsedJSONData = apiSimulationPlayer.footballPlayer;
-
 	const processedPlayers = parsedJSONData.map(player => {
 		return makePlayer(player)
 	});
@@ -65,12 +64,12 @@ const getNewPlayersFromApi = (res) => {
 // comment out this function, and uncomment the below function to open up API functionality
 const getAllPlayerStatsFromApi = (season, week, res) => {
 	let parsedJSONData = [];
-	if (week === +14) {
+	if (week == 14) {
 		parsedJSONData = apiSimulation14.playerWeeklyStats;
-	} else if (week === +15) {
+	} else if (week == 15) {
 		parsedJSONData = apiSimulation15.playerWeeklyStats;
 	}
-
+	console.log(parsedJSONData)
 	const processedPlayersStats = parsedJSONData.map(playerStats => {
 		return makePlayerStats(playerStats)
 	});
