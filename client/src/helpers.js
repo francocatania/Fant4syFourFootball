@@ -15,7 +15,6 @@ const getPlayerScore = player => {
     total += player.fieldGoalsMade40to49 * 4;
     total += player.fieldGoalsMade50Plus * 5;
     total += player.extraPointsMade;
-    console.log(total)
 
     return total;
 }

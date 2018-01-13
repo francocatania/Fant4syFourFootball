@@ -110,11 +110,12 @@ const updateWinsLosses = () => {
 	  url: 'http://localhost:4444/week',
 	})
 	  .then(currentWeek => {
-	  	console.log(currentWeek)
-			axios.all([getScores(currentWeek.season, currentWeek.week), getMatchups()])
+	  	console.log(currentWeek.data)
+			axios.all([getScores(currentWeek.data.season, currentWeek.data.week), getMatchups()])
 			  .then(axios.spread((scores, matchups) => {
 			    
-			  	// console.log(scores);
+			  	console.log('scores', scores.data);
+			  	console.log('scores', matchups.data);
 			  }))
 			  .catch((err) => {
 					console.log('Error receiving scores ', err);
