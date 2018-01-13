@@ -27,11 +27,7 @@ class Login extends React.Component {
             <input onChange={this.props.handleUserEntry} type="text" placeholder="Enter username" name="username" required></input>
             <br />
             <label><b>Password: </b></label>
-<<<<<<< HEAD
             <input onChange={this.props.handleUserEntry} type="password" placeholder="Enter Password" name="password" required></input>
-=======
-            <input onChange={this.props.validateEntry} type="password" placeholder="Enter Password" name="password" required></input>
->>>>>>> 8fe54b7ee5b911cc00c1e9b623c184671b4be15c
             <br />
             <button onClick={this.props.handleSignIn}>Sign Up!</button>
           </div>
@@ -45,9 +41,5 @@ export default Login
 
 // Include in render if team naming functionality is added:
 // <label><b>Team Name: </b></label>
-<<<<<<< HEAD
 // <input onChange={this.props.handleUserEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
-=======
-// <input onChange={this.props.validateEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
->>>>>>> 8fe54b7ee5b911cc00c1e9b623c184671b4be15c
 // <br />
