@@ -24,9 +24,8 @@ app
 	.post('/playerdata/:season/:week', (req, res) => fdsApi.getAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/week', (req, res) => db.updateCurrentWeek(req.body.week, res))
 	.put('/playerdata/:season/:week', (req, res) => fdsApi.updateAllPlayerStatsFromApi(req.params.season, req.params.week, res))
-	.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
-	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
 	.put('/teams/:id:/:result', (req, res) => serverHelpers.updateWinsLosses(req.params.id, req.params.result, res))
+	.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
 	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
 
 

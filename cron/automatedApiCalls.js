@@ -103,6 +103,27 @@ const getMatchups = () => {
 	return axios.get(`http://localhost:4444/matchups`);
 }
 
+const processWinnersLossers = (scores, matchups) => {
+	let winLossChart = {
+		winners: [],
+		losers: []
+	};
+  matchups.forEach((match) => {
+		if (scores[match.user_id] < scores[match.rival_id]) {
+			if (!winLossChart.winners.includes(match.user_id)) {
+				winLossChart.winners.push(match.user_id)
+			}
+		} else {
+			if (!winLossChart.losers.includes(match.user_id)) {
+				winLossChart.losers.push(match.user_id)
+			}
+		}
+	})
+  console.log('winners', winLossChart.winners);
+  console.log('losers', winLossChart.losers);
+	return winLossChart;
+}
+
 const updateWinsLosses = () => {
 
 	axios({
@@ -115,7 +136,9 @@ const updateWinsLosses = () => {
 			  .then(axios.spread((scores, matchups) => {
 			    
 			  	console.log('scores', scores.data);
-			  	console.log('scores', matchups.data);
+			  	console.log('matchups', matchups.data);
+			  	const winLossChart = processWinnersLossers(scores.data, matchups.data);
+
 			  }))
 			  .catch((err) => {
 					console.log('Error receiving scores ', err);
@@ -173,4 +196,4 @@ const recurringUpdateWinsLosses = cron.schedule('15 * * * * *', () => {
 // recurringStatUpdate.start();
 // recurringPlayerUpdate.start();
 // recurringWeekUpdate.start();
-recurringUpdateWinsLosses.start();
+// recurringUpdateWinsLosses.start();
