@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+//import Login from './deleteOption.jsx';
 import Login from './login.jsx';
 import Home from './home.jsx';
 import League from './league.jsx';
@@ -105,7 +106,9 @@ class App extends React.Component {
         {rootPath}
         <Route path="/home" component={Home}/>
         <Route path="/league" component={League}/>
-        <Route path="/myteam" component={MyTeam} players={this.state.players}/>
+        <Route path="/myteam" render={props => (<MyTeam 
+          players={this.state.players}/>)}
+          />
         <Route path="/matchups" component={Matchups}/>
         <Route path="/draft" render={props => (<Draft 
                          draftPicks={draftPicks} />)}
