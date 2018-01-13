@@ -63,7 +63,6 @@ class App extends React.Component {
       console.error(error);
     });
     event.preventDefault();
-    console.log(this.state);
   }
 
   handleLogOut(event) {
@@ -121,14 +120,6 @@ class App extends React.Component {
         <br />
 
         {rootPath}
-        <Route path="/home" component={Home}/>
-        <Route path="/league" render={ props => (<League handleCheckOutTeam={this.handleCheckOutTeam.bind(this)}/> />)} />
-        <Route path="/myteam" component={MyTeam}/>
-        <Route path="/matchups" component={Matchups}/>
-        <Route path="/draft" render={props => (<Draft
-                         draftPicks={draftPicks} />)}
-                         />
-
       </div>
       </MuiThemeProvider>
     );

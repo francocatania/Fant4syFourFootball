@@ -134,6 +134,7 @@ const getTeamName = `
     teams WHERE
     owner = ?`
 
+<<<<<<< HEAD
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
 module.exports.allStats = allStats;
@@ -142,3 +143,16 @@ module.exports.getRivalInfo = getRivalInfo;
 module.exports.updatePlayerStats = updatePlayerStats;
 module.exports.currentWeekAndSeason = currentWeekAndSeason;
 module.exports.updateCurrentWeek = updateCurrentWeek;
+=======
+module.exports = {
+  savePlayerStats,
+  savePlayer,
+  allStats,
+  playersInTeam,
+  getRivalInfo,
+  updatePlayerStats,
+  saveUserInfo,
+  findPassword,
+  getTeamName
+}
+>>>>>>> 8fe54b7ee5b911cc00c1e9b623c184671b4be15c

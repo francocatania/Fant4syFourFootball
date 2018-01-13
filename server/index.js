@@ -17,7 +17,11 @@ app
 	.use(bodyParser.json())
 	.use(express.static(path.join(__dirname, '../client/dist')))
 	.get('/week', (req, res) => db.getCurrentWeek(res))
+<<<<<<< HEAD
 	.post('/', (req, res) => serverHelpers.authenticate(req, res))
+=======
+	.post('/', (req, res) => serverHelpers.authenticate(req))
+>>>>>>> 8fe54b7ee5b911cc00c1e9b623c184671b4be15c
 	.post('/player', (req, res) => fdsApi.getNewPlayersFromApi(res))
 	.post('/playerdata/:season/:week', (req, res) => fdsApi.getAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/week', (req, res) => db.updateCurrentWeek(req.body.week, res))

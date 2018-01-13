@@ -119,6 +119,7 @@ const saveUser = (username, password, userId) => {
 	});
 };
 
+<<<<<<< HEAD
 const checkPassword = (username) => {
   const sql = sqlQueries.findPassword;
 
@@ -134,6 +135,35 @@ const checkPassword = (username) => {
 const getTeambyUser = (userId) => {
   const sql = sqlQueries.getTeamName;
 
+=======
+const saveUser = (username, password, userId) => {
+  const sql = sqlQueries.playersInTeam;
+
+  db.query(sql, [username, week], (err, data) => {
+		if (err) {
+			console.log('Failed to save user in database');
+		} else {
+			console.log('User successfully saved in database');
+		}
+	});
+};
+
+const checkPassword = (username) => {
+  const sql = sqlQueries.findPassword;
+
+  return db.query(sql, username, (err, password) => {
+		if (err) {
+			console.log('Failed to find password in database');
+		} else {
+			console.log('Password successfully found in database');
+		}
+	})
+};
+
+const getTeambyUser = (userId) => {
+  const sql = sqlQueries.getTeamName;
+
+>>>>>>> 8fe54b7ee5b911cc00c1e9b623c184671b4be15c
   return db.query(sql, userId, (err, data) => {
 		if (err) {
 			console.log('Failed to find team name in database');
