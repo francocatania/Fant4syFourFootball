@@ -2,15 +2,18 @@ const currentWeekAndSeason = `SELECT currentweek, currentseason FROM leagues`;
 
 const updateCurrentWeek = `UPDATE leagues 
 SET currentweek = ?
-WHERE id = 1`
+WHERE id = 1`;
 
 const updateWins = `UPDATE teams 
   SET wins = wins + 1 
-  WHERE id = ?;`
+  WHERE id = ?`;
 
 const updateLosses = `UPDATE teams 
   SET losses = losses + 1 
-  WHERE id = ?;`
+  WHERE id = ?`;
+
+const getMatches = `SELECT * FROM matches
+    WHERE week = ?`;
 
 const savePlayer = `INSERT INTO players
     (id, name, position)
@@ -93,7 +96,22 @@ const playersInTeam = `
     WHERE users.username = ?
     AND playerStats.week = ?
     ORDER BY players.position`;
-   
+
+// NEED TO PASS user_id and week values as an argument in query.
+const playersInTeamByUserID = `
+    SELECT players.id, players.name, players.position, playerStats.*, teams.id as teamId
+    FROM playerStats
+    INNER JOIN players
+    ON playerStats.playerId = players.id
+    INNER JOIN Teams_has_Players
+    ON players.id = Teams_has_Players.Players_id
+    INNER JOIN teams
+    ON Teams_has_Players.Teams_id = teams.id
+    INNER JOIN users
+    ON teams.owner = users.id
+    WHERE users.id = ?
+    AND playerStats.week = ?
+    ORDER BY players.position`;
     
 // get rival given a user_id for a given week
 const getRivalInfo = `SELECT users.id as rival_user_id, users.username as rival_username FROM users
@@ -137,3 +155,5 @@ module.exports.currentWeekAndSeason = currentWeekAndSeason;
 module.exports.updateCurrentWeek = updateCurrentWeek;
 module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
+module.exports.getMatches = getMatches;
+module.exports.playersInTeamByUserID = playersInTeamByUserID;

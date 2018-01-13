@@ -14,7 +14,6 @@ import Draft from './draft.jsx';
 import DraftEntry from './draftEntry.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {draftPicks} from '../../../api/apiSimulation/teams.js';
-// const draftPicks = require('../../../api/apiSimulation/teams.js');
 
 class App extends React.Component {
   constructor(props) {

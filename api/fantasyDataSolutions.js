@@ -47,7 +47,6 @@ const makePlayerStats = (data) => {
 // comment out this function, and uncomment the below function to open up API functionality
 const getNewPlayersFromApi = (res) => {
 	const parsedJSONData = apiSimulation14.playerWeeklyStats;
-	// const parsedJSONData = apiSimulationPlayer.footballPlayer;
 	const processedPlayers = parsedJSONData.map(player => {
 		return makePlayer(player)
 	});

@@ -1,6 +1,7 @@
 const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const {mysqlConfig} = require('./config.js');
+const frontEndHelpers = require('../client/src/helpers.js');
 
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect((err) => {
@@ -82,14 +83,12 @@ const getCurrentWeek = (res) => {
 	db.query(sql, (err, data) => {
 		if (err) {
 			console.log('Player failed to insert into database');
-		} else {
-			console.log('got current week: ', data)
 			res.sendStatus(404);
+		} else {
 			let currentWeek = {
 				season: data[0].currentseason,
 				week: data[0].currentweek
 			}
-			res.status(200);
 			res.send(currentWeek);
 		}
 	});
@@ -109,18 +108,56 @@ const updateCurrentWeek = (week, res) => {
 	});
 };
 
-const getMatchScore = (teamId, res) => {
-	const sql = ``;
+const getCurrentMatches = (res) => {
+	const sql = sqlQueries.currentWeekAndSeason;
 
-	db.query(sql, [teamId], (err, data) => {
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log('Player failed to insert into database');
+			res.sendStatus(404);
+		} else {
+			const sql = sqlQueries.getMatches;
+			db.query(sql, [data[0].currentweek], (err, data) => {
+				if (err) {
+					console.log('Match score not found');
+					res.sendStatus(404);
+				} else {
+					res.send(data);
+				}
+			});
+		}
+	});
+}
+
+const getMatchScores = (season, week, res) => {
+	const sql = sqlQueries.getMatches;
+	let scoring = [];
+	db.query(sql, [week], (err, data) => {
 		if (err) {
 			console.log('Match score not found');
 			res.sendStatus(404);
 		} else {
-			res.send(data);
+			let scoring = [];
+			const numberOfTeams = data.length;
+			data.forEach((team, i) => {
+				const sql2 = sqlQueries.playersInTeamByUserID;
+				db.query(sql2, [team.user_id, team.week], (err, lastData) => {
+					if (err) {
+						throw err
+					} else {
+						scoring.push(lastData);
+						if (i === numberOfTeams - 1) {
+							let scoreChart = {};
+							scores = scoring.map((team, i) => {
+								scoreChart[team[i].teamId] = frontEndHelpers.getTeamScore(team)
+							})
+							res.send(scoreChart)
+						}
+					}
+				});
+			})
 		}
 	});
-	res.send(data);
 };
 
 const updateLosses = (teamId, res) => {
@@ -157,6 +194,7 @@ module.exports.savePlayerToDB = savePlayerToDB;
 module.exports.getAllPlayersByTeam = getAllPlayersByTeam;
 module.exports.getCurrentWeek = getCurrentWeek;
 module.exports.updateCurrentWeek = updateCurrentWeek;
-module.exports.getMatchScore = getMatchScore;
+module.exports.getMatchScores = getMatchScores;
 module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
+module.exports.getCurrentMatches = getCurrentMatches;
