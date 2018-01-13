@@ -94,11 +94,10 @@ const getCurrentWeek = (res) => {
 	});
 };
 
-
-const getLeagueInfo = (res) => {
+const getLeagueInfo = (leagueId, res) => {
 	const sql = sqlQueries.leagueInfo;
 
-	db.query(sql, (err, data) => {
+	db.query(sql, [leagueId], (err, data) => {
 		if (err) {
 			console.log('Failed to get league info');
 		} else {

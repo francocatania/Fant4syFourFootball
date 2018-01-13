@@ -148,7 +148,7 @@ const updatePlayerStats = `UPDATE playerstats
 const leagueInfo = `SELECT teams.*, users.username as coach FROM teams
     INNER JOIN users
     ON teams.owner = users.id
-    WHERE league = 1
+    WHERE league = ?
     ORDER BY teams.wins DESC`;
 
 
