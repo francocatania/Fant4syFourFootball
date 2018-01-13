@@ -140,19 +140,5 @@ module.exports.allStats = allStats;
 module.exports.playersInTeam = playersInTeam;
 module.exports.getRivalInfo = getRivalInfo;
 module.exports.updatePlayerStats = updatePlayerStats;
-<<<<<<< HEAD
 module.exports.currentWeekAndSeason = currentWeekAndSeason;
 module.exports.updateCurrentWeek = updateCurrentWeek;
-=======
-module.exports = {
-  savePlayerStats,
-  savePlayer,
-  allStats,
-  playersInTeam,
-  getRivalInfo,
-  updatePlayerStats,
-  saveUserInfo,
-  findPassword,
-  getTeamName
-}
->>>>>>> add mysql queries after rebase

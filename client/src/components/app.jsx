@@ -31,7 +31,6 @@ class App extends React.Component {
       league: "",
       leaguepassword: "",
       league: ""
->>>>>>> define handle checkOutTeams, pass props down to league
     };
     this.setState = this.setState.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
@@ -75,16 +74,9 @@ class App extends React.Component {
 
   handleCheckOutTeam(event) {
     this.setState({
-<<<<<<< HEAD
-<<<<<<< HEAD
       currentForeignTeam: "",
       foreignTeam: "",
       foreignPlayers: []
-=======
-      currentForeignTeam: "",
-      foreignTeam: "",
-      foreignPlayers: []
->>>>>>> refactor state
     })
   }
 
@@ -129,7 +121,6 @@ class App extends React.Component {
         <br />
 
         {rootPath}
-<<<<<<< HEAD
         <Route path="/home" component={Home}/>
         <Route path="/league" render={ props => (<League handleCheckOutTeam={this.handleCheckOutTeam.bind(this)}/> />)} />
         <Route path="/myteam" component={MyTeam}/>
@@ -137,8 +128,7 @@ class App extends React.Component {
         <Route path="/draft" render={props => (<Draft
                          draftPicks={draftPicks} />)}
                          />
-=======
->>>>>>> attempt redirect
+
       </div>
       </MuiThemeProvider>
     );
