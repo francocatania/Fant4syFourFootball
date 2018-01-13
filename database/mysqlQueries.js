@@ -4,6 +4,14 @@ const updateCurrentWeek = `UPDATE leagues
 SET currentweek = ?
 WHERE id = 1`
 
+const updateWins = `UPDATE teams 
+  SET wins = wins + 1 
+  WHERE id = ?;`
+
+const updateLosses = `UPDATE teams 
+  SET losses = losses + 1 
+  WHERE id = ?;`
+
 const savePlayer = `INSERT INTO players
     (id, name, position)
     VALUES
@@ -127,3 +135,5 @@ module.exports.getRivalInfo = getRivalInfo;
 module.exports.updatePlayerStats = updatePlayerStats;
 module.exports.currentWeekAndSeason = currentWeekAndSeason;
 module.exports.updateCurrentWeek = updateCurrentWeek;
+module.exports.updateWins = updateWins;
+module.exports.updateLosses = updateLosses;

@@ -1,5 +1,4 @@
-const request = require('request');
-const rp = require('request-promise');
+const axios = require('axios');
 const apiSimulation14 = require('./apiSimulation/week14SelectedPlayers.js');
 const apiSimulation15 = require('./apiSimulation/week15SelectedPlayers.js');
 const apiSimulationPlayer = require('./apiSimulation/onePlayerData.js');
@@ -69,7 +68,6 @@ const getAllPlayerStatsFromApi = (season, week, res) => {
 	} else if (week == 15) {
 		parsedJSONData = apiSimulation15.playerWeeklyStats;
 	}
-	console.log(parsedJSONData)
 	const processedPlayersStats = parsedJSONData.map(playerStats => {
 		return makePlayerStats(playerStats)
 	});
@@ -85,12 +83,12 @@ const getAllPlayerStatsFromApi = (season, week, res) => {
 // comment out this function, and uncomment the below function to open up API functionality
 const updateAllPlayerStatsFromApi = (season, week, res) => {
 	let parsedJSONData = [];
-	if (week === +14) {
+	if (week == 14) {
 		parsedJSONData = apiSimulation14.playerWeeklyStats;
-	} else if (week === +15) {
+	} else if (week == 15) {
 		parsedJSONData = apiSimulation15.playerWeeklyStats;
 	}
-
+	
 	const processedPlayersStats = parsedJSONData.map(playerStats => {
 		return makePlayerStats(playerStats)
 	});
@@ -103,88 +101,82 @@ const updateAllPlayerStatsFromApi = (season, week, res) => {
 };
 
 // const getNewPlayersFromApi = (res) => {
-// 	const options = {
-//     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/Players`,
-//     headers: {
-//         'User-Agent': 'Request-Promise',
-//         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
+// 	axios({
+// 	  method:'get',
+// 	  url: 'https://api.fantasydata.net/v3/nfl/stats/JSON/Players',
+// 	  headers: {
+//       'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
 //     json: true
-// 	};
+// 	})
+//   .then((parsedJSONData) => {
+// 		const processedPlayers = parsedJSONData.map(player => {
+// 			return makePlayer(player)
+// 		});
 
-// 	rp(options)
-//     .then((parsedJSONData) => {
-// 			const processedPlayers = parsedJSONData.map(player => {
-// 				return makePlayer(player)
-// 			});
+// 		processedPlayers.forEach(player => {
+// 			db.savePlayerToDB(player);
+// 		});
 
-// 			processedPlayers.forEach(player => {
-// 				db.savePlayerToDB(player);
-// 			});
-
-// 			res.sendStatus(201);
-//     })
-//     .catch((err) => {
-//       console.log('failed to retrieve data from Fantasy Data Solutions');
-//       res.sendStatus(400);
-//     });
-// };
+// 		res.sendStatus(201);
+// 	})
+// 	.catch((err) => {
+//     console.log('failed to retrieve data from Fantasy Data Solutions');
+//     res.sendStatus(400);
+// 	})
+// }
 
 // const getAllPlayerStatsFromApi = (res, season, week) => {
-// 	const options = {
-//     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
-//     headers: {
-//         'User-Agent': 'Request-Promise',
-//         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
+// 	axios({
+// 	  method:'get',
+// 	  url: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
+// 	  headers: {
+//       'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
 //     },
 //     json: true
-// 	};
-
-// 	rp(options)
-//     .then((parsedJSONData) => {
-//       const processedPlayersStats = parsedJSONData.map(playerStats => {
-// 				return makePlayerStats(playerStats)
-// 			});
-
-// 			processedPlayersStats.forEach(playerStats => {
-// 				db.savePlayerStatsToDB(playerStats);
-// 			});
-
-// 			res.sendStatus(201);
-//     })
-//     .catch((err) => {
-//       console.log('failed to retrieve data from Fantasy Data Solutions');
-//       res.sendStatus(400);
-//     });
-// };
-
-// const updateAllPlayerStatsFromApi = (res, season, week) => {
-// 	const options = {
-//     uri: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
-//     headers: {
-//         'User-Agent': 'Request-Promise',
-//         'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
-//     },
-//     json: true
-// 	};
-
-// 	rp(options)
-//     .then((parsedJSONData) => {
-//       const processedPlayersStats = parsedJSONData.map(playerStats => {
-// 				return makePlayerStats(playerStats)
-// 			});
+// 	})
+//   .then((parsedJSONData) => {
+//     const processedPlayersStats = parsedJSONData.map(playerStats => {
+// 			return makePlayerStats(playerStats)
+// 		});
 
 // 		processedPlayersStats.forEach(playerStats => {
-// 			db.updatePlayerStatsInDB(playerStats);
-// 		})
+// 			db.savePlayerStatsToDB(playerStats);
+// 		});
 
-// 			res.sendStatus(201);
-//     })
-//     .catch((err) => {
-//       console.log('failed to retrieve data from Fantasy Data Solutions');
-//       res.sendStatus(400);
-//     });
-// };
+// 		res.sendStatus(201);
+//   })
+//   .catch((err) => {
+//     console.log('failed to retrieve data from Fantasy Data Solutions');
+//     res.sendStatus(400);
+//   });
+// }
+
+// const updateAllPlayerStatsFromApi = (res, season, week) => {
+// 	axios({
+// 	  method:'get',
+// 	  url: `https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerGameStatsByPlayerID/${season}/${week}/?`,
+// 	  headers: {
+//       'Ocp-Apim-Subscription-Key': process.env.fdsKey || apiKeys.fdsSubscriptionKey
+//     },
+//     json: true
+// 	})
+//   .then((parsedJSONData) => {
+//     const processedPlayersStats = parsedJSONData.map(playerStats => {
+// 			return makePlayerStats(playerStats)
+// 		});
+
+// 	processedPlayersStats.forEach(playerStats => {
+// 		db.updatePlayerStatsInDB(playerStats);
+// 	})
+
+// 		res.sendStatus(201);
+//   })
+//   .catch((err) => {
+//     console.log('failed to retrieve data from Fantasy Data Solutions');
+//     res.sendStatus(400);
+//   });
+// }
 
 
 module.exports.getNewPlayersFromApi = getNewPlayersFromApi;
