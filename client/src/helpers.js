@@ -1,7 +1,7 @@
 const getPlayerScore = player => {
     let total = 0;
     total += player.passingYards * 0.025;
-    total += player.PassingTouchdowns * 4;
+    total += player.passingTouchdowns * 4;
     total += player.passingInterceptions * -1;
     total += player.rushingYards * 0.1;
     total += player.rushingTouchdowns * 6;

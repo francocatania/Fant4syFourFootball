@@ -1,6 +1,4 @@
 const cron = require('node-cron');
-const request = require('request');
-const rp = require('request-promise');
 const axios = require('axios');
 
 const addPlayerStats = () => {
@@ -27,7 +25,7 @@ const addPlayerStats = () => {
 	.catch((err) => {
 		console.log('failed to retrieve current week and then update player stats');
 	})
-}
+};
 
 const updatePlayerStats = () => {
 	axios({
@@ -37,6 +35,7 @@ const updatePlayerStats = () => {
 	  .then(currentWeek => {
 	  	let week = currentWeek.data.week;
 	  	let season = currentWeek.data.season;
+	  	console.log('week info: ', currentWeek.data)
 			axios({
 		    method: 'put',
 		    url: `http://localhost:4444/playerdata/${season}/${week}`,
@@ -53,7 +52,7 @@ const updatePlayerStats = () => {
 	.catch((err) => {
 		console.log('failed to retrieve current week and then update player stats');
 	})
-}
+};
 
 const addNewPlayers = () => {
 	axios({
@@ -68,7 +67,7 @@ const addNewPlayers = () => {
 		.catch((err) => {
 			console.log('err', err)
 		})
-}
+};
 
 const updateCurrentWeek = () => {
 	axios({
@@ -85,25 +84,97 @@ const updateCurrentWeek = () => {
 		    data: JSON.stringify({season: season, week: week})
 			})
 			.then(() => {
-				console.log('success')
+				console.log('successfully updated current week');
 			})
 			.catch(() => {
-				console.log('fail2')
+				console.log('failed to update week');
 			});
 		})
 	.catch((err) => {
-		console.log('err', err)
+		console.log('failed to retrieve current week and then update current week');
 	})
+};
+
+const getScores = (season, week) => {
+	return axios.get(`http://localhost:4444/scores/${season}/${week}`);
+};
+
+const getMatchups = () => {
+	return axios.get(`http://localhost:4444/matchups`);
 }
 
+const processWinnersLossers = (scores, matchups) => {
+	let winLossChart = {
+		winners: [],
+		losers: []
+	};
+  matchups.forEach((match) => {
+		if (scores[match.user_id] < scores[match.rival_id]) {
+			if (!winLossChart.winners.includes(match.user_id)) {
+				winLossChart.winners.push(match.user_id)
+			}
+		} else {
+			if (!winLossChart.losers.includes(match.user_id)) {
+				winLossChart.losers.push(match.user_id)
+			}
+		}
+	})
+  console.log('winners', winLossChart.winners);
+  console.log('losers', winLossChart.losers);
+	return winLossChart;
+}
+
+const updateWinsLosses = () => {
+
+	axios({
+	  method:'get',
+	  url: 'http://localhost:4444/week',
+	})
+	  .then(currentWeek => {
+	  	console.log(currentWeek.data)
+			axios.all([getScores(currentWeek.data.season, currentWeek.data.week), getMatchups()])
+			  .then(axios.spread((scores, matchups) => {
+			    
+			  	console.log('scores', scores.data);
+			  	console.log('matchups', matchups.data);
+			  	const winLossChart = processWinnersLossers(scores.data, matchups.data);
+
+			  }))
+			  .catch((err) => {
+					console.log('Error receiving scores ', err);
+				});
+		})
+		.catch((err) => {
+			console.log('Error receiving scores ', err);
+		});
+
+
+	  	// scores.forEach(score => {
+				// axios({
+			 //    method: 'put',
+			 //    url: `http://localhost:4444/teams/${id}/${result}`,
+			 //    headers: {"Content-Type": "application/json"},
+			 //    data: JSON.stringify({season: season, week: week})
+				// })
+				// .then(() => {
+				// 	console.log('wins & losses updated');
+				// })
+				// .catch(() => {
+				// 	console.log('wins & losses failed to update');
+				// });
+		  // })  		
+};
+
+updateWinsLosses();
+
 const recurringStatInitialization = cron.schedule('5 * * * * *', () => {
-		console.log('Cron adding new stats');
+	console.log('Cron adding new stats');
   addPlayerStats();
 }, false);
 
 const recurringStatUpdate = cron.schedule('2 * * * * *', () => {
-		console.log('Cron updating stats');
-  // updatePlayerStats();
+	console.log('Cron updating stats');
+  updatePlayerStats();
 }, false);
 
 const recurringPlayerUpdate = cron.schedule('8 * * * * *', () => {
@@ -112,11 +183,17 @@ const recurringPlayerUpdate = cron.schedule('8 * * * * *', () => {
 }, false);
 
 const recurringWeekUpdate = cron.schedule('15 * * * * *', () => {
-		// console.log('Cron changing week');
+	console.log('Cron changing week');
   updateCurrentWeek();
+}, false);
+
+const recurringUpdateWinsLosses = cron.schedule('15 * * * * *', () => {
+	console.log('Cron updating Wins & Loses');
+  updateWinsLosses();
 }, false);
 
 // recurringStatInitialization.start();
 // recurringStatUpdate.start();
 // recurringPlayerUpdate.start();
 // recurringWeekUpdate.start();
+// recurringUpdateWinsLosses.start();

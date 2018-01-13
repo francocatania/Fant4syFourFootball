@@ -1,9 +1,10 @@
 const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const {mysqlConfig} = require('./config.js');
+const frontEndHelpers = require('../client/src/helpers.js');
 
 const connection = mysql.createConnection(mysqlConfig);
-connection.connect(function(err) {
+connection.connect((err) => {
    if (err) {
    	console.log('error connecting to sql database', err);
    }
@@ -13,7 +14,7 @@ connection.connect(function(err) {
 const db = connection;
 
 // setInterval keeps database connection open. Hacky fix, investigate further when able.  
-setInterval(function () {
+setInterval(() => {
     db.query('SELECT 1');
 }, 45000);
 
@@ -26,19 +27,22 @@ const savePlayerStatsToDB = (playerStats, res) => {
 	db.query(sql, allStats, (err, data) => {
 		if (err) {
 			console.log('Stats failed to insert into database');
+			res.sendStatus(400);
 		} else {
 			console.log('Stats successfully inserted into database');
 		}
 	});
+	res.sendStatus(201);
 };
 
-const updatePlayerStatsInDB = (playerStats) => {
+const updatePlayerStatsInDB = (playerStats, res) => {
 	const sql = sqlQueries.updatePlayerStats;
 	const allStats = sqlQueries.allStats.map(stat => playerStats[stat])
-	//we need week and id again so..
-	const queryParams = allStats.push(playerStats.week);
-	queryParams = queryParams.push(playerStats.playerID);
-	
+
+	let queryParams = allStats.slice();
+	queryParams.push(playerStats.week);
+	queryParams.push(playerStats.playerID);
+
 	db.query(sql, queryParams, (err, data) => {
 		if (err) {
 			console.log('Failed to Update PlayerStats');
@@ -73,33 +77,30 @@ const getAllPlayersByTeam = (username, week) => {
 	});
 };
 
-const getCurrentWeek =(res) => {
+const getCurrentWeek = (res) => {
 	const sql = sqlQueries.currentWeekAndSeason;
 
 	db.query(sql, (err, data) => {
 		if (err) {
 			console.log('Player failed to insert into database');
+			res.sendStatus(404);
 		} else {
-			console.log('got data', data)
 			let currentWeek = {
 				season: data[0].currentseason,
 				week: data[0].currentweek
 			}
-			console.log('currentweek', currentWeek)
-			res.status(200);
 			res.send(currentWeek);
 		}
 	});
 };
 
-
-const updateCurrentWeek =(week, res) => {
+const updateCurrentWeek = (week, res) => {
 	const sql = sqlQueries.updateCurrentWeek;
-	console.log('in database', week)
 
 	db.query(sql, [week], (err, data) => {
 		if (err) {
 			console.log('Week failed to update into database');
+			res.sendStatus(400);
 		} else {
 			console.log('Week successfully updated into database');
 		}
@@ -107,6 +108,85 @@ const updateCurrentWeek =(week, res) => {
 	});
 };
 
+const getCurrentMatches = (res) => {
+	const sql = sqlQueries.currentWeekAndSeason;
+
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log('Player failed to insert into database');
+			res.sendStatus(404);
+		} else {
+			const sql = sqlQueries.getMatches;
+			db.query(sql, [data[0].currentweek], (err, data) => {
+				if (err) {
+					console.log('Match score not found');
+					res.sendStatus(404);
+				} else {
+					res.send(data);
+				}
+			});
+		}
+	});
+}
+
+const getMatchScores = (season, week, res) => {
+	const sql = sqlQueries.getMatches;
+	let scoring = [];
+	db.query(sql, [week], (err, data) => {
+		if (err) {
+			console.log('Match score not found');
+			res.sendStatus(404);
+		} else {
+			let scoring = [];
+			const numberOfTeams = data.length;
+			data.forEach((team, i) => {
+				const sql2 = sqlQueries.playersInTeamByUserID;
+				db.query(sql2, [team.user_id, team.week], (err, lastData) => {
+					if (err) {
+						throw err
+					} else {
+						scoring.push(lastData);
+						if (i === numberOfTeams - 1) {
+							let scoreChart = {};
+							scores = scoring.map((team, i) => {
+								scoreChart[team[i].teamId] = frontEndHelpers.getTeamScore(team)
+							})
+							res.send(scoreChart)
+						}
+					}
+				});
+			})
+		}
+	});
+};
+
+const updateLosses = (teamId, res) => {
+	const sql = sqlQueries.updateLosses;
+
+	db.query(sql, [teamId], (err, data) => {
+		if (err) {
+			console.log('Losses failed to update into database');
+			res.sendStatus(404);
+		} else {
+			console.log('Losses successfully updated into database');
+			res.sendStatus(200);
+		}
+	});
+};
+
+const updateWins = (teamId, res) => {
+	const sql = sqlQueries.updateWins;
+
+	db.query(sql, [teamId], (err, data) => {
+		if (err) {
+			console.log('Wins failed to update into database');
+			res.sendStatus(400);
+		} else {
+			console.log('Wins successfully updated into database');
+			res.sendStatus(200);
+		}
+	});
+};
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
 module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
@@ -114,3 +194,7 @@ module.exports.savePlayerToDB = savePlayerToDB;
 module.exports.getAllPlayersByTeam = getAllPlayersByTeam;
 module.exports.getCurrentWeek = getCurrentWeek;
 module.exports.updateCurrentWeek = updateCurrentWeek;
+module.exports.getMatchScores = getMatchScores;
+module.exports.updateWins = updateWins;
+module.exports.updateLosses = updateLosses;
+module.exports.getCurrentMatches = getCurrentMatches;

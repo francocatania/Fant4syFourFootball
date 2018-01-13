@@ -18,7 +18,7 @@ const playerWeeklyStats = [
   "Started": 1,
   "PassingAttempts": 39.4,
   "PassingCompletions": 29.3,
-  "PassingYards": 305.4,
+  "PassingYards": 360.4,
   "PassingCompletionPercentage": 83.7,
   "PassingYardsPerAttempt": 8.7,
   "PassingYardsPerCompletion": 11.7,

@@ -17,9 +17,19 @@ app
 	.use(bodyParser.json())
 	.use(express.static(path.join(__dirname, '../client/dist')))
 	.get('/week', (req, res) => db.getCurrentWeek(res))
+	.get('/scores/:season/:week', (req, res) => db.getMatchScores(req.params.season, req.params.week, res))
+	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(username, week, res))
+	.get('/matchups', (req, res) => db.getCurrentMatches(res))
 	.post('/player', (req, res) => fdsApi.getNewPlayersFromApi(res))
 	.post('/playerdata/:season/:week', (req, res) => fdsApi.getAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/week', (req, res) => db.updateCurrentWeek(req.body.week, res))
 	.put('/playerdata/:season/:week', (req, res) => fdsApi.updateAllPlayerStatsFromApi(req.params.season, req.params.week, res))
+	.put('/teams/:id:/:result', (req, res) => serverHelpers.updateWinsLosses(req.params.id, req.params.result, res))
 	.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
 	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
+
+
+	// needs to be called from App.jsx on login
+	// needs to receive a username, and week (week is obtained from GET request to /week)
+	// upon success promise fires a get request to teamstats to get the team
+	// .get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(username, week, res))
