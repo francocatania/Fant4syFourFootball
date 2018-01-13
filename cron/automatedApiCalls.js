@@ -174,6 +174,7 @@ const recurringUpdateWinsLosses = cron.schedule('15 * * * * *', () => {
   updateWinsLosses();
 }, false);
 
+// initialize the Cron scheduled functions
 // recurringStatInitialization.start();
 // recurringStatUpdate.start();
 // recurringPlayerUpdate.start();
