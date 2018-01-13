@@ -208,3 +208,4 @@ module.exports.getMatchScores = getMatchScores;
 module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
 module.exports.getCurrentMatches = getCurrentMatches;
+module.exports.getLeagueInfo = getLeagueInfo;
