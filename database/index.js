@@ -68,6 +68,7 @@ const getAllPlayersByTeam = (username, week) => {
 			console.log('Couldn\'t get all players by team' );
 		} else {
 			console.log('Successfully got all player in the team');
+			res.send(data);
 		}
 	});
 };
