@@ -122,23 +122,35 @@ const saveUser = (username, password, userId) => {
 const checkPassword = (username) => {
   const sql = sqlQueries.findPassword;
 
-  db.query(sql, username, (err, data) => {
+  return db.query(sql, username, (err, password) => {
 		if (err) {
 			console.log('Failed to find password in database');
 		} else {
 			console.log('Password successfully found in database');
 		}
-	});
+	})
 };
 
 const getTeambyUser = (userId) => {
   const sql = sqlQueries.getTeamName;
 
-  db.query(sql, userId, (err, data) => {
+  return db.query(sql, userId, (err, data) => {
 		if (err) {
 			console.log('Failed to find team name in database');
 		} else {
 			console.log('Team successfully found in database');
+		}
+	});
+};
+
+const getRivalTeam = (userId) => {
+  const sql = sqlQueries.getRivalInfo;
+
+  return db.query(sql, userId, (err, data) => {
+		if (err) {
+			console.log('Failed to find rival team name in database');
+		} else {
+			console.log('Rival team successfully found in database');
 		}
 	});
 };
