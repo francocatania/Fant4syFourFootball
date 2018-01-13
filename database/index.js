@@ -160,30 +160,26 @@ const getMatchScores = (season, week, res) => {
 	});
 };
 
-const updateLosses = (teamId, res) => {
+const updateLosses = (teamId) => {
 	const sql = sqlQueries.updateLosses;
 
 	db.query(sql, [teamId], (err, data) => {
 		if (err) {
 			console.log('Losses failed to update into database');
-			res.sendStatus(404);
 		} else {
 			console.log('Losses successfully updated into database');
-			res.sendStatus(200);
 		}
 	});
 };
 
-const updateWins = (teamId, res) => {
+const updateWins = (teamId) => {
 	const sql = sqlQueries.updateWins;
 
 	db.query(sql, [teamId], (err, data) => {
 		if (err) {
 			console.log('Wins failed to update into database');
-			res.sendStatus(400);
 		} else {
 			console.log('Wins successfully updated into database');
-			res.sendStatus(200);
 		}
 	});
 };

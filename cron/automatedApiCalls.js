@@ -1,5 +1,6 @@
 const cron = require('node-cron');
 const axios = require('axios');
+const db = require('../database/index.js');
 
 const addPlayerStats = () => {
 	axios({
@@ -119,8 +120,6 @@ const processWinnersLossers = (scores, matchups) => {
 			}
 		}
 	})
-  console.log('winners', winLossChart.winners);
-  console.log('losers', winLossChart.losers);
 	return winLossChart;
 }
 
@@ -131,14 +130,15 @@ const updateWinsLosses = () => {
 	  url: 'http://localhost:4444/week',
 	})
 	  .then(currentWeek => {
-	  	console.log(currentWeek.data)
 			axios.all([getScores(currentWeek.data.season, currentWeek.data.week), getMatchups()])
 			  .then(axios.spread((scores, matchups) => {
-			    
-			  	console.log('scores', scores.data);
-			  	console.log('matchups', matchups.data);
 			  	const winLossChart = processWinnersLossers(scores.data, matchups.data);
-
+			  	winLossChart.winners.forEach((winner) => {
+			  		db.updateWins(winner);
+			  	});
+			  	winLossChart.losers.forEach((loser) => {
+			  		db.updateLosses(loser);
+			  	});
 			  }))
 			  .catch((err) => {
 					console.log('Error receiving scores ', err);
@@ -146,26 +146,8 @@ const updateWinsLosses = () => {
 		})
 		.catch((err) => {
 			console.log('Error receiving scores ', err);
-		});
-
-
-	  	// scores.forEach(score => {
-				// axios({
-			 //    method: 'put',
-			 //    url: `http://localhost:4444/teams/${id}/${result}`,
-			 //    headers: {"Content-Type": "application/json"},
-			 //    data: JSON.stringify({season: season, week: week})
-				// })
-				// .then(() => {
-				// 	console.log('wins & losses updated');
-				// })
-				// .catch(() => {
-				// 	console.log('wins & losses failed to update');
-				// });
-		  // })  		
+		}); 		
 };
-
-updateWinsLosses();
 
 const recurringStatInitialization = cron.schedule('5 * * * * *', () => {
 	console.log('Cron adding new stats');
@@ -192,6 +174,7 @@ const recurringUpdateWinsLosses = cron.schedule('15 * * * * *', () => {
   updateWinsLosses();
 }, false);
 
+// initialize the Cron scheduled functions
 // recurringStatInitialization.start();
 // recurringStatUpdate.start();
 // recurringPlayerUpdate.start();
