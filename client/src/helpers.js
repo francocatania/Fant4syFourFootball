@@ -38,8 +38,17 @@ const fakePlayer = {
     fieldGoalsMade40to49: 0,
     fieldGoalsMade50Plus: 0,
     extraPointsMade: 2,
-
 }
 
-module.exports.getPlayerScore = getPlayerScore;
+// array of objects containing both player info and stats for a given week
+const getTeamScore = (team) => { 
+    let totalPoints = 0;
+    team.forEach( player => {
+      totalPoints += getPlayerScore(player);
+    })
+    return totalPoints;
+}
+
+
 module.exports.fakePlayer = fakePlayer;
+module.exports.getTeamScore = getTeamScore;
