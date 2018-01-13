@@ -12,7 +12,7 @@ import {
 const TeamTable = (props) => {
   return (
 
-  <Table>
+  <Table class="table">
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>QB</TableHeaderColumn>
