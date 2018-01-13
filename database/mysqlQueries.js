@@ -145,6 +145,13 @@ const updatePlayerStats = `UPDATE playerstats
     AND playerID = ?`;
 
 
+const leagueInfo = `SELECT teams.*, users.username as coach FROM teams
+    INNER JOIN users
+    ON teams.owner = users.id
+    WHERE league = ?
+    ORDER BY teams.wins DESC`;
+
+
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
 module.exports.allStats = allStats;
@@ -157,3 +164,4 @@ module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
 module.exports.getMatches = getMatches;
 module.exports.playersInTeamByUserID = playersInTeamByUserID;
+module.exports.leagueInfo = leagueInfo;

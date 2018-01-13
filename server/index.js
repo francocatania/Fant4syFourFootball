@@ -20,6 +20,7 @@ app
 	.get('/scores/:season/:week', (req, res) => db.getMatchScores(req.params.season, req.params.week, res))
 	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(username, week, res))
 	.get('/matchups', (req, res) => db.getCurrentMatches(res))
+	.get('/league/:leagueId', (req, res) => db.getLeagueInfo(req.params.leagueId, res))
 	.post('/player', (req, res) => fdsApi.getNewPlayersFromApi(res))
 	.post('/playerdata/:season/:week', (req, res) => fdsApi.getAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/week', (req, res) => db.updateCurrentWeek(req.body.week, res))

@@ -94,7 +94,21 @@ const getCurrentWeek = (res) => {
 	});
 };
 
-const updateCurrentWeek = (week, res) => {
+const getLeagueInfo = (leagueId, res) => {
+	const sql = sqlQueries.leagueInfo;
+
+	db.query(sql, [leagueId], (err, data) => {
+		if (err) {
+			console.log('Failed to get league info');
+		} else {
+			console.log('got league', data)
+			res.send(data);
+		}
+	});
+};
+
+
+const updateCurrentWeek =(week, res) => {
 	const sql = sqlQueries.updateCurrentWeek;
 
 	db.query(sql, [week], (err, data) => {
@@ -194,3 +208,4 @@ module.exports.getMatchScores = getMatchScores;
 module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
 module.exports.getCurrentMatches = getCurrentMatches;
+module.exports.getLeagueInfo = getLeagueInfo;
