@@ -1,7 +1,7 @@
 import React from 'react';
 import ProfileCard from './profileCard.jsx';
 import TeamTable from './teamTable.jsx';
-import TeamTable2 from './teamTableOption2.jsx';
+import TeamTable2 from './Option2.jsx';
 
 
 const MyTeam = (props) => {
@@ -10,7 +10,7 @@ const MyTeam = (props) => {
 
    <ProfileCard/>
 
-   <TeamTable/> 
+   <TeamTable2/> 
   
   </div>
 

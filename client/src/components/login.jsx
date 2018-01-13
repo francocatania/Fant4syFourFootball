@@ -14,20 +14,22 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <div className="login" class="forms">
-            <h5>LOG IN</h5>
+      <div class="test1">
+        <form class="forms">
+          <div className="login" >
+            <h2 class="homepage">LOG IN</h2>
             
           <TextField
             hintText="Enter Username"
             floatingLabelText="Username"
+            class="testField"
           /><br />
     
           <TextField
             hintText="Password Field"
             floatingLabelText="Password"
             type="password"
+            class="textField"
           /><br />
       
             <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Log In</RaisedButton>
@@ -35,14 +37,9 @@ class Login extends React.Component {
         </form>
 
 
-
-
-
-
-
-        <form>
-          <div className="signup" class="forms">
-            <h5>SIGN UP</h5>
+        <form class="forms">
+          <div className="signup" >
+            <h2 class="homepage">SIGN UP</h2>
             
           <TextField
             hintText="Enter Username"

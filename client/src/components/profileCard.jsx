@@ -11,7 +11,7 @@ const ProfileCard = (props) => {
   <div>
     <Card>
       <h1 float="right">Team: Brady Gaga</h1>
-  <img src="http://hddfhm.com/images/new-england-patriots-helmet-clipart-4.png" alt="Avatar" class="avatar" float="left"/>
+  <img src="http://hddfhm.com/images/new-england-patriots-helmet-clipart-4.png" alt="Avatar" class="avatar"/>
     <CardActions>
       <FlatButton label="Edit Team" />
     </CardActions>
