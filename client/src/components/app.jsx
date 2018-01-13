@@ -19,7 +19,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: true,
+      isLoggedIn: false,
       username: "",
       password: "",
       myTeam: {},
@@ -37,7 +37,7 @@ class App extends React.Component {
 
   handleSignIn(event) {
     console.log('clicked');
-    fetch('/home', {
+    fetch('/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -48,7 +48,7 @@ class App extends React.Component {
         password: event.target.value
       }),
     })
-    .then(console.log(JSON.stringify(response)))
+    .then((response) => console.log(response))
     .catch((error) => {
       console.error(error);
     });
