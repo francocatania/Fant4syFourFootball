@@ -33,16 +33,20 @@ class App extends React.Component {
       league: ""
 >>>>>>> define handle checkOutTeams, pass props down to league
     };
-
+    this.setState = this.setState.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
   }
 
-  validateEntry() {
-    // make sure characters are allowed
+  handleUserEntry(event) {
+    let obj = {}
+    let key = event.target.name;
+    obj[key] = event.target.value
+    this.setState(obj);
+
+    // fetch username week
   }
 
   handleSignIn(event) {
-    console.log('clicked');
     fetch('/', {
       method: 'POST',
       headers: {
@@ -50,15 +54,17 @@ class App extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: event.target.value,
-        password: event.target.value
+        username: this.state.username,
+        password: this.state.password
       }),
     })
-    .then((response) => console.log(response))
+    .then((response) => response.json()
+    .then((data) => this.setState(data)))
     .catch((error) => {
       console.error(error);
     });
     event.preventDefault();
+    console.log(this.state);
   }
 
   handleLogOut(event) {
@@ -113,7 +119,7 @@ class App extends React.Component {
     } else {
       rootPath = (<Route exact path="/"
                          render={ props => (<Login handleSignIn={this.handleSignIn.bind(this)}
-                         validateEntry={this.validateEntry.bind(this)} />)}
+                         handleUserEntry={this.handleUserEntry.bind(this)} />)}
                          />);
     }
     return (
