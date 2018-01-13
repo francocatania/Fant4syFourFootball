@@ -13,7 +13,6 @@
     "react-dev": "webpack -d --watch",
     "server-dev": "nodemon server/index.js",
     "server-inspect": "nodemon --inspect server/index.js",
-    
     "start": "node server/index.js"
   },
   "dependencies": {
@@ -33,13 +32,10 @@
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-<<<<<<< 3ea4fc5070f62e2e0c362c5bd5cf8c9e246e63f5
     "underscore": "^1.8.3",
-    "webpack": "^3.10.0"
-=======
+    "webpack": "^3.10.0",
     "request": "*",
     "request-promise": "*"
->>>>>>> (feature) Updated App theme, Login page, and myTeam component
   },
   "devDependencies": {
     "babel-core": "*",
