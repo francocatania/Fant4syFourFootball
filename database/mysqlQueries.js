@@ -10,7 +10,6 @@ const updateWins = `UPDATE teams
 
 const updateLosses = `UPDATE teams
   SET losses = losses + 1
-  WHERE id = ?`;
 
 const getMatches = `SELECT * FROM matches
     WHERE week = ?`;
@@ -183,3 +182,4 @@ module.exports.leagueInfo = leagueInfo;
 module.exports.saveUserInfo = saveUserInfo;
 module.exports.findPassword = findPassword;
 module.exports.getTeamName = getTeamName;
+module.exports.leagueInfo = leagueInfo;

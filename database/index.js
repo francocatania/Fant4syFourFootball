@@ -1,7 +1,6 @@
 const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const frontEndHelpers = require('../client/src/helpers.js');
-
 const {mysqlConfig} = require('./config.js')
 
 const connection = mysql.createConnection(mysqlConfig);
@@ -14,7 +13,7 @@ connection.connect((err) => {
 
 const db = connection;
 
-// setInterval keeps database connection open. Hacky fix, investigate further when able.
+// setInterval keeps database connection open. Hacky fix, investigate further when able.  
 setInterval(() => {
     db.query('SELECT 1');
 }, 45000);
@@ -269,3 +268,4 @@ module.exports.checkPassword = checkPassword;
 module.exports.getTeambyUser = getTeambyUser;
 module.exports.getRivalTeam = getRivalTeam;
 module.exports.getTeam = getTeam;
+module.exports.getLeagueInfo = getLeagueInfo;

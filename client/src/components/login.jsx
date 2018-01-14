@@ -27,6 +27,8 @@ class Login extends React.Component {
             onChange={this.props.handleUserEntry}
           /><br />
 
+          /><br />
+
           <TextField
             hintText="Password Field"
             floatingLabelText="Password"
@@ -34,6 +36,8 @@ class Login extends React.Component {
             className="textField"
             name="password"
             onChange={this.props.handleUserEntry}
+          /><br />
+
           /><br />
 
             <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Log In</RaisedButton>
@@ -51,7 +55,12 @@ class Login extends React.Component {
             name="username"
             onChange={this.props.handleUserEntry}
           /><br />
-
+            
+          <TextField
+            hintText="Enter Username"
+            floatingLabelText="Username"
+          /><br />
+    
           <TextField
             hintText="Password Field"
             floatingLabelText="Password"
@@ -59,6 +68,15 @@ class Login extends React.Component {
             name="password"
             onChange={this.props.handleUserEntry}
           /><br />
+
+          /><br />
+
+          <TextField
+            hintText="Team Name"
+            floatingLabelText="Team Name"
+            type="password"
+          /><br />
+      
 
             <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Sign Up</RaisedButton>
           </div>

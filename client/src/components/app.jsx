@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+//import Login from './deleteOption.jsx';
 import Login from './login.jsx';
 import Home from './home.jsx';
 import League from './league.jsx';
@@ -15,7 +16,6 @@ import Draft from './draft.jsx';
 import DraftEntry from './draftEntry.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {draftPicks} from '../../../api/apiSimulation/teams.js';
-// const draftPicks = require('../../../api/apiSimulation/teams.js');
 
 class App extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      myteam: {}
+      myteam: {},
       foreignTeam: {},
       league: "",
       leaguepassword: ""

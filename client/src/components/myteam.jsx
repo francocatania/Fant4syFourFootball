@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileCard from './profileCard.jsx';
-import TeamTable from './teamTable.jsx'
+import TeamTable from './teamTable.jsx';
 
 
 const MyTeam = (props) => {
@@ -9,7 +9,7 @@ const MyTeam = (props) => {
 
    <ProfileCard/>
 
-   <TeamTable/> 
+   <TeamTable players={props.players}/> 
   
   </div>
 
