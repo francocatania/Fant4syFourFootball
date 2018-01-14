@@ -104,12 +104,12 @@ class App extends React.Component {
       logout =  <button id="logout" onClick={this.handleLogOut}><Link to="/">Log out</Link></button>;
       rootPath = <Route exact path="/app" component={App}/>
       navBar = (<div id="navbar">
-        {logout}
         <ul id='navbar'>
           <li className="navbar-item" ><Link to="/league">League</Link></li>
           <li className="navbar-item"><Link to="/myteam">My Team</Link></li>
           <li className="navbar-item"><Link to="/matchups">Matchups</Link></li>
           <li className="navbar-item"><Link to="/draft">Draft</Link></li>
+          {logout}
         </ul>
 
         <Route path="/home" component={Home}/>
