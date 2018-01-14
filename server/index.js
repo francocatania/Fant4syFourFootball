@@ -30,3 +30,5 @@ app
 	.put('/teams/:id:/:result', (req, res) => serverHelpers.updateWinsLosses(req.params.id, req.params.result, res))
 	.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
 	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
+
+
