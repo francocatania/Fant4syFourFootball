@@ -102,10 +102,15 @@ class App extends React.Component {
         </ul>
 
         <Route path="/home" component={Home}/>
-        <Route path="/league" render={ props => (<League handleCheckOutTeam={this.handleCheckOutTeam.bind(this)}/>)} />
-        <Route path="/myteam" component={MyTeam}/>
+        <Route path="/league" component={League}/>
+        <Route path="/myteam" render={props => (<MyTeam
+          players={this.state.players}/>)}
+          />
         <Route path="/matchups" component={Matchups}/>
-        <Route path="/draft" component={Draft}/>
+        <Route path="/draft" render={props => (<Draft
+                         draftPicks={draftPicks} />)}
+                         />
+      </div>
       </div>);
     } else {
       rootPath = (<Route exact path="/"
