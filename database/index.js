@@ -13,7 +13,7 @@ connection.connect((err) => {
 
 const db = connection;
 
-// setInterval keeps database connection open. Hacky fix, investigate further when able.  
+// setInterval keeps database connection open. Hacky fix, investigate further when able.
 setInterval(() => {
     db.query('SELECT 1');
 }, 45000);
@@ -23,7 +23,7 @@ setInterval(() => {
 const savePlayerStatsToDB = (playerStats, res) => {
 	const sql = sqlQueries.savePlayerStats
 	const allStats = sqlQueries.allStats.map(stat => playerStats[stat])
-	
+
 	db.query(sql, allStats, (err, data) => {
 		if (err) {
 			console.log('Stats failed to insert into database');
@@ -198,6 +198,60 @@ const updateWins = (teamId) => {
 	});
 };
 
+const saveUser = (username, password, userId) => {
+  const sql = sqlQueries.saveUserInfo;
+
+  db.query(sql, [username, week], (err, data) => {
+		if (err) {
+			console.log('Failed to save user in database');
+		} else {
+			console.log('User successfully saved in database');
+		}
+	});
+};
+
+const checkPassword = (username) => {
+  const sql = sqlQueries.findPassword;
+
+  return db.query(sql, username, (err, password) => {
+		if (err) {
+			console.log('Failed to find password in database');
+		} else {
+			console.log('Password successfully found in database');
+		}
+	})
+};
+
+const getTeambyUser = (userId) => {
+  const sql = sqlQueries.getTeamName;
+  return db.query(sql, userId, (err, data) => {
+		if (err) {
+			console.log('Failed to find team name in database');
+		} else {
+			console.log('Team successfully found in database');
+		}
+	});
+};
+
+const getRivalTeam = (userId) => {
+  const sql = sqlQueries.getRivalInfo;
+
+  return db.query(sql, userId, (err, data) => {
+		if (err) {
+			console.log('Failed to find rival team name in database');
+		} else {
+			console.log('Rival team successfully found in database');
+		}
+	});
+};
+
+const getTeam = (user) => {
+  return {
+    teamName: getTeamName(user),
+    players: playersInTeam(user, week)
+  }
+}
+
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
 module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
 module.exports.savePlayerToDB = savePlayerToDB;
@@ -209,3 +263,8 @@ module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
 module.exports.getCurrentMatches = getCurrentMatches;
 module.exports.getLeagueInfo = getLeagueInfo;
+module.exports.saveUser = saveUser;
+module.exports.checkPassword = checkPassword;
+module.exports.getTeambyUser = getTeambyUser;
+module.exports.getRivalTeam = getRivalTeam;
+module.exports.getTeam = getTeam;

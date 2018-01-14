@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import {
   BrowserRouter as Router,
+  Redirect,
   Route,
   Link
 } from 'react-router-dom';
@@ -24,53 +25,55 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      players: [],
-      teamName: "",
-      rivalTeam: "",
-      matchup: "",
+      myteam: {}
+      foreignTeam: {},
       league: "",
-      leaguepassword: "",
+      leaguepassword: ""
     };
-
+    this.setState = this.setState.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
   }
 
-  validateEntry() {
-    // make sure characters are allowed
-  }
+  handleUserEntry(event) {
+    let obj = {}
+    let key = event.target.name;
+    obj[key] = event.target.value
+    this.setState(obj);
 
-  handleLoginStateChange() {
-    this.setState({
-      isLoggedIn: true,
-      // username: response.username,
-      // password: response.password,
-      // players: response.players,
-      // teamName: response.teamName,
-      // matchup: response.matchup,
-    });
-    // switch to myTeam view
+    // fetch username week
   }
 
   handleSignIn(event) {
-    // console.log('clicked');
-    // $.ajax({
-    //   method: 'POST',
-    //   url: '/???'
-    //   data: /* username & password */
-    // }).then(() => {
-    //     /* success: setState and toggle isLoggedIn */
-    //     /* fail: rerender login page with error */
-    // }),
-    // this.setState({
-    //   isLoggedIn: true
-    // })
-    this.handleLoginStateChange();
-    // event.preventDefault();
+    fetch('/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      }),
+    })
+    .then((response) => response.json()
+    .then((data) => this.setState(data)))
+    .catch((error) => {
+      console.error(error);
+    });
+    event.preventDefault();
   }
 
   handleLogOut(event) {
     this.setState({
       isLoggedIn: false
+    })
+  }
+
+  handleCheckOutTeam(event) {
+    this.setState({
+      currentForeignTeam: "",
+      foreignTeam: "",
+      foreignPlayers: []
     })
   }
 
@@ -80,22 +83,37 @@ class App extends React.Component {
     let logout = null;
     let rootPath = null;
     let navBar = null
+
+    // <Route exact path="/" render={() => (isloggedIn ? (<Redirect to="/dashboard"/>) : (<PublicHomePage/>))}/>
+
     if (isLoggedIn) {
       logout =  <button id="logout" onClick={this.handleLogOut}><Link to="/">Log out</Link></button>;
       rootPath = <Route exact path="/app" component={App}/>
       navBar = (<div id="navbar">
         {logout}
         <ul>
+          <li id="navbar-item"><Link to="/home">Home</Link></li>
           <li id="navbar-item"><Link to="/league">League</Link></li>
           <li id="navbar-item"><Link to="/myteam">My Team</Link></li>
           <li id="navbar-item"><Link to="/matchups">Matchups</Link></li>
           <li id="navbar-item"><Link to="/draft">Draft</Link></li>
         </ul>
+
+        <Route path="/home" component={Home}/>
+        <Route path="/league" component={League}/>
+        <Route path="/myteam" render={props => (<MyTeam
+          players={this.state.players}/>)}
+          />
+        <Route path="/matchups" component={Matchups}/>
+        <Route path="/draft" render={props => (<Draft
+                         draftPicks={draftPicks} />)}
+                         />
+      </div>
       </div>);
     } else {
       rootPath = (<Route exact path="/"
-                         render={ props => (<Login handleSignIn={this.handleSignIn.bind(this)} handleLoginStateChange={this.handleLoginStateChange.bind(this)}
-                         validateEntry={this.validateEntry.bind(this)} />)}
+                         render={ props => (<Login handleSignIn={this.handleSignIn.bind(this)}
+                         handleUserEntry={this.handleUserEntry.bind(this)} />)}
                          />);
     }
     return (
@@ -105,15 +123,7 @@ class App extends React.Component {
         <br />
 
         {rootPath}
-        <Route path="/home" component={Home}/>
-        <Route path="/league" component={League}/>
-        <Route path="/myteam" render={props => (<MyTeam 
-          players={this.state.players}/>)}
-          />
-        <Route path="/matchups" component={Matchups}/>
-        <Route path="/draft" render={props => (<Draft 
-                         draftPicks={draftPicks} />)}
-                         />
+
       </div>
       </MuiThemeProvider>
     );

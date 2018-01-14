@@ -1,15 +1,15 @@
 const currentWeekAndSeason = `SELECT currentweek, currentseason FROM leagues`;
 
-const updateCurrentWeek = `UPDATE leagues 
+const updateCurrentWeek = `UPDATE leagues
 SET currentweek = ?
 WHERE id = 1`;
 
-const updateWins = `UPDATE teams 
-  SET wins = wins + 1 
+const updateWins = `UPDATE teams
+  SET wins = wins + 1
   WHERE id = ?`;
 
-const updateLosses = `UPDATE teams 
-  SET losses = losses + 1 
+const updateLosses = `UPDATE teams
+  SET losses = losses + 1
   WHERE id = ?`;
 
 const getMatches = `SELECT * FROM matches
@@ -112,7 +112,7 @@ const playersInTeamByUserID = `
     WHERE users.id = ?
     AND playerStats.week = ?
     ORDER BY players.position`;
-    
+
 // get rival given a user_id for a given week
 const getRivalInfo = `SELECT users.id as rival_user_id, users.username as rival_username FROM users
     INNER JOIN teams
@@ -151,6 +151,21 @@ const leagueInfo = `SELECT teams.*, users.username as coach FROM teams
     WHERE league = ?
     ORDER BY teams.wins DESC`;
 
+const saveUserInfo = `
+    INSERT INTO users
+    (userId, username, password)
+    VALUES
+    (?, ?, ?)`;
+
+const findPassword = `
+    SELECT password FROM
+    users WHERE
+    name = ?`;
+
+const getTeamName = `
+    SELECT name FROM
+    teams WHERE
+    owner = ?`
 
 module.exports.savePlayerStats = savePlayerStats;
 module.exports.savePlayer = savePlayer;
@@ -165,3 +180,6 @@ module.exports.updateLosses = updateLosses;
 module.exports.getMatches = getMatches;
 module.exports.playersInTeamByUserID = playersInTeamByUserID;
 module.exports.leagueInfo = leagueInfo;
+module.exports.saveUserInfo = saveUserInfo;
+module.exports.findPassword = findPassword;
+module.exports.getTeamName = getTeamName;

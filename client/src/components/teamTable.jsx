@@ -30,10 +30,10 @@ const TeamTable = (props) => {
                  <TableRowColumn>12.16</TableRowColumn>
                  </TableRow>
       })}
-      
+
     </TableBody>
   </Table>
-  
+
 
     );
   }
@@ -63,10 +63,10 @@ export default TeamTable
 //                  <TableRowColumn>12.16</TableRowColumn>
 //                  </TableRow>
 //       })}
-      
+
 //     </TableBody>
-//   </Table> 
-  
+//   </Table>
+
 
 //     );
 //   }
@@ -138,4 +138,5 @@ export default TeamTable
  //        <TableRowColumn>7</TableRowColumn>
  //      </TableRow>
  //    </TableBody>
+ //  </Table>
  //  </Table>

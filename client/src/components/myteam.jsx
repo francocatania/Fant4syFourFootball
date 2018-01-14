@@ -9,12 +9,11 @@ const MyTeam = (props) => {
 
    <ProfileCard/>
 
-   <TeamTable players={props.players}/> 
-  
+   <TeamTable players={props.players}/>
+
   </div>
 
     );
   }
 
 export default MyTeam
-

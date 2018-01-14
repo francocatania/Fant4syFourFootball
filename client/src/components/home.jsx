@@ -7,6 +7,3 @@ const Home = () => {
 }
 
 export default Home
-
-// can render football related articles
-// show 

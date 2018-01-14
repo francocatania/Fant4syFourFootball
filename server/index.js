@@ -16,6 +16,7 @@ https.createServer(app);
 app
 	.use(bodyParser.json())
 	.use(express.static(path.join(__dirname, '../client/dist')))
+	.post('/', (req, res) => serverHelpers.authenticate(req, res))
 	.get('/week', (req, res) => db.getCurrentWeek(res))
 	.get('/scores/:season/:week', (req, res) => db.getMatchScores(req.params.season, req.params.week, res))
 	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(username, week, res))

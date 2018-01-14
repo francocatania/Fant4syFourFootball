@@ -18,20 +18,26 @@ class Login extends React.Component {
         <form className="forms">
           <div className="login" >
             <h2 className="homepage">LOG IN</h2>
-            
+
           <TextField
             hintText="Enter Username"
             floatingLabelText="Username"
             className="testField"
+            name="username"
+            onChange={this.props.handleUserEntry}
           /><br />
-    
+
+          /><br />
+
           <TextField
             hintText="Password Field"
             floatingLabelText="Password"
             type="password"
             className="textField"
+            name="password"
+            onChange={this.props.handleUserEntry}
           /><br />
-      
+
             <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Log In</RaisedButton>
           </div>
         </form>
@@ -40,24 +46,23 @@ class Login extends React.Component {
         <form className="forms">
           <div className="signup" >
             <h2 className="homepage">SIGN UP</h2>
-            
+
           <TextField
             hintText="Enter Username"
             floatingLabelText="Username"
+            name="username"
+            onChange={this.props.handleUserEntry}
           /><br />
-    
+
           <TextField
             hintText="Password Field"
             floatingLabelText="Password"
             type="password"
+            name="password"
+            onChange={this.props.handleUserEntry}
           /><br />
 
-          <TextField
-            hintText="Team Name"
-            floatingLabelText="Team Name"
-            type="password"
-          /><br />
-      
+
             <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Sign Up</RaisedButton>
           </div>
         </form>
@@ -70,6 +75,8 @@ class Login extends React.Component {
 
 export default Login
 
-
-
-
+// IF TEAMS ARE NOT HARDCODED IN
+// <TextField
+//   hintText="Team Name"
+//   floatingLabelText="Team Name"
+//   type="password"
