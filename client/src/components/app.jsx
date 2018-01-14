@@ -47,7 +47,7 @@ class App extends React.Component {
     fetch('/login', {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -56,10 +56,8 @@ class App extends React.Component {
       }),
     })
     .then((response) => response.json()
+    .catch(() => alert("Incorrect Password"))
     .then((data) => this.setState(data)))
-    .catch((error) => {
-      console.error(error);
-    });
     event.preventDefault();
   }
 
