@@ -19,6 +19,9 @@ const TeamTable = (props) => {
         <TableHeaderColumn>Offense</TableHeaderColumn>
         <TableHeaderColumn>Bye</TableHeaderColumn>
         <TableHeaderColumn>Points</TableHeaderColumn>
+        <TableHeaderColumn>Passing</TableHeaderColumn>
+        <TableHeaderColumn>Rushing</TableHeaderColumn>
+        <TableHeaderColumn>Receiving</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody>
@@ -28,6 +31,9 @@ const TeamTable = (props) => {
                  <TableRowColumn>{player.name}</TableRowColumn>
                  <TableRowColumn>5</TableRowColumn>
                  <TableRowColumn>12.16</TableRowColumn>
+                 <TableRowColumn>{player.passingYards}</TableRowColumn>
+                 <TableRowColumn>{player.rushingYards}</TableRowColumn>
+                 <TableRowColumn>{player.receivingYards}</TableRowColumn>
                  </TableRow>
       })}
 
