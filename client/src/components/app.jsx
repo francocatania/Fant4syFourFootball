@@ -26,6 +26,7 @@ class App extends React.Component {
       password: "",
       players: [],
       teamName: "",
+      rivalTeam: "",
       matchup: "",
       league: "",
       leaguepassword: "",

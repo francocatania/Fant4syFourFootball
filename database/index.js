@@ -1,15 +1,7 @@
 const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const frontEndHelpers = require('../client/src/helpers.js');
-
-let mysqlConfig = null;
-
-if (!process.env.DATABASE_URL) {
- const mysqlConfigFile = require('./config.js');
- mysqlConfig = mysqlConfigFile.developmentConfig;
-} else {
-	mysqlConfig = process.env.DATABASE_URL;
-} 
+const {mysqlConfig} = require('./config.js')
 
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect((err) => {
