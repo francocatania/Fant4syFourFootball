@@ -1,5 +1,7 @@
 import React from 'react';
-import {getTeamScore, fakePlayer} from '../helpers.js'
+import {getTeamScore, fakePlayer} from '../helpers.js';
+import TeamTableMatchup from './teamTableMatchup.jsx';
+import OpponentTeamTable from'./opponentTeamTable.jsx';
 
 class Matchups extends React.Component {
   constructor(props) {
@@ -24,7 +26,13 @@ class Matchups extends React.Component {
   render() {
     return (
       <div>
-        <p> Maaachop </p>
+      <div className="matchups">
+        <TeamTableMatchup players={this.state.userTeam}/>
+      </div>
+
+      <div className="matchups">
+        <OpponentTeamTable players={this.state.rivalTeam} />
+      </div>
       </div>
     );
   }

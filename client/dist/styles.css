@@ -67,9 +67,12 @@
   justify-content: space-around;
 }
 
-
-
-
+.matchups {
+ width: 50%; 
+ display: inline-block;
+ vertical-align: top;
+ 
+}
 
 
 

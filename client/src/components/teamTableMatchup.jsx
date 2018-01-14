@@ -9,42 +9,36 @@ import {
 } from 'material-ui/Table';
 
 
-const TeamTable = (props) => {
+const TeamTableMatchup = (props) => {
   return (
 
   <Table class="table">
-    <TableHeader>
+    <TableHeader displaySelectAll={false}>
       <TableRow>
-        <TableHeaderColumn>Position</TableHeaderColumn>
+        <TableHeaderColumn>Stats</TableHeaderColumn>
         <TableHeaderColumn>Player Name</TableHeaderColumn>
-        <TableHeaderColumn>Bye</TableHeaderColumn>
         <TableHeaderColumn>Points</TableHeaderColumn>
-        <TableHeaderColumn>Passing Yds.</TableHeaderColumn>
-        <TableHeaderColumn>Rushing Yds.</TableHeaderColumn>
-        <TableHeaderColumn>Receiving Yds.</TableHeaderColumn>
+        <TableHeaderColumn>     Position</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody>
+    <TableBody >
        {props.players.map((player, index) =>{
           return <TableRow>
-                 <TableRowColumn>{player.position}</TableRowColumn>
+                 <TableRowColumn>Stats</TableRowColumn>
                  <TableRowColumn>{player.name}</TableRowColumn>
-                 <TableRowColumn>5</TableRowColumn>
                  <TableRowColumn>12.16</TableRowColumn>
-                 <TableRowColumn>{player.passingYards}</TableRowColumn>
-                 <TableRowColumn>{player.rushingYards}</TableRowColumn>
-                 <TableRowColumn>{player.receivingYards}</TableRowColumn>
+                 <TableRowColumn>{player.position}</TableRowColumn>
                  </TableRow>
       })}
-
+      
     </TableBody>
   </Table>
-
+  
 
     );
   }
 
-export default TeamTable
+export default TeamTableMatchup
 
 
 
@@ -69,10 +63,10 @@ export default TeamTable
 //                  <TableRowColumn>12.16</TableRowColumn>
 //                  </TableRow>
 //       })}
-
+      
 //     </TableBody>
-//   </Table>
-
+//   </Table> 
+  
 
 //     );
 //   }
@@ -144,5 +138,4 @@ export default TeamTable
  //        <TableRowColumn>7</TableRowColumn>
  //      </TableRow>
  //    </TableBody>
- //  </Table>
  //  </Table>

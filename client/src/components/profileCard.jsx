@@ -12,9 +12,8 @@ const ProfileCard = (props) => {
   return (
   <div>
     <Card>
+    <br/>
       <h1 align="center">Team: Brady Gaga</h1>
-
-  <br/>
     <RaisedButton style={buttonStyle}>Edit Team</RaisedButton>
   </Card>
  </div>

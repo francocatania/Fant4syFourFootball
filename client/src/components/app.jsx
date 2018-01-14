@@ -25,7 +25,7 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      myteam: {}
+      myteam: {},
       foreignTeam: {},
       league: "",
       leaguepassword: ""
@@ -37,7 +37,7 @@ class App extends React.Component {
   handleUserEntry(event) {
     let obj = {}
     let key = event.target.name;
-    obj[key] = event.target.value
+    obj[key] = event.target.value;
     this.setState(obj);
 
     // fetch username week
@@ -104,11 +104,12 @@ class App extends React.Component {
         <Route path="/myteam" render={props => (<MyTeam
           players={this.state.players}/>)}
           />
-        <Route path="/matchups" component={Matchups}/>
+        <Route path="/matchups" render={props => (<Matchups 
+          players={this.state.players}/>)}
+          />
         <Route path="/draft" render={props => (<Draft
                          draftPicks={draftPicks} />)}
                          />
-      </div>
       </div>);
     } else {
       rootPath = (<Route exact path="/"

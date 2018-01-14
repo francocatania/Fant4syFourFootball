@@ -27,7 +27,7 @@ class Login extends React.Component {
             onChange={this.props.handleUserEntry}
           /><br />
 
-          /><br />
+          <br />
 
           <TextField
             hintText="Password Field"
