@@ -2,17 +2,27 @@ const cron = require('node-cron');
 const axios = require('axios');
 const db = require('../database/index.js');
 
+let domain = 'http://localhost';
+if (process.env.PORT) {
+	domain = 'https://fant4syfootball.herokuapp.com'
+}
+
+let port = 4444;
+if (process.env.PORT) {
+	port = process.env.PORT
+}
+
 const addPlayerStats = () => {
 	axios({
 	  method:'get',
-	  url: 'http://localhost:4444/week',
+	  url: `${domain}:${port}/week`,
 	})
 	  .then(currentWeek => {
 	  	let week = currentWeek.data.week;
 	  	let season = currentWeek.data.season;
 			axios({
 		    method: 'post',
-		    url: `http://localhost:4444/playerdata/${season}/${week}`,
+		    url: `${domain}:${port}/playerdata/${season}/${week}`,
 		    headers: {"Content-Type": "application/json"},
 		    data: JSON.stringify({})
 			})
@@ -31,7 +41,7 @@ const addPlayerStats = () => {
 const updatePlayerStats = () => {
 	axios({
 	  method:'get',
-	  url: 'http://localhost:4444/week',
+	  url: `${domain}:${port}/week`,
 	})
 	  .then(currentWeek => {
 	  	let week = currentWeek.data.week;
@@ -39,7 +49,7 @@ const updatePlayerStats = () => {
 	  	console.log('week info: ', currentWeek.data)
 			axios({
 		    method: 'put',
-		    url: `http://localhost:4444/playerdata/${season}/${week}`,
+		    url: `${domain}:${port}/playerdata/${season}/${week}`,
 		    headers: {"Content-Type": "application/json"},
 		    data: JSON.stringify({})
 			})
@@ -58,7 +68,7 @@ const updatePlayerStats = () => {
 const addNewPlayers = () => {
 	axios({
     method: 'post',
-    url: 'http://localhost:4444/player',
+    url: `${domain}:${port}/player`,
     headers: {"Content-Type": "application/json"},
     data: JSON.stringify({})
 		})
@@ -73,14 +83,14 @@ const addNewPlayers = () => {
 const updateCurrentWeek = () => {
 	axios({
 	  method:'get',
-	  url: 'http://localhost:4444/week',
+	  url: `${domain}:${port}/week`,
 	})
 	  .then(currentWeek => {
 	  	let week = currentWeek.data.week + 1;
 	  	let season = currentWeek.data.season;
 			axios({
 		    method: 'put',
-		    url: 'http://localhost:4444/week',
+		    url: `${domain}:${port}/week`,
 		    headers: {"Content-Type": "application/json"},
 		    data: JSON.stringify({season: season, week: week})
 			})
@@ -97,11 +107,11 @@ const updateCurrentWeek = () => {
 };
 
 const getScores = (season, week) => {
-	return axios.get(`http://localhost:4444/scores/${season}/${week}`);
+	return axios.get(`${domain}:${port}/scores/${season}/${week}`);
 };
 
 const getMatchups = () => {
-	return axios.get(`http://localhost:4444/matchups`);
+	return axios.get(`${domain}:${port}/matchups`);
 }
 
 const processWinnersLossers = (scores, matchups) => {
@@ -127,7 +137,7 @@ const updateWinsLosses = () => {
 
 	axios({
 	  method:'get',
-	  url: 'http://localhost:4444/week',
+	  url: `${domain}:${port}/week`,
 	})
 	  .then(currentWeek => {
 			axios.all([getScores(currentWeek.data.season, currentWeek.data.week), getMatchups()])
