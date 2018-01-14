@@ -15,13 +15,13 @@ const TeamTable = (props) => {
   <Table class="table">
     <TableHeader>
       <TableRow>
-        <TableHeaderColumn>QB</TableHeaderColumn>
-        <TableHeaderColumn>Offense</TableHeaderColumn>
+        <TableHeaderColumn>Position</TableHeaderColumn>
+        <TableHeaderColumn>Player Name</TableHeaderColumn>
         <TableHeaderColumn>Bye</TableHeaderColumn>
         <TableHeaderColumn>Points</TableHeaderColumn>
-        <TableHeaderColumn>Passing</TableHeaderColumn>
-        <TableHeaderColumn>Rushing</TableHeaderColumn>
-        <TableHeaderColumn>Receiving</TableHeaderColumn>
+        <TableHeaderColumn>Passing Yds.</TableHeaderColumn>
+        <TableHeaderColumn>Rushing Yds.</TableHeaderColumn>
+        <TableHeaderColumn>Receiving Yds.</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody>
