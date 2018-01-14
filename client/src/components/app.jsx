@@ -44,6 +44,7 @@ class App extends React.Component {
   }
 
   handleSignIn(event) {
+    event.preventDefault();
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -56,9 +57,8 @@ class App extends React.Component {
       }),
     })
     .then((response) => response.json()
-    .catch(() => alert("Incorrect Password"))
     .then((data) => this.setState(data)))
-    event.preventDefault();
+    .catch(() => alert("Incorrect Password"))
   }
 
   handleLogOut(event) {

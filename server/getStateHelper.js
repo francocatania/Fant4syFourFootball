@@ -1,28 +1,36 @@
 const db = require('../database/index.js');
 const axios = require('axios');
 
-const getUserStateInfo = (username, res) => {
+let domain = 'http://localhost';
+if (process.env.PORT) {
+  domain = 'https://fant4syfootball.herokuapp.com'
+}
+
+let port = 4444;
+if (process.env.PORT) {
+  port = process.env.PORT
+}
 
 function getWeek() {
-  return axios.get('http://localhost:4444/week');
+  return axios.get(`${domain}:${port}/week`);
 }
 function getMatchups() {
-  return axios.get('http://localhost:4444/matchups');
+  return axios.get(`${domain}:${port}/matchups`);
 }
 function getUserInfo(username) {
-  return axios.get(`http://localhost:4444/user/${username}`);
+  return axios.get(`${domain}:${port}/user/${username}`);
 }
 function getOpposingUserInfo(username) {
-  return axios.get(`http://localhost:4444/user/${username}`);
+  return axios.get(`${domain}:${port}/user/${username}`);
 }
 function getUserInfoById(userId) {
-  return axios.get(`http://localhost:4444/userbyid/${userId}`);
+  return axios.get(`${domain}:${port}/userbyid/${userId}`);
 }
 function getUserTeam(username, week) {
-  return axios.get(`http://localhost:4444/teamstats/${username}/${week}`);
+  return axios.get(`${domain}:${port}/teamstats/${username}/${week}`);
 }
 function getOpposingTeam(opposingUsername, week) {
-  return axios.get(`http://localhost:4444/teamstats/${opposingUsername}/${week}`);
+  return axios.get(`${domain}:${port}/teamstats/${opposingUsername}/${week}`);
 }
 
 const getUserState = (username, res) => {
@@ -43,7 +51,7 @@ const getUserState = (username, res) => {
 
           axios({
             method:'get',
-            url: `http://localhost:4444/teamstats/${opposingUserInfoState.username}/${weekState.week}`,
+            url: `${domain}:${port}/teamstats/${opposingUserInfoState.username}/${weekState.week}`,
           })
             .then(opposingTeam => {
               const opposingTeamState = opposingTeam.data;
@@ -57,7 +65,6 @@ const getUserState = (username, res) => {
                 opposition: opposingTeamState,
                 isLoggedIn: true
               }
-              console.log(stateMakerObj);
               res.send(stateMakerObj);
             })
             .catch((err) => {

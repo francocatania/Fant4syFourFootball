@@ -14,8 +14,7 @@ const fakeTeamsInfo = [
   {'id': 3456, 'name': 'Team3', 'coach': 'mcooper', 'league': 1, 'wins': 1, 'losses': 2},
   {'id': 4567, 'name': 'Team4', 'coach': 'fcatania', 'league': 1, 'wins': 0, 'losses': 3},
 ]
-// Should the list of teams come from App.jsx as props ?
-// It will be faster if we keep that info as a state in the app component.
+
 const League = (props) => {
   return (
     <Table>
