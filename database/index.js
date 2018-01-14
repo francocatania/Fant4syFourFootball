@@ -1,10 +1,6 @@
 const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const frontEndHelpers = require('../client/src/helpers.js');
-<<<<<<< HEAD
-
-=======
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
 const {mysqlConfig} = require('./config.js')
 
 const connection = mysql.createConnection(mysqlConfig);
@@ -17,11 +13,7 @@ connection.connect((err) => {
 
 const db = connection;
 
-<<<<<<< HEAD
 // setInterval keeps database connection open. Hacky fix, investigate further when able.
-=======
-// setInterval keeps database connection open. Hacky fix, investigate further when able.  
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
 setInterval(() => {
     db.query('SELECT 1');
 }, 45000);
@@ -205,7 +197,6 @@ const updateWins = (teamId) => {
 		}
 	});
 };
-<<<<<<< HEAD
 
 const saveUser = (username, password, userId) => {
   const sql = sqlQueries.saveUserInfo;
@@ -260,8 +251,6 @@ const getTeam = (user) => {
     players: playersInTeam(user, week)
   }
 }
-=======
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
 module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
@@ -273,13 +262,9 @@ module.exports.getMatchScores = getMatchScores;
 module.exports.updateWins = updateWins;
 module.exports.updateLosses = updateLosses;
 module.exports.getCurrentMatches = getCurrentMatches;
-<<<<<<< HEAD
 module.exports.getLeagueInfo = getLeagueInfo;
 module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 module.exports.getTeambyUser = getTeambyUser;
 module.exports.getRivalTeam = getRivalTeam;
 module.exports.getTeam = getTeam;
-=======
-module.exports.getLeagueInfo = getLeagueInfo;
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e

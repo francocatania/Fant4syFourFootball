@@ -28,11 +28,6 @@ const League = (props) => {
           <TableHeaderColumn>Losses</TableHeaderColumn>
         </TableRow>
       </TableHeader>
-<<<<<<< HEAD
-
-=======
-      
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
       <TableBody>
         {fakeTeamsInfo.map( (team, index) => {
           return (

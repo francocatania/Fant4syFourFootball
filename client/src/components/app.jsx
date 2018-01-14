@@ -25,15 +25,8 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-<<<<<<< HEAD
       myteam: {}
       foreignTeam: {},
-=======
-      players: [],
-      teamName: "",
-      rivalTeam: "",
-      matchup: "",
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
       league: "",
       leaguepassword: ""
     };
@@ -130,18 +123,7 @@ class App extends React.Component {
         <br />
 
         {rootPath}
-<<<<<<< HEAD
-=======
-        <Route path="/home" component={Home}/>
-        <Route path="/league" component={League}/>
-        <Route path="/myteam" render={props => (<MyTeam 
-          players={this.state.players}/>)}
-          />
-        <Route path="/matchups" component={Matchups}/>
-        <Route path="/draft" render={props => (<Draft 
-                         draftPicks={draftPicks} />)}
-                         />
->>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
+
       </div>
       </MuiThemeProvider>
     );
