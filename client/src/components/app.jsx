@@ -25,7 +25,7 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      myteam: {}
+      myteam: {},
       foreignTeam: {},
       league: "",
       leaguepassword: ""
@@ -37,7 +37,7 @@ class App extends React.Component {
   handleUserEntry(event) {
     let obj = {}
     let key = event.target.name;
-    obj[key] = event.target.value
+    obj[key] = event.target.value;
     this.setState(obj);
 
     // fetch username week
