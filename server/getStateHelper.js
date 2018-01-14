@@ -7,7 +7,7 @@ function getWeek() {
 function getMatchups() {
   return axios.get('http://localhost:4444/matchups');
 }
-function getUserInfo() {
+function getUserInfo(username) {
   return axios.get(`http://localhost:4444/user/${username}`);
 }
 function getOpposingUserInfo(username) {
@@ -23,8 +23,8 @@ function getOpposingTeam(opposingUsername, week) {
   return axios.get(`http://localhost:4444/teamstats/${opposingUsername}/${week}`);
 }
 
-const getUserInfo = (username, res) => {
-  axios.all([getWeek(), getMatchups(), getUserInfo()])
+const getUserState = (username, res) => {
+  axios.all([getWeek(), getMatchups(), getUserInfo(username)])
     .then(axios.spread((week, matchups, userInfo) => {
       const weekState = week.data;
       const userInfoState = userInfo.data[0];
@@ -65,4 +65,4 @@ const getUserInfo = (username, res) => {
     }))
 };
 
-module.exports.getUserInfo = getUserInfo;
+module.exports.getUserState = getUserState;

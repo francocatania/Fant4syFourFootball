@@ -23,10 +23,9 @@ app
 	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(req.params.username, req.params.week, res))
 	.get('/matchups', (req, res) => db.getCurrentMatches(res))
 	.get('/league/:leagueId', (req, res) => db.getLeagueInfo(req.params.leagueId, res))
-	.post('/login', (req, res) => serverHelpers.authenticate(req, res))
 	.post('/player', (req, res) => fdsApi.getNewPlayersFromApi(res))
 	.post('/playerdata/:season/:week', (req, res) => fdsApi.getAllPlayerStatsFromApi(req.params.season, req.params.week, res))
-	.post('/login', (req, res) => db.authenticate(req.body.username, req.body.password, res)) // going to db instead of helpers
+	.post('/login', (req, res) => db.authenticate(req.body.username, req.body.password, res))
 	.put('/week', (req, res) => db.updateCurrentWeek(req.body.week, res))
 	.put('/playerdata/:season/:week', (req, res) => fdsApi.updateAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/teams/:id:/:result', (req, res) => serverHelpers.updateWinsLosses(req.params.id, req.params.result, res))

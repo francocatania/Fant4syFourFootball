@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const frontEndHelpers = require('../client/src/helpers.js');
 const {mysqlConfig} = require('./config.js');
-const {getUserInfo} = require('../server/serverHelpers.js');
+const {getUserState} = require('../server/getStateHelper.js');
 
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect((err) => {
@@ -285,7 +285,7 @@ const authenticate = (username, password, res) => {
 			console.log('typeof data ', typeof data);
 			if (password === data[0].password) {
 				console.log('Password Match !');
-      	getUserInfo(username, res);
+      	getUserState(username, res);
 	    } else {
 	      res.status(401).end()
 	    }
