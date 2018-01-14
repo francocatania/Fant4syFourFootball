@@ -1,6 +1,8 @@
 const db = require('../database/index.js');
 const axios = require('axios');
 
+const getUserStateInfo = (username, res) => {
+
 function getWeek() {
   return axios.get('http://localhost:4444/week');
 }
