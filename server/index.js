@@ -34,3 +34,5 @@ app
 	// needs to receive a username, and week (week is obtained from GET request to /week)
 	// upon success promise fires a get request to teamstats to get the team
 	// .get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(username, week, res))
+
+
