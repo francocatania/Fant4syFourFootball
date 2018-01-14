@@ -8,6 +8,10 @@ const getUserInfo = `
 SELECT * FROM users
 WHERE username = ?`;
 
+const getUserInfoById = `
+SELECT * FROM users
+WHERE id = ?`;
+
 const updateWins = `UPDATE teams 
   SET wins = wins + 1 
   WHERE id = ?`;
@@ -188,3 +192,4 @@ module.exports.saveUserInfo = saveUserInfo;
 module.exports.findPassword = findPassword;
 module.exports.getTeamName = getTeamName;
 module.exports.getUserInfo = getUserInfo;
+module.exports.getUserInfoById = getUserInfoById;
