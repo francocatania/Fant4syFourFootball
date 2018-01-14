@@ -25,11 +25,17 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      myteam: {},
-      foreignTeam: {},
       league: "",
-      leaguepassword: ""
+      leaguepassword: "",
+      week: {},
+      teams: [],
+      matchups: [],
+      userInfo: {},
+      userTeam: [],
+      rivalInfo: {},
+      opposition: [],
     };
+
     this.setState = this.setState.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
   }
@@ -44,7 +50,7 @@ class App extends React.Component {
   }
 
   handleSignIn(event) {
-    event.preventDefault();
+    event.preventDefault()
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -56,22 +62,32 @@ class App extends React.Component {
         password: this.state.password
       }),
     })
-    .then((response) => response.json()
-    .then((data) => this.setState(data)))
-    .catch(() => alert("Incorrect Password"))
+    .then((response) => response.json())
+    .then((data) => this.setState(data))
+    .catch(() => alert("Incorrect Password"));
   }
 
   handleLogOut(event) {
     this.setState({
-      isLoggedIn: false
+      isLoggedIn: false,
+      username: "",
+      password: "",
+      league: "",
+      leaguepassword: "",
+      week: {},
+      teams: [],
+      matchups: [],
+      userInfo: {},
+      userTeam: [],
+      rivalInfo: {},
+      opposition: []
     })
   }
 
   handleCheckOutTeam(event) {
     this.setState({
-      currentForeignTeam: "",
-      foreignTeam: "",
-      foreignPlayers: []
+      opposition: [],
+      rivalInfo: {}
     })
   }
 
@@ -98,12 +114,14 @@ class App extends React.Component {
         </ul>
 
         <Route path="/home" component={Home}/>
-        <Route path="/league" component={League}/>
+        <Route path="/league" render={props => (<League
+                         teamsInfo={this.state.teams} />)}
+                         />
         <Route path="/myteam" render={props => (<MyTeam
-          players={this.state.players}/>)}
+          players={this.state.userTeam}/>)}
           />
         <Route path="/matchups" render={props => (<Matchups 
-          players={this.state.players}/>)}
+          userTeam={this.state.userTeam} opposition={this.state.opposition}/>)}
           />
         <Route path="/draft" render={props => (<Draft
                          draftPicks={draftPicks} />)}

@@ -28,7 +28,7 @@ const League = (props) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {fakeTeamsInfo.map( (team, index) => {
+        {props.teamsInfo.map( (team, index) => {
           return (
             <TableRow>
               <TableRowColumn>{index + 1}</TableRowColumn>

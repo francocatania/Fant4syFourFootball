@@ -9,37 +9,41 @@ if (process.env.PORT) {
 let port = 4444;
 if (process.env.PORT) {
   port = process.env.PORT
-}
+};
 
 function getWeek() {
   return axios.get(`${domain}:${port}/week`);
-}
+};
 function getMatchups() {
-  return axios.get(`${domain}:${port}/matchups`);
-}
+  return axios.get(`${domain}:${port}/matches`);
+};
+function getAllTeams() {
+  return axios.get(`${domain}:${port}/teams`);
+};
 function getUserInfo(username) {
   return axios.get(`${domain}:${port}/user/${username}`);
-}
+};
 function getOpposingUserInfo(username) {
   return axios.get(`${domain}:${port}/user/${username}`);
-}
+};
 function getUserInfoById(userId) {
   return axios.get(`${domain}:${port}/userbyid/${userId}`);
-}
+};
 function getUserTeam(username, week) {
   return axios.get(`${domain}:${port}/teamstats/${username}/${week}`);
-}
+};
 function getOpposingTeam(opposingUsername, week) {
   return axios.get(`${domain}:${port}/teamstats/${opposingUsername}/${week}`);
-}
+};
 
 const getUserState = (username, res) => {
-  axios.all([getWeek(), getMatchups(), getUserInfo(username)])
-    .then(axios.spread((week, matchups, userInfo) => {
+  axios.all([getWeek(), getMatchups(), getUserInfo(username), getAllTeams()])
+    .then(axios.spread((week, matchups, userInfo, teams) => {
       const weekState = week.data;
       const userInfoState = userInfo.data[0];
       const userId = userInfo.data[0].id;
       const matchupState = matchups.data;
+      const teamsState = teams.data;
       const rivalId = matchups.data.reduce((current, next) => {
         return next.user_id === userId ? next.rival_id : current;
       }, null)
@@ -58,6 +62,7 @@ const getUserState = (username, res) => {
 
               const stateMakerObj = {
                 week: weekState,
+                teams: teamsState,
                 matchups: matchupState,
                 userInfo: userInfoState,
                 rivalInfo: opposingUserInfoState,
