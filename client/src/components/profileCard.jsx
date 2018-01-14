@@ -1,20 +1,22 @@
 import React from 'react';
 import {Card, CardActions} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
-
+const buttonStyle = {
+  margin: 12
+};
 
 
 const ProfileCard = (props) => {
   return (
   <div>
     <Card>
-      <h1 float="right">Team: Brady Gaga</h1>
-  <img src="http://hddfhm.com/images/new-england-patriots-helmet-clipart-4.png" alt="Avatar" class="avatar" float="left"/>
-    <CardActions>
-      <FlatButton label="Edit Team" />
-    </CardActions>
+      <h1 align="center">Team: Brady Gaga</h1>
+
+
+  <br/>
+    <RaisedButton style={buttonStyle}>Edit Team</RaisedButton>
   </Card>
  </div>
     );
@@ -22,3 +24,13 @@ const ProfileCard = (props) => {
 
 export default ProfileCard
 
+
+// <div>
+//     <Card>
+//       <h1 float="right">Team: Brady Gaga</h1>
+//   <img src="http://hddfhm.com/images/new-england-patriots-helmet-clipart-4.png" alt="Avatar" class="avatar"/>
+//     <CardActions>
+//       <FlatButton label="Edit Team" />
+//     </CardActions>
+//   </Card>
+//  </div>

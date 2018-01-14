@@ -1,8 +1,12 @@
-const bodyParser = require('body-parser');
-const path = require('path');
 const db = require('../database/index.js');
-const express = require('express');
-const app = express();
+
+const updateWinsLosses = (id, result, res) => {
+	if (result === 'win') {
+		db.updateWins(id, res);
+	} else if (result === 'loss') {
+		db.updateLosses(id, res);
+	}
+};
 
 const authenticate = (req, res) => {
   loginInfo = getUserInfo(req.body.username);
@@ -32,12 +36,9 @@ const addUser = (username, password, callback) => {
   const ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   let userId = ids.pop();
   db.saveUser(username, password, userId)
-  // db.assignTeam(userId);
   .then(getUserInfo(username, () => return ));
 };
 
-module.exports= {
-  authenticate,
-  getUserInfo,
-  addUser
-}
+module.exports.authenticate = authenticate;
+module.exports.getUserInfo = getUserInfo;
+module.exports.addUser = addUser;

@@ -1,4 +1,11 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const buttonStyle = {
+  margin: 12
+};
+
 
 class Login extends React.Component {
   constructor(props) {
@@ -7,39 +14,67 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <div className="login">
-            <h5>LOG IN</h5>
-            <label><b>Username: </b></label>
-            <input onChange={this.props.handleUserEntry} type="text" placeholder="Enter username" name="username" required></input>
-            <br />
-            <label><b>Password: </b></label>
-            <input onChange={this.props.handleUserEntry} type="password" placeholder="Enter Password" name="password" required></input>
-            <br />
-            <button onClick={this.props.handleSignIn}>Log In!</button>
+      <div className="test1">
+        <form className="forms">
+          <div className="login" >
+            <h2 className="homepage">LOG IN</h2>
+
+          <TextField
+            hintText="Enter Username"
+            floatingLabelText="Username"
+            className="testField"
+            name="username"
+            onChange={this.props.handleUserEntry}
+          /><br />
+
+          <TextField
+            hintText="Password Field"
+            floatingLabelText="Password"
+            type="password"
+            className="textField"
+            name="password"
+            onChange={this.props.handleUserEntry}
+          /><br />
+
+            <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Log In</RaisedButton>
           </div>
         </form>
-        <form>
-          <div className="signup">
-            <h5>SIGN UP</h5>
-            <label><b>Username: </b></label>
-            <input onChange={this.props.handleUserEntry} type="text" placeholder="Enter username" name="username" required></input>
-            <br />
-            <label><b>Password: </b></label>
-            <input onChange={this.props.handleUserEntry} type="password" placeholder="Enter Password" name="password" required></input>
-            <br />
-            <button onClick={this.props.handleSignIn}>Sign Up!</button>
+
+
+        <form className="forms">
+          <div className="signup" >
+            <h2 className="homepage">SIGN UP</h2>
+
+          <TextField
+            hintText="Enter Username"
+            floatingLabelText="Username"
+            name="username"
+            onChange={this.props.handleUserEntry}
+          /><br />
+
+          <TextField
+            hintText="Password Field"
+            floatingLabelText="Password"
+            type="password"
+            name="password"
+            onChange={this.props.handleUserEntry}
+          /><br />
+
+            <RaisedButton style={buttonStyle} onClick={this.props.handleSignIn}>Sign Up</RaisedButton>
           </div>
         </form>
+
       </div>
     );
   }
 }
 
+
 export default Login
 
-// Include in render if team naming functionality is added:
-// <label><b>Team Name: </b></label>
-// <input onChange={this.props.handleUserEntry} type="text" placeholder="Enter Team Name" name="teamname" required></input>
-// <br />
+// IF TEAMS ARE NOT HARDCODED IN
+// <TextField
+//   hintText="Team Name"
+//   floatingLabelText="Team Name"
+//   type="password"
+// /><br />

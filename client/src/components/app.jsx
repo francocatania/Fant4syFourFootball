@@ -25,12 +25,10 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
-      players: [],
-      teamName: "",
-      matchup: "",
+      myteam: {}
+      foreignTeam: {},
       league: "",
-      leaguepassword: "",
-      league: ""
+      leaguepassword: ""
     };
     this.setState = this.setState.bind(this);
     this.handleLogOut = this.handleLogOut.bind(this);
