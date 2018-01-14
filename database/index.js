@@ -273,12 +273,6 @@ const getRivalTeam = (userId) => {
 	});
 };
 
-// const getTeam = (user) => {
-//   return {
-//     teamName: getTeamName(user),
-//     players: playersInTeam(user, week)
-//   }
-// }
 
 const authenticate = (username, password, res) => {
 	const sql = `SELECT * FROM users WHERE username = ?`;
@@ -314,7 +308,6 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 module.exports.getTeambyUser = getTeambyUser;
 module.exports.getRivalTeam = getRivalTeam;
-// module.exports.getTeam = getTeam;
 module.exports.getUserInfo = getUserInfo;
 module.exports.getUserInfoById = getUserInfoById;
 module.exports.authenticate = authenticate;
