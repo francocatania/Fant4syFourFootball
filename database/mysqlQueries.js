@@ -4,8 +4,16 @@ const updateCurrentWeek = `UPDATE leagues
 SET currentweek = ?
 WHERE id = 1`;
 
-const updateWins = `UPDATE teams
-  SET wins = wins + 1
+const getUserInfo = `
+SELECT * FROM users
+WHERE username = ?`;
+
+const getUserInfoById = `
+SELECT * FROM users
+WHERE id = ?`;
+
+const updateWins = `UPDATE teams 
+  SET wins = wins + 1 
   WHERE id = ?`;
 
 const updateLosses = `UPDATE teams
@@ -183,3 +191,5 @@ module.exports.leagueInfo = leagueInfo;
 module.exports.saveUserInfo = saveUserInfo;
 module.exports.findPassword = findPassword;
 module.exports.getTeamName = getTeamName;
+module.exports.getUserInfo = getUserInfo;
+module.exports.getUserInfoById = getUserInfoById;

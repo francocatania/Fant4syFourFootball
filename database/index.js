@@ -64,14 +64,39 @@ const savePlayerToDB = (player) => {
 	});
 }
 
-const getAllPlayersByTeam = (username, week) => {
+const getAllPlayersByTeam = (username, week, res) => {
 	const sql = sqlQueries.playersInTeam;
-
 	db.query(sql, [username, week], (err, data) => {
 		if (err) {
-			console.log('Couldn\'t get all players by team' );
+			console.log(`Couldn't get all players by team` );
 		} else {
 			console.log('Successfully got all player in the team');
+			res.send(data);
+		}
+	});
+};
+
+const getUserInfo = (username, res) => {
+	const sql = sqlQueries.getUserInfo;
+
+	db.query(sql, [username], (err, data) => {
+		if (err) {
+			console.log(`Couldn't get all user info by username` );
+		} else {
+			console.log('Successfully got all user info by username');
+			res.send(data);
+		}
+	});
+};
+
+const getUserInfoById = (userId, res) => {
+	const sql = sqlQueries.getUserInfoById;
+
+	db.query(sql, [userId], (err, data) => {
+		if (err) {
+			console.log(`Couldn't get all user info by userId` );
+		} else {
+			console.log('Successfully got all user info by userId');
 			res.send(data);
 		}
 	});
@@ -106,7 +131,6 @@ const getLeagueInfo = (leagueId, res) => {
 		}
 	});
 };
-
 
 const updateCurrentWeek =(week, res) => {
 	const sql = sqlQueries.updateCurrentWeek;
@@ -245,12 +269,12 @@ const getRivalTeam = (userId) => {
 	});
 };
 
-const getTeam = (user) => {
-  return {
-    teamName: getTeamName(user),
-    players: playersInTeam(user, week)
-  }
-}
+// const getTeam = (user) => {
+//   return {
+//     teamName: getTeamName(user),
+//     players: playersInTeam(user, week)
+//   }
+// }
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
 module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
@@ -267,4 +291,6 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 module.exports.getTeambyUser = getTeambyUser;
 module.exports.getRivalTeam = getRivalTeam;
-module.exports.getTeam = getTeam;
+// module.exports.getTeam = getTeam;
+module.exports.getUserInfo = getUserInfo;
+module.exports.getUserInfoById = getUserInfoById;

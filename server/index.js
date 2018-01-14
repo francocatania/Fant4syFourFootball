@@ -16,12 +16,14 @@ https.createServer(app);
 app
 	.use(bodyParser.json())
 	.use(express.static(path.join(__dirname, '../client/dist')))
-	.post('/', (req, res) => serverHelpers.authenticate(req, res))
 	.get('/week', (req, res) => db.getCurrentWeek(res))
+	.get('/user/:username', (req, res) => db.getUserInfo(req.params.username, res))
+	.get('/userbyid/:userid', (req, res) => db.getUserInfoById(req.params.userid, res))
 	.get('/scores/:season/:week', (req, res) => db.getMatchScores(req.params.season, req.params.week, res))
-	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(username, week, res))
+	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(req.params.username, req.params.week, res))
 	.get('/matchups', (req, res) => db.getCurrentMatches(res))
 	.get('/league/:leagueId', (req, res) => db.getLeagueInfo(req.params.leagueId, res))
+	.post('/login', (req, res) => serverHelpers.authenticate(req, res))
 	.post('/player', (req, res) => fdsApi.getNewPlayersFromApi(res))
 	.post('/playerdata/:season/:week', (req, res) => fdsApi.getAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/week', (req, res) => db.updateCurrentWeek(req.body.week, res))
@@ -29,3 +31,5 @@ app
 	.put('/teams/:id:/:result', (req, res) => serverHelpers.updateWinsLosses(req.params.id, req.params.result, res))
 	.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
 	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
+
+

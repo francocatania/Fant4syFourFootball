@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   handleSignIn(event) {
-    fetch('/', {
+    fetch('/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
