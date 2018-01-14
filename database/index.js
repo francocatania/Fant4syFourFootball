@@ -1,7 +1,8 @@
 const mysql = require('mysql');
 const sqlQueries = require('./mysqlQueries.js');
 const frontEndHelpers = require('../client/src/helpers.js');
-const {mysqlConfig} = require('./config.js')
+const {mysqlConfig} = require('./config.js');
+const {getUserState} = require('../server/getStateHelper.js');
 
 const connection = mysql.createConnection(mysqlConfig);
 connection.connect((err) => {
@@ -12,6 +13,7 @@ connection.connect((err) => {
  });
 
 const db = connection;
+const dbConnection = db;
 
 // setInterval keeps database connection open. Hacky fix, investigate further when able.
 setInterval(() => {
@@ -234,14 +236,16 @@ const saveUser = (username, password, userId) => {
 	});
 };
 
-const checkPassword = (username) => {
+const checkPassword = (username, callback) => {
   const sql = sqlQueries.findPassword;
 
-  return db.query(sql, username, (err, password) => {
+  db.query(sql, [username], (err, password) => {
 		if (err) {
 			console.log('Failed to find password in database');
+			callback(err, null);
 		} else {
 			console.log('Password successfully found in database');
+			callback(null, password);
 		}
 	})
 };
@@ -269,12 +273,25 @@ const getRivalTeam = (userId) => {
 	});
 };
 
-// const getTeam = (user) => {
-//   return {
-//     teamName: getTeamName(user),
-//     players: playersInTeam(user, week)
-//   }
-// }
+
+const authenticate = (username, password, res) => {
+	const sql = `SELECT * FROM users WHERE username = ?`;
+	
+	db.query(sql, [username], (err, data) => {
+		if (err) {
+			console.error(err);
+		} else {
+			console.log('data[0].password ', data[0].password);
+			console.log('typeof data ', typeof data);
+			if (password === data[0].password) {
+				console.log('Password Match !');
+      	getUserState(username, res);
+	    } else {
+	      res.status(401).end()
+	    }
+		}
+	})
+};
 
 module.exports.savePlayerStatsToDB = savePlayerStatsToDB;
 module.exports.updatePlayerStatsInDB = updatePlayerStatsInDB;
@@ -291,6 +308,6 @@ module.exports.saveUser = saveUser;
 module.exports.checkPassword = checkPassword;
 module.exports.getTeambyUser = getTeambyUser;
 module.exports.getRivalTeam = getRivalTeam;
-// module.exports.getTeam = getTeam;
 module.exports.getUserInfo = getUserInfo;
 module.exports.getUserInfoById = getUserInfoById;
+module.exports.authenticate = authenticate;
