@@ -28,4 +28,8 @@ app
 	.put('/playerdata/:season/:week', (req, res) => fdsApi.updateAllPlayerStatsFromApi(req.params.season, req.params.week, res))
 	.put('/teams/:id:/:result', (req, res) => serverHelpers.updateWinsLosses(req.params.id, req.params.result, res))
 	.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')))
+<<<<<<< HEAD
 	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
+=======
+	.listen(port, '0.0.0.0', () => console.log(`express listening on port ${port}`));
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e

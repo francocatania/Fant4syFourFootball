@@ -7,6 +7,7 @@ const updateWinsLosses = (id, result, res) => {
 		db.updateLosses(id, res);
 	}
 };
+<<<<<<< HEAD
 
 const authenticate = (req, res) => {
   loginInfo = getUserInfo(req.body.username);
@@ -42,3 +43,5 @@ const addUser = (username, password, callback) => {
 module.exports.authenticate = authenticate;
 module.exports.getUserInfo = getUserInfo;
 module.exports.addUser = addUser;
+=======
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e

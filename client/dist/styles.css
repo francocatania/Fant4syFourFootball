@@ -32,3 +32,50 @@
     height: 175px;
     border-radius: 50%;
 }
+
+.header {
+  height: 300px;
+  width: 100%;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#grad {
+    
+    height: 100%;
+    width: 100%;
+}
+
+.homepage {
+  color: black;
+
+}
+
+.textField {
+  color: black;
+}
+
+
+.forms2 {
+  width: 50%;
+  float: right;
+}
+
+.test1 {
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+//import Login from './deleteOption.jsx';
 import Login from './login.jsx';
 import Home from './home.jsx';
 import League from './league.jsx';
@@ -15,7 +16,6 @@ import Draft from './draft.jsx';
 import DraftEntry from './draftEntry.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {draftPicks} from '../../../api/apiSimulation/teams.js';
-// const draftPicks = require('../../../api/apiSimulation/teams.js');
 
 class App extends React.Component {
   constructor(props) {
@@ -25,8 +25,15 @@ class App extends React.Component {
       isLoggedIn: false,
       username: "",
       password: "",
+<<<<<<< HEAD
       myteam: {}
       foreignTeam: {},
+=======
+      players: [],
+      teamName: "",
+      rivalTeam: "",
+      matchup: "",
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
       league: "",
       leaguepassword: ""
     };
@@ -123,6 +130,18 @@ class App extends React.Component {
         <br />
 
         {rootPath}
+<<<<<<< HEAD
+=======
+        <Route path="/home" component={Home}/>
+        <Route path="/league" component={League}/>
+        <Route path="/myteam" render={props => (<MyTeam 
+          players={this.state.players}/>)}
+          />
+        <Route path="/matchups" component={Matchups}/>
+        <Route path="/draft" render={props => (<Draft 
+                         draftPicks={draftPicks} />)}
+                         />
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
       </div>
       </MuiThemeProvider>
     );

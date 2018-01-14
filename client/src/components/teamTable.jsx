@@ -30,7 +30,11 @@ const TeamTable = (props) => {
                  <TableRowColumn>12.16</TableRowColumn>
                  </TableRow>
       })}
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
     </TableBody>
   </Table>
 
@@ -138,4 +142,8 @@ export default TeamTable
  //        <TableRowColumn>7</TableRowColumn>
  //      </TableRow>
  //    </TableBody>
+<<<<<<< HEAD
  //  </Table>
+=======
+ //  </Table>
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e

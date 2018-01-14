@@ -13,7 +13,11 @@ const ProfileCard = (props) => {
   <div>
     <Card>
       <h1 align="center">Team: Brady Gaga</h1>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
 
   <br/>
     <RaisedButton style={buttonStyle}>Edit Team</RaisedButton>
@@ -34,3 +38,7 @@ export default ProfileCard
 //     </CardActions>
 //   </Card>
 //  </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5976c78859a0f2c3fba46f6773c3178d86c5c36e
