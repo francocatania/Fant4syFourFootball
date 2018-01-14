@@ -64,14 +64,27 @@ const savePlayerToDB = (player) => {
 	});
 }
 
-const getAllPlayersByTeam = (username, week) => {
+const getAllPlayersByTeam = (username, week, res) => {
 	const sql = sqlQueries.playersInTeam;
 
 	db.query(sql, [username, week], (err, data) => {
 		if (err) {
-			console.log('Couldn\'t get all players by team' );
+			console.log(`Couldn't get all players by team` );
 		} else {
 			console.log('Successfully got all player in the team');
+			res.send(data);
+		}
+	});
+};
+
+const getUserInfo = (username, res) => {
+	const sql = sqlQueries.getUserInfo;
+
+	db.query(sql, [username], (err, data) => {
+		if (err) {
+			console.log(`Couldn't get all user info by username` );
+		} else {
+			console.log('Successfully got all user info by username');
 			res.send(data);
 		}
 	});
@@ -106,7 +119,6 @@ const getLeagueInfo = (leagueId, res) => {
 		}
 	});
 };
-
 
 const updateCurrentWeek =(week, res) => {
 	const sql = sqlQueries.updateCurrentWeek;
@@ -268,3 +280,4 @@ module.exports.checkPassword = checkPassword;
 module.exports.getTeambyUser = getTeambyUser;
 module.exports.getRivalTeam = getRivalTeam;
 module.exports.getTeam = getTeam;
+module.exports.getUserInfo = getUserInfo;
