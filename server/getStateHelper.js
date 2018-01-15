@@ -4,7 +4,8 @@ const axios = require('axios');
 let domain = 'http://localhost';
 if (process.env.PORT) {
   domain = 'https://fant4syfootball.herokuapp.com'
-} else if (process.env.inStaging) {
+}
+if (process.env.inStaging) {
   domain = 'https://fant4syfootball-staging.herokuapp.com'
 }
 
