@@ -8,7 +8,7 @@ if (process.env.PORT) {
   domain = 'https://fant4syfootball.herokuapp.com'
 }
 if (process.env.inStaging === 'true') {
-  domain = 'http://fant4syfootball-staging.herokuapp.com'
+  domain = 'https://fant4syfootball-staging.herokuapp.com'
 }
 
 console.log('domain = ', domain);
@@ -21,31 +21,31 @@ if (process.env.PORT) {
 console.log('port = ', port);
 
 function getWeek() {
-  return axios.get(`${domain}:${port}/week`);
+  return axios.get(`/week`);
 };
 function getMatchups() {
-  return axios.get(`${domain}:${port}/matches`);
+  return axios.get(`/matches`);
 };
 function getAllTeams() {
-  return axios.get(`${domain}:${port}/teams`);
+  return axios.get(`/teams`);
 };
 function getAllUsers() {
-  return axios.get(`${domain}:${port}/users`);
+  return axios.get(`/users`);
 };
 function getUserInfo(username) {
-  return axios.get(`${domain}:${port}/user/${username}`);
+  return axios.get(`/user/${username}`);
 };
 function getOpposingUserInfo(username) {
-  return axios.get(`${domain}:${port}/user/${username}`);
+  return axios.get(`/user/${username}`);
 };
 function getUserInfoById(userId) {
-  return axios.get(`${domain}:${port}/userbyid/${userId}`);
+  return axios.get(`/userbyid/${userId}`);
 };
 function getUserTeam(username, week) {
-  return axios.get(`${domain}:${port}/teamstats/${username}/${week}`);
+  return axios.get(`/teamstats/${username}/${week}`);
 };
 function getOpposingTeam(opposingUsername, week) {
-  return axios.get(`${domain}:${port}/teamstats/${opposingUsername}/${week}`);
+  return axios.get(`/teamstats/${opposingUsername}/${week}`);
 };
 
 
@@ -69,7 +69,7 @@ const getUserState = (username, res) => {
 
           axios({
             method:'get',
-            url: `${domain}:${port}/teamstats/${opposingUserInfoState.username}/${weekState.week}`,
+            url: `/teamstats/${opposingUserInfoState.username}/${weekState.week}`,
           })
             .then(opposingTeam => {
               const opposingTeamState = opposingTeam.data;
