@@ -18,6 +18,8 @@ if (process.env.PORT) {
   port = process.env.PORT
 };
 
+console.log('port = ', port);
+
 function getWeek() {
   return axios.get(`${domain}:${port}/week`);
 };
