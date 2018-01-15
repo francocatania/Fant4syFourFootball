@@ -34,10 +34,12 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="article-list">
-        {articles.docs.map((article) =>
-          <div className="article" key={article._id} article={article}>{article.snippet}</div>
-        )}
+      <div>
+      {articles.docs.map((article) =>
+         <Article
+           key={article._id}
+           article={article} />
+      )}
       </div>
     );
   }

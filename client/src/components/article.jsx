@@ -8,7 +8,10 @@ class Article extends React.Component {
   render() {
     return(
       <div>
-        <p>ARTICLE</p>
+        <div>
+          <a className="article" href={this.props.article.web_url}>{this.props.article.snippet}</a>
+          <h6 className="article-source" onClick={this.selectSource}>{this.props.article.source}</h6>
+        </div>
       </div>
     );
   }
