@@ -12,6 +12,9 @@ const getUserInfoById = `
 SELECT * FROM users
 WHERE id = ?`;
 
+const getTeams = `
+SELECT * FROM teams`;
+
 const updateWins = `UPDATE teams 
   SET wins = wins + 1 
   WHERE id = ?`;
@@ -193,3 +196,4 @@ module.exports.findPassword = findPassword;
 module.exports.getTeamName = getTeamName;
 module.exports.getUserInfo = getUserInfo;
 module.exports.getUserInfoById = getUserInfoById;
+module.exports.getTeams = getTeams;

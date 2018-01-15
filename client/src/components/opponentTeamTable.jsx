@@ -15,8 +15,8 @@ const OpponentTeamTable = (props) => {
   <Table class="table">
     <TableHeader displaySelectAll={false}>
       <TableRow>
-        <TableHeaderColumn>Points</TableHeaderColumn>
         <TableHeaderColumn>Player Name</TableHeaderColumn>
+        <TableHeaderColumn>Points</TableHeaderColumn>
         <TableHeaderColumn>Stats</TableHeaderColumn>
       </TableRow>
     </TableHeader>

@@ -7,7 +7,7 @@ class Matchups extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userTeam: [fakePlayer], // array of objects containing both player info and stats
+      userTeam: [fakePlayer],
       userTeamScore: 0,
       rivalTeam: [],
       rivalTeamScore: 0
@@ -27,11 +27,11 @@ class Matchups extends React.Component {
     return (
       <div>
       <div className="matchups">
-        <TeamTableMatchup players={this.state.userTeam}/>
+        <TeamTableMatchup players={this.props.userTeam}/>
       </div>
 
       <div className="matchups">
-        <OpponentTeamTable players={this.state.rivalTeam} />
+        <OpponentTeamTable players={this.props.opposition} />
       </div>
       </div>
     );

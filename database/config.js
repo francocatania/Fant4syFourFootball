@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-
 let config = null;
 
 if (!process.env.DATABASE_URL) {
@@ -7,6 +6,5 @@ if (!process.env.DATABASE_URL) {
 }
 
 const mysqlConfig = process.env.DATABASE_URL || config.developmentConfig;
-
 
 module.exports.mysqlConfig = mysqlConfig;

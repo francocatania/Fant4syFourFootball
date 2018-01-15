@@ -6,6 +6,6 @@ const updateWinsLosses = (id, result, res) => {
     } else if (result === 'loss') {
         db.updateLosses(id, res);
     }
-};
+}
 
 module.exports.updateWinsLosses = updateWinsLosses;

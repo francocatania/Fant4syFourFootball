@@ -91,6 +91,19 @@ const getUserInfo = (username, res) => {
 	});
 };
 
+const getTeams = (res) => {
+	const sql = sqlQueries.getTeams;
+
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log(`Couldn't get all teams` );
+		} else {
+			console.log('Successfully got all teams');
+			res.send(data);
+		}
+	});
+};
+
 const getUserInfoById = (userId, res) => {
 	const sql = sqlQueries.getUserInfoById;
 
@@ -311,3 +324,4 @@ module.exports.getRivalTeam = getRivalTeam;
 module.exports.getUserInfo = getUserInfo;
 module.exports.getUserInfoById = getUserInfoById;
 module.exports.authenticate = authenticate;
+module.exports.getTeams = getTeams;

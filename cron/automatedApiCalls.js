@@ -111,7 +111,7 @@ const getScores = (season, week) => {
 };
 
 const getMatchups = () => {
-	return axios.get(`${domain}:${port}/matchups`);
+	return axios.get(`${domain}:${port}/matches`);
 }
 
 const processWinnersLossers = (scores, matchups) => {
