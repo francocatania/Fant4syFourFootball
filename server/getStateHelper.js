@@ -3,12 +3,15 @@ const axios = require('axios');
 
 let domain = 'http://localhost';
 console.log('process.env.inStaging :', process.env.inStaging)
+console.log('process.env.inStaging type :',typeof process.env.inStaging)
 if (process.env.PORT) {
   domain = 'https://fant4syfootball.herokuapp.com'
 }
 if (process.env.inStaging === 'true') {
   domain = 'https://fant4syfootball-staging.herokuapp.com'
 }
+
+console.log('domain = ', domain);
 
 let port = 4444;
 if (process.env.PORT) {
