@@ -2,7 +2,9 @@ const db = require('../database/index.js');
 const axios = require('axios');
 
 let domain = 'http://localhost';
-if (process.env.PORT) {
+if (process.env.staging) {
+  domain = 'https://fant4syfootball-staging.herokuapp.com'
+} else {
   domain = 'https://fant4syfootball.herokuapp.com'
 }
 
