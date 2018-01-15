@@ -1,4 +1,5 @@
 import React from 'react';
+import {getPlayerScore, getTeamScore} from '../helpers.js';
 import {
   Table,
   TableBody,
@@ -26,11 +27,15 @@ const TeamTableMatchup = (props) => {
           return <TableRow>
                  <TableRowColumn>Stats</TableRowColumn>
                  <TableRowColumn>{player.name}</TableRowColumn>
-                 <TableRowColumn>12.16</TableRowColumn>
+                 <TableRowColumn>{getPlayerScore(player).toFixed(2)}</TableRowColumn>
                  <TableRowColumn>{player.position}</TableRowColumn>
                  </TableRow>
       })}
-      
+    <TableRow>
+    <TableRowColumn></TableRowColumn>
+    <TableRowColumn></TableRowColumn>
+    <TableRowColumn>{getTeamScore(props.players).toFixed(2)}</TableRowColumn>
+    </TableRow>
     </TableBody>
   </Table>
   

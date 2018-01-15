@@ -117,6 +117,19 @@ const getUserInfoById = (userId, res) => {
 	});
 };
 
+const getAllUsers = (res) => {
+	const sql = sqlQueries.getAllUsers;
+
+	db.query(sql, (err, data) => {
+		if (err) {
+			console.log(`Couldn't get all users` );
+		} else {
+			console.log('Successfully got all users');
+			res.send(data);
+		}
+	});
+};
+
 const getCurrentWeek = (res) => {
 	const sql = sqlQueries.currentWeekAndSeason;
 
@@ -325,3 +338,4 @@ module.exports.getUserInfo = getUserInfo;
 module.exports.getUserInfoById = getUserInfoById;
 module.exports.authenticate = authenticate;
 module.exports.getTeams = getTeams;
+module.exports.getAllUsers = getAllUsers;

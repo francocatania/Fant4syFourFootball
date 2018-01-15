@@ -18,6 +18,7 @@ app
 	.use(express.static(path.join(__dirname, '../client/dist')))
 	.get('/week', (req, res) => db.getCurrentWeek(res))
 	.get('/user/:username', (req, res) => db.getUserInfo(req.params.username, res))
+	.get('/users', (req, res) => db.getAllUsers(res))
 	.get('/userbyid/:userid', (req, res) => db.getUserInfoById(req.params.userid, res))
 	.get('/scores/:season/:week', (req, res) => db.getMatchScores(req.params.season, req.params.week, res))
 	.get('/teams', (req, res) => db.getTeams(res))

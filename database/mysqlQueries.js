@@ -4,6 +4,9 @@ const updateCurrentWeek = `UPDATE leagues
 SET currentweek = ?
 WHERE id = 1`;
 
+const getAllUsers = `
+SELECT * FROM users`;
+
 const getUserInfo = `
 SELECT * FROM users
 WHERE username = ?`;
@@ -197,3 +200,4 @@ module.exports.getTeamName = getTeamName;
 module.exports.getUserInfo = getUserInfo;
 module.exports.getUserInfoById = getUserInfoById;
 module.exports.getTeams = getTeams;
+module.exports.getAllUsers = getAllUsers;

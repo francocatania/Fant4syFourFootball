@@ -29,6 +29,7 @@ class App extends React.Component {
       leaguepassword: "",
       week: {},
       teams: [],
+      users: [],
       matchups: [],
       userInfo: {},
       userTeam: [],
@@ -115,7 +116,7 @@ class App extends React.Component {
 
         <Route path="/home" component={Home}/>
         <Route path="/league" render={props => (<League
-                         teamsInfo={this.state.teams} />)}
+                         teamsInfo={this.state.teams} coaches={this.state.users}/>)}
                          />
         <Route path="/myteam" render={props => (<MyTeam
           players={this.state.userTeam}/>)}

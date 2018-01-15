@@ -6,21 +6,6 @@ import OpponentTeamTable from'./opponentTeamTable.jsx';
 class Matchups extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      userTeam: [fakePlayer],
-      userTeamScore: 0,
-      rivalTeam: [],
-      rivalTeamScore: 0
-    }
-    this.componentDidMount = this.componentDidMount.bind(this);
-  }
-
-  componentDidMount() {
-    let userTeamScore = getTeamScore(this.state.userTeam);
-    let rivalTeamScore = getTeamScore(this.state.rivalTeam);
-
-    this.setState({userTeamScore: userTeamScore});
-    this.setState({rivalTeamScore: rivalTeamScore});
   }
 
   render() {

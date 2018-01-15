@@ -23,6 +23,9 @@ function getMatchups() {
 function getAllTeams() {
   return axios.get(`${domain}:${port}/teams`);
 };
+function getAllUsers() {
+  return axios.get(`${domain}:${port}/users`);
+};
 function getUserInfo(username) {
   return axios.get(`${domain}:${port}/user/${username}`);
 };
@@ -39,13 +42,15 @@ function getOpposingTeam(opposingUsername, week) {
   return axios.get(`${domain}:${port}/teamstats/${opposingUsername}/${week}`);
 };
 
+
 const getUserState = (username, res) => {
-  axios.all([getWeek(), getMatchups(), getUserInfo(username), getAllTeams()])
-    .then(axios.spread((week, matchups, userInfo, teams) => {
+  axios.all([getWeek(), getMatchups(), getUserInfo(username), getAllUsers(), getAllTeams()])
+    .then(axios.spread((week, matchups, userInfo, users, teams) => {
       const weekState = week.data;
       const userInfoState = userInfo.data[0];
       const userId = userInfo.data[0].id;
       const matchupState = matchups.data;
+      const usersState = users.data;
       const teamsState = teams.data;
       const rivalId = matchups.data.reduce((current, next) => {
         return next.user_id === userId ? next.rival_id : current;
@@ -66,6 +71,7 @@ const getUserState = (username, res) => {
               const stateMakerObj = {
                 week: weekState,
                 teams: teamsState,
+                users: usersState,
                 matchups: matchupState,
                 userInfo: userInfoState,
                 rivalInfo: opposingUserInfoState,

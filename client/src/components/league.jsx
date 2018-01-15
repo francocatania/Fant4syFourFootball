@@ -8,13 +8,6 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-const fakeTeamsInfo = [
-  {'id': 1234, 'name': 'Team1', 'coach': 'reenuka', 'league': 1, 'wins': 3, 'losses': 0},
-  {'id': 2345, 'name': 'Team2', 'coach': 'daharlow', 'league': 1, 'wins': 2, 'losses': 1},
-  {'id': 3456, 'name': 'Team3', 'coach': 'mcooper', 'league': 1, 'wins': 1, 'losses': 2},
-  {'id': 4567, 'name': 'Team4', 'coach': 'fcatania', 'league': 1, 'wins': 0, 'losses': 3},
-]
-
 const League = (props) => {
   return (
     <Table>
