@@ -22,6 +22,7 @@ app
 	.get('/userbyid/:userid', (req, res) => db.getUserInfoById(req.params.userid, res))
 	.get('/scores/:season/:week', (req, res) => db.getMatchScores(req.params.season, req.params.week, res))
 	.get('/teams', (req, res) => db.getTeams(res))
+	.get('/teams/:userId', (req, res) => db.getTeambyUser(req.params.userId, res))
 	.get('/teamstats/:username/:week', (req, res) => db.getAllPlayersByTeam(req.params.username, req.params.week, res))
 	.get('/matches', (req, res) => db.getCurrentMatches(res))
 	.get('/league/:leagueId', (req, res) => db.getLeagueInfo(req.params.leagueId, res))

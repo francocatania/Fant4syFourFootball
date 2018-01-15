@@ -276,13 +276,14 @@ const checkPassword = (username, callback) => {
 	})
 };
 
-const getTeambyUser = (userId) => {
+const getTeambyUser = (userId,res) => {
   const sql = sqlQueries.getTeamName;
   return db.query(sql, userId, (err, data) => {
 		if (err) {
 			console.log('Failed to find team name in database');
 		} else {
 			console.log('Team successfully found in database');
+			res.send(data[0]);
 		}
 	});
 };
