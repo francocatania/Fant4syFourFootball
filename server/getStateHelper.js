@@ -5,6 +5,9 @@ let domain = 'http://localhost';
 if (process.env.PORT) {
   domain = 'https://fant4syfootball.herokuapp.com'
 }
+if (process.env.inStaging) {
+  domain = 'https://fant4syfootball-staging.herokuapp.com'
+}
 
 let port = 4444;
 if (process.env.PORT) {
