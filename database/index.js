@@ -8,8 +8,9 @@ const connection = mysql.createConnection(mysqlConfig);
 connection.connect((err) => {
    if (err) {
    	console.log('error connecting to sql database', err);
-   }
-   console.log("Connected in database file!");
+   } else {
+	 console.log("Connected in database file!");
+	 }
  });
 
 const db = connection;
@@ -135,7 +136,7 @@ const getCurrentWeek = (res) => {
 
 	db.query(sql, (err, data) => {
 		if (err) {
-			console.log('Player failed to insert into database');
+			console.log('Failed to get week');
 			res.sendStatus(404);
 		} else {
 			let currentWeek = {
