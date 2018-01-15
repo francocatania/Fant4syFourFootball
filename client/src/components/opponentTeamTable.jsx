@@ -1,4 +1,5 @@
 import React from 'react';
+import {getPlayerScore, getTeamScore} from '../helpers.js';
 import {
   Table,
   TableBody,
@@ -24,11 +25,16 @@ const OpponentTeamTable = (props) => {
        {props.players.map((player, index) =>{
           return <TableRow>
                  <TableRowColumn>{player.name}</TableRowColumn>
-                 <TableRowColumn>12.16</TableRowColumn>
+                 <TableRowColumn>{getPlayerScore(player).toFixed(2)}</TableRowColumn>
                  <TableRowColumn>Stats</TableRowColumn>
                  </TableRow>
       })}
-      
+    
+    <TableRow>
+    <TableRowColumn></TableRowColumn>
+    <TableRowColumn>{getTeamScore(props.players).toFixed(2)}</TableRowColumn>
+    <TableRowColumn></TableRowColumn>
+    </TableRow>
     </TableBody>
   </Table>
   

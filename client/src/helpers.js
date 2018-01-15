@@ -52,3 +52,4 @@ const getTeamScore = (team) => {
 
 module.exports.fakePlayer = fakePlayer;
 module.exports.getTeamScore = getTeamScore;
+module.exports.getPlayerScore = getPlayerScore;
