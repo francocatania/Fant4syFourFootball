@@ -89,7 +89,9 @@ const getUserState = (username, res) => {
               console.log('failed to retrieve state');
             });
         }))
+        .catch( err => console.error(err));
     }))
+    .catch( err => console.error(err));
 };
 
 module.exports.getUserState = getUserState;
