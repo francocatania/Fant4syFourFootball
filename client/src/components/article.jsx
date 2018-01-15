@@ -8,9 +8,9 @@ class Article extends React.Component {
   render() {
     return(
       <div>
-        <div>
-          <a className="article" href={this.props.article.web_url}>{this.props.article.snippet}</a>
-          <h6 className="article-source">{this.props.article.source}</h6>
+        <div className="article-view">
+          <a href={this.props.article.web_url}>{this.props.article.snippet}</a>
+          <h6 className="source">{this.props.article.source}</h6>
         </div>
       </div>
     );

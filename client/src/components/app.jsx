@@ -105,13 +105,11 @@ class App extends React.Component {
           }
         });
       });
-    } 
-
-    // <Route exact path="/" render={() => (isloggedIn ? (<Redirect to="/dashboard"/>) : (<PublicHomePage/>))}/>
+    }
 
     if (isLoggedIn) {
       logout =  <button id="logout" onClick={this.handleLogOut}><Link to="/">Log out</Link></button>;
-      rootPath = <Route exact path="/app" component={App}/>
+      rootPath = <Route exact path="/home" component={Home}/>
       navBar = (<div id="navbar">
         <ul id='navbar'>
           <li id="navbar-item"><Link to="/home">Home</Link></li>
@@ -122,7 +120,7 @@ class App extends React.Component {
           {logout}
         </ul>
 
-        <Route path="/home" component={Home}/>
+        <Route path="/" component={Home}/>
         <Route path="/league" render={props => (<League
                          teamsInfo={this.state.teams}/>)}
                          />
