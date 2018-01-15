@@ -8,7 +8,7 @@ if (process.env.PORT) {
   domain = 'https://fant4syfootball.herokuapp.com'
 }
 if (process.env.inStaging === 'true') {
-  domain = 'http://fant4syfootball-staging.herokuapp.com'
+  domain = 'https://fant4syfootball-staging.herokuapp.com'
 }
 
 console.log('domain = ', domain);
