@@ -34,7 +34,7 @@ class App extends React.Component {
       userInfo: {},
       userTeam: [],
       rivalInfo: {},
-      opposition: [],
+      opposition: []
     };
 
     this.setState = this.setState.bind(this);
@@ -131,7 +131,7 @@ class App extends React.Component {
         <Route path="/myteam" render={props => (<MyTeam
           players={this.state.userTeam}/>)}
           />
-        <Route path="/matchups" render={props => (<Matchups 
+        <Route path="/matchups" render={props => (<Matchups
           userTeam={this.state.userTeam} opposition={this.state.opposition}/>)}
           />
         <Route path="/draft" render={props => (<Draft
