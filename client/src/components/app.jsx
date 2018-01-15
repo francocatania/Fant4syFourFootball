@@ -97,7 +97,17 @@ class App extends React.Component {
     const isLoggedIn = this.state.isLoggedIn;
     let logout = null;
     let rootPath = null;
-    let navBar = null
+    let navBar = null;
+
+    if (this.state.teams.length !== 0 && this.state.teams[0].coach === undefined) {
+      this.state.users.forEach(user => {
+        this.state.teams.forEach(team => {
+          if (user.id === team.owner) {
+            team.coach = user.username;
+          }
+        });
+      });
+    } 
 
     // <Route exact path="/" render={() => (isloggedIn ? (<Redirect to="/dashboard"/>) : (<PublicHomePage/>))}/>
 
@@ -116,7 +126,7 @@ class App extends React.Component {
 
         <Route path="/home" component={Home}/>
         <Route path="/league" render={props => (<League
-                         teamsInfo={this.state.teams} coaches={this.state.users}/>)}
+                         teamsInfo={this.state.teams}/>)}
                          />
         <Route path="/myteam" render={props => (<MyTeam
           players={this.state.userTeam}/>)}
