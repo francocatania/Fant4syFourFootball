@@ -46,8 +46,6 @@ class App extends React.Component {
     let key = event.target.name;
     obj[key] = event.target.value;
     this.setState(obj);
-
-    // fetch username week
   }
 
   handleSignIn(event) {

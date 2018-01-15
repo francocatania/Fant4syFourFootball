@@ -1,13 +1,10 @@
 import React from 'react';
 import Article from './article.jsx'
-import articles from './../../database/dummyData/dummyArticles.js'
+import articles from './../../../database/dummyData/dummyArticles.js'
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      articles: articles
-    }
   }
 
   // componentDidMount() {
@@ -38,10 +35,8 @@ class Home extends React.Component {
   render() {
     return (
       <div className="article-list">
-        {this.props.articles.response.docs.map((article) =>
-          <Article
-            article={article}
-          />
+        {articles.docs.map((article) =>
+          <div className="article" key={article._id} article={article}>{article.snippet}</div>
         )}
       </div>
     );

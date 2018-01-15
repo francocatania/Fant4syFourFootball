@@ -1,11 +1,8 @@
 const articles = {
-  "status": "OK",
-  "copyright": "Copyright (c) 2018 The New York Times Company. All Rights Reserved.",
-  "response": {
     "docs": [
       {
         "web_url": "https://topics.nytimes.com/top/reference/timestopics/subjects/f/fantasy_football/index.html",
-        "snippet": "<p>Jason and Justin Sablich, with contributions from other industry experts, will provide fantasy football advice throughout the 2015 season. They will also update player rankings for standard and PPR scoring formats throughout the regular season....",
+        "snippet": "Jason and Justin Sablich, with contributions from other industry experts, will provide fantasy football advice throughout the 2015 season. They will also update player rankings for standard and PPR scoring formats throughout the regular season....",
         "blog": {},
         "multimedia": [],
         "headline": {
@@ -27,7 +24,7 @@ const articles = {
       },
       {
         "web_url": "https://topics.nytimes.com/topic/subject/fantasy-football-news-rankings-and-analysis",
-        "snippet": "<p>Jason and Justin Sablich, with contributions from other industry experts, will provide fantasy football advice throughout the 2015 season. They will also update player rankings for standard and PPR scoring formats throughout the regular season....",
+        "snippet": "Jason and Justin Sablich, with contributions from other industry experts, will provide fantasy football advice throughout the 2015 season. They will also update player rankings for standard and PPR scoring formats throughout the regular season....",
         "blog": {},
         "multimedia": [],
         "headline": {
@@ -5063,5 +5060,6 @@ const articles = {
       "offset": 0,
       "time": 15
     }
-  }
 }
+
+export default articles
