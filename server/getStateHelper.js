@@ -86,12 +86,12 @@ const getUserState = (username, res) => {
               res.send(stateMakerObj);
             })
             .catch((err) => {
-              console.log('failed to retrieve state');
+              console.log('3rd then', 'failed to retrieve state');
             });
         }))
-        .catch( err => console.error(err));
+        .catch( err => console.error('2nd then', err));
     }))
-    .catch( err => console.error(err));
+    .catch( err => console.error('1st then', err));
 };
 
 module.exports.getUserState = getUserState;
