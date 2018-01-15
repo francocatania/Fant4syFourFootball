@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 let config = null;
 
+console.log(process.env.DATABASE_URL);
+
 if (!process.env.DATABASE_URL) {
     config = require('./developmentConfig.js');
 }
