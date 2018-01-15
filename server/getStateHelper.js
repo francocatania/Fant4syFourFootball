@@ -21,31 +21,31 @@ if (process.env.PORT) {
 console.log('port = ', port);
 
 function getWeek() {
-  return axios.get(`/week`);
+  return axios.get(`${domain}:${port}/week`);
 };
 function getMatchups() {
-  return axios.get(`/matches`);
+  return axios.get(`${domain}:${port}/matches`);
 };
 function getAllTeams() {
-  return axios.get(`/teams`);
+  return axios.get(`${domain}:${port}/teams`);
 };
 function getAllUsers() {
-  return axios.get(`/users`);
+  return axios.get(`${domain}:${port}/users`);
 };
 function getUserInfo(username) {
-  return axios.get(`/user/${username}`);
+  return axios.get(`${domain}:${port}/user/${username}`);
 };
 function getOpposingUserInfo(username) {
-  return axios.get(`/user/${username}`);
+  return axios.get(`${domain}:${port}/user/${username}`);
 };
 function getUserInfoById(userId) {
-  return axios.get(`/userbyid/${userId}`);
+  return axios.get(`${domain}:${port}/userbyid/${userId}`);
 };
 function getUserTeam(username, week) {
-  return axios.get(`/teamstats/${username}/${week}`);
+  return axios.get(`${domain}:${port}/teamstats/${username}/${week}`);
 };
 function getOpposingTeam(opposingUsername, week) {
-  return axios.get(`/teamstats/${opposingUsername}/${week}`);
+  return axios.get(`${domain}:${port}/teamstats/${opposingUsername}/${week}`);
 };
 
 
@@ -69,7 +69,7 @@ const getUserState = (username, res) => {
 
           axios({
             method:'get',
-            url: `/teamstats/${opposingUserInfoState.username}/${weekState.week}`,
+            url: `${domain}:${port}/teamstats/${opposingUserInfoState.username}/${weekState.week}`,
           })
             .then(opposingTeam => {
               const opposingTeamState = opposingTeam.data;
