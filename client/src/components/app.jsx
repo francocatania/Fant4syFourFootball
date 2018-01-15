@@ -105,6 +105,7 @@ class App extends React.Component {
       rootPath = <Route exact path="/app" component={App}/>
       navBar = (<div id="navbar">
         <ul id='navbar'>
+          <li id="navbar-item"><Link to="/home">Home</Link></li>
           <li className="navbar-item" ><Link to="/league">League</Link></li>
           <li className="navbar-item"><Link to="/myteam">My Team</Link></li>
           <li className="navbar-item"><Link to="/matchups">Matchups</Link></li>
