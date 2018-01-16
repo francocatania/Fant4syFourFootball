@@ -1,6 +1,6 @@
 import React from 'react';
-import Article from './article.jsx'
-import articles from './../../../database/dummyData/dummyArticles.js'
+import Article from './article.jsx';
+import articles from './../../../database/dummyData/dummyArticles.js';
 
 class Home extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Home extends React.Component {
   //   let url = new URL('https://api.nytimes.com/svc/search/v2/articlesearch');
   //   let params = {'q':'football',
   //                 'sort':'newest',
-  //                 'api-key': '585b7568aa684df3a17087a5b8f72dab'};
+  //                 'api-key': '---'};
   //   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
   //
   //   fetch(url, {
@@ -35,11 +35,14 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-      {articles.docs.map((article) =>
-         <Article
-           key={article._id}
-           article={article} />
-      )}
+        <h1>Welcome {this.props.user}!</h1>
+        <div>
+          {articles.docs.map((article) =>
+             <Article
+               key={article._id}
+               article={article} />
+          )}
+        </div>
       </div>
     );
   }
