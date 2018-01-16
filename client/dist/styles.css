@@ -88,8 +88,14 @@ li a:hover {
 
 .article-view {
   margin: 2% 10%;
+  font-family: sans-serif;
 }
 
 .source {
   margin-left: 3%;
+}
+
+#welcome {
+  margin-left: 7%;
+  font-family: sans-serif;
 }
