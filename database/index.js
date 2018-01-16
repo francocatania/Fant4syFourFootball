@@ -309,8 +309,6 @@ const authenticate = (username, password, res) => {
 		if (err) {
 			console.error(err);
 		} else {
-			console.log('data[0].password ', data[0].password);
-			console.log('typeof data ', typeof data);
 			if (password === data[0].password) {
 				console.log('Password Match !');
       	getUserState(username, res);

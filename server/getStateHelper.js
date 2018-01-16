@@ -2,8 +2,6 @@ const db = require('../database/index.js');
 const axios = require('axios');
 
 let domain = 'http://localhost';
-console.log('process.env.inStaging :', process.env.inStaging)
-console.log('process.env.inStaging type :',typeof process.env.inStaging)
 if (process.env.PORT) {
   domain = 'https://fant4syfootball.herokuapp.com'
 }
