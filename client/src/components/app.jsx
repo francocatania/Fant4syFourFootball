@@ -34,7 +34,7 @@ class App extends React.Component {
       userInfo: {},
       userTeam: [],
       rivalInfo: {},
-      opposition: [],
+      opposition: []
     };
 
     this.setState = this.setState.bind(this);
@@ -46,8 +46,6 @@ class App extends React.Component {
     let key = event.target.name;
     obj[key] = event.target.value;
     this.setState(obj);
-
-    // fetch username week
   }
 
   handleSignIn(event) {
@@ -107,13 +105,12 @@ class App extends React.Component {
           }
         });
       });
-    } 
-
-    // <Route exact path="/" render={() => (isloggedIn ? (<Redirect to="/dashboard"/>) : (<PublicHomePage/>))}/>
+    }
 
     if (isLoggedIn) {
       logout =  <button id="logout" onClick={this.handleLogOut}><Link to="/">Log out</Link></button>;
-      rootPath = <Route exact path="/app" component={App}/>
+      rootPath = <Route exact path="/" render={props => (<Home
+                       user={this.state.userInfo.username} />)}/>
       navBar = (<div id="navbar">
         <ul id='navbar'>
           <li id="navbar-item"><Link to="/home">Home</Link></li>
@@ -124,14 +121,16 @@ class App extends React.Component {
           {logout}
         </ul>
 
-        <Route path="/home" component={Home}/>
+        <Route path="/home" render={props => (<Home
+                         user={this.state.userInfo.username} />)}
+                         />
         <Route path="/league" render={props => (<League
                          teamsInfo={this.state.teams}/>)}
                          />
         <Route path="/myteam" render={props => (<MyTeam
           players={this.state.userTeam}/>)}
           />
-        <Route path="/matchups" render={props => (<Matchups 
+        <Route path="/matchups" render={props => (<Matchups
           userTeam={this.state.userTeam} opposition={this.state.opposition}/>)}
           />
         <Route path="/draft" render={props => (<Draft

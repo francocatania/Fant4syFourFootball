@@ -54,7 +54,7 @@ li a:hover {
 }
 
 #grad {
-    
+
     height: 100%;
     width: 100%;
 }
@@ -80,17 +80,22 @@ li a:hover {
 }
 
 .matchups {
- width: 50%; 
+ width: 50%;
  display: inline-block;
  vertical-align: top;
- 
+
 }
 
+.article-view {
+  margin: 2% 10%;
+  font-family: sans-serif;
+}
 
+.source {
+  margin-left: 3%;
+}
 
-
-
-
-
-
-
+#welcome {
+  margin-left: 7%;
+  font-family: sans-serif;
+}
